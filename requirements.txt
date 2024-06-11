@@ -1,2 +1,2 @@
-more_itertools==10.3.0
+more_itertools==8.10.0
 owlready2==0.46

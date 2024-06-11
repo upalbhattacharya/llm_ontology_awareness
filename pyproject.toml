@@ -1,0 +1,17 @@
+[project]
+name = "ontology_awareness"
+version = "0.0.1"
+description = "Tools to generate prompts for various degrees of ontology awareness"
+authors = [
+  {name="Upal Bhattacharya", email="u.bhattacharya@uu.nl"},
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "more_itertools==8.10.0",
+  "owlready2==0.46"
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
