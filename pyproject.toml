@@ -1,7 +1,7 @@
 [project]
-name = "ontology_awareness"
+name = "llm_ontology_awareness"
 version = "0.0.1"
-description = "Tools to generate prompts for various degrees of ontology awareness"
+description = "Tools to generate and evaluate different prompts for various degrees of ontology awareness"
 authors = [
   {name="Upal Bhattacharya", email="u.bhattacharya@uu.nl"},
 ]
