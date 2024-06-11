@@ -2,9 +2,11 @@
 
 # Script for various forms of prompting Individual -> Concept/Class mapping
 
-import random
+import json
 
-random.seed(42)
+from llm_ontology_awareness.ontology_processing.ontology_processing import (
+    OntologyProcessing,
+)
 
 
 class IndividualToClassPrompts:
