@@ -8,7 +8,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-import pandas as pd
+import polars as pl
 
 from llm_ontology_awareness.ontology_processing import ontology_processing
 
@@ -31,9 +31,14 @@ class IndividualToClassTargets:
             for x in v:
                 individual_classes.setdefault(x, []).append(k)
 
-        df = pd.DataFrame.from_dict(individual_classes, orient="index")
-
         final_dir = out_dir
+
+        df = pl.DataFrame(
+            {
+                "individual": list(individual_classes.keys()),
+                "labels": list(individual_classes.values()),
+            }
+        )
 
         if save:
             if date_dir:
@@ -50,7 +55,7 @@ class IndividualToClassTargets:
             with open(Path(final_dir) / "individual_classes.json", "w") as f:
                 json.dump(individual_classes, indent=4, fp=f)
 
-            df.to_csv(Path(final_dir) / "individual_classes.csv")
+            df.write_ndjson(Path(final_dir) / "individual_classes_df.json")
 
         return individual_classes
 
