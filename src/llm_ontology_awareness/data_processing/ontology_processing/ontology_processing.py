@@ -8,7 +8,7 @@ import more_itertools
 import owlready2
 
 
-class OntologyProcessing:
+class ProcessedOntology:
     def __init__(self, ontologyPath: str):
         loadPath = (
             ontologyPath
