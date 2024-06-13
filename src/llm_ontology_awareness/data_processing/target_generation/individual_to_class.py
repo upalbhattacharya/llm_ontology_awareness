@@ -17,7 +17,7 @@ class IndividualToClassTargets:
     def __init__(self):
         pass
 
-    def get_individual_classes(
+    def get_individual_direct_membership(
         self,
         in_file: str,
         out_dir: Optional[str] = None,
