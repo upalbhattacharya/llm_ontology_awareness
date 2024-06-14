@@ -39,7 +39,6 @@ def initialize_model(script_args: ScriptArguments):
         device_map=device_map,
         trust_remote_code=script_args.trust_remote_code,
         torch_dtype=torch_dtype,
-        use_auth_token=script_args.use_auth_token,
         token=os.environ.get("HF_TOKEN"),
     )
     return model
