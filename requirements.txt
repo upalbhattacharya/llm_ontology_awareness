@@ -1,3 +1,6 @@
-more_itertools==10.3.0
+more_itertools==8.10.0
 owlready2==0.46
 polars==0.20.31
+python-dotenv==1.0.1
+torch==2.3.1
+transformers==4.41.2

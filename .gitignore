@@ -6,4 +6,12 @@ __pycache__/
 
 # Testing
 notebooks/
+
+# Environments
+.env
+env/
+env.bak/
+
+# Jupyter
+.ipynb_checkpoints
 *.ipynb

@@ -10,7 +10,10 @@ requires-python = ">=3.9"
 dependencies = [
   "more_itertools>=8.10.0",
   "owlready2>=0.46",
-  "polars>=0.20.31"
+  "polars>=0.20.31",
+  "python-dotenv>=1.0.1",
+  "torch>=2.3.1",
+  "transformers>=4.41.2",
 ]
 
 [build-system]

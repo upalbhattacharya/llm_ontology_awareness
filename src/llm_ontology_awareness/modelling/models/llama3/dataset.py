@@ -19,8 +19,8 @@ class IndividualToClassInstructBinaryDataset(Dataset):
     system_message: str = "Classify the following as true or false"
 
     prompt_template: str = (
-        "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n"
-        f"{system_message}<|eot_id|><|start_header_id|>user<|end_header_id|>"
+        "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+        f"{system_message}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
         "{}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"
     )
     classify_statement: str = "{} is a {}"
