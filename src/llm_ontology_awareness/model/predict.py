@@ -12,7 +12,7 @@ from llm_ontology_awareness.model.run_args import RunArguments
 def predict(model, tokenizer, dataset, **kwargs):
     results = []
     for i, (prompt, label) in enumerate(iter(dataset)):
-        tokenized = tokenizer(prompt, return_tensors="pt")
+        tokenized = tokenizer(prompt, return_tensors="pt").to("cuda")
         result = model.generate(tokenized.input_ids, max_new_tokens=3)
         result = tokenizer.batch_decode(result)[0]
         results.append(result.replace(f"{prompt}", ""))
