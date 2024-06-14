@@ -10,7 +10,7 @@ from typing import Optional
 
 import polars as pl
 
-from llm_ontology_awareness.data_processing.ontology_processing.ontology_processing import (
+from llm_ontology_awareness.process_data.process_ontology.process_ontology import (
     ProcessedOntology,
 )
 

@@ -4,7 +4,7 @@ from typing import Optional
 
 
 @dataclass
-class ScriptArguments:
+class RunArguments:
     model_name: Optional[str] = field(
         default="meta-llama/Meta-Llama-3-8B-Instruct",
         metadata={"help": "Name of model to load"},
@@ -23,4 +23,11 @@ class ScriptArguments:
     )
     trust_remote_code: Optional[bool] = field(
         default=True, metadata={"help": "Enable `trust_remote_code`"}
+    )
+    ontology_task_name: Optional[str] = field(
+        default="individual_to_class",
+        metadata={"help": "Name to Ontology Awareness task"},
+    )
+    prompt_strategy_name: Optional[str] = field(
+        default="zero-shot", metadata={"help": "Prompting strategy"}
     )

@@ -12,12 +12,12 @@ from transformers import (
     PretrainedConfig,
 )
 
-from llm_ontology_awareness.modelling.models.llama3.params import ScriptArguments
+from llm_ontology_awareness.model.run_args import RunArguments
 
 load_dotenv()
 
 
-def initialize_model(script_args: ScriptArguments):
+def initialize_model(script_args: RunArguments):
     if script_args.load_in_8bit and script_args.load_in_4bit:
         raise ValueError(
             "You can't load the model in 8 bits and 4 bits at the same time"
