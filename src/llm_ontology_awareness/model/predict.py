@@ -44,7 +44,7 @@ if __name__ == "__main__":
         default=None,
     )
     args = parser.parse_args()
-    if args.output_dir:
+    if args.output_dir is None:
         args.output_dir = Path(args.file).parents[0]
 
     model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
