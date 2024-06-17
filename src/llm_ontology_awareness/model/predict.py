@@ -69,8 +69,8 @@ if __name__ == "__main__":
     df.with_columns(
         pl.col("Response")
         .apply(
-            function=format_types[run_args.task_name].function,
-            return_dtype=format_types[run_args.task_name].return_dtype,
+            function=format_types[run_args.task_name]["function"],
+            return_dtype=format_types[run_args.task_name]["return_dtype"],
         )
         .alias("Prediction")
     )
