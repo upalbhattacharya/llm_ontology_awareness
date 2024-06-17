@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Any, Optional
+
+import polars as pl
 
 
 @dataclass
@@ -33,4 +35,10 @@ class RunArguments:
     )
     prompt_strategy_name: Optional[str] = field(
         default="zero-shot", metadata={"help": "Prompting strategy"}
+    )
+    task_name: Optional[str] = field(
+        default="binary_classify", metadata={"help": "Type of task"}
+    )
+    return_dtype: Optional[Any] = field(
+        default=pl.Boolean, metadata={"help": "Response format type"}
     )

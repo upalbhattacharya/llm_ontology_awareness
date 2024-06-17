@@ -2,23 +2,31 @@
 
 from typing import Iterable
 
+import polars as pl
 from transformers import AutoTokenizer
 
-from llm_ontology_awareness.model.dataset import IndividualToClassInstructBinaryDataset
+from llm_ontology_awareness.model.dataset import (
+    IndividualToClassNoStructureDirectMembershipInstructBinaryDataset,
+)
+from llm_ontology_awareness.model.format_response import format_types
 from llm_ontology_awareness.model.initialize_model import initialize_model
 from llm_ontology_awareness.model.run_args import RunArguments
 
 
-def predict(model, tokenizer, dataset, **kwargs):
+def predict(model, tokenizer, dataset, **kwargs) -> pl.DataFrame:
     results = []
-    for i, (prompt, label) in enumerate(iter(dataset)):
+    for i, (inst, cl, prompt, label) in enumerate(iter(dataset)):
         tokenized = tokenizer(prompt, return_tensors="pt").to("cuda")
         result = model.generate(tokenized.input_ids, max_new_tokens=3)
         result = tokenizer.batch_decode(result)[0]
-        results.append(result.replace(f"{prompt}", ""))
+        results.append((inst, cl, result.replace(prompt, "")))
 
         if kwargs["stop"] and i == kwargs["stop"]:
             break
+
+    df = pl.DataFrame(
+        results, schema=[("Individual", str), ("Class", str), ("Response", str)]
+    )
 
     return results
 
@@ -51,9 +59,17 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained(
         model_name, token=os.environ.get("HF_TOKEN")
     )
-    dataset = IndividualToClassInstructBinaryDataset(args.file, model_name)
+    dataset = IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(
+        args.file, model_name
+    )
     run_args = RunArguments()
     model = initialize_model(run_args)
-    results = predict(model, tokenizer, dataset, stop=19)
-    with open(args.output_dir / "results.txt", "w") as f:
-        f.writelines(results)
+    df = predict(model, tokenizer, dataset, stop=19)
+
+    df.with_columns(
+        pl.col("Response").apply(
+            function=format_types[run_args.task_name],
+            return_dtype=run_args.return_dtype,
+        )
+    )
+    df.write_ndjson(args.output_dir / "responses.json")
