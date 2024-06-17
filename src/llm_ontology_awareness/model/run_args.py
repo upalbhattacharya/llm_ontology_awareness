@@ -15,6 +15,9 @@ class RunArguments:
     load_in_4bit: Optional[bool] = field(
         default=True, metadata={"help": "Load model with 4-bit precision"}
     )
+    device_map: Optional[int] = field(
+        default=0, metadata={"help": "GPU to load model on"}
+    )
     input_file: Optional[str] = field(
         default="data_pl.json", metadata={"help": "Dataset file to load"}
     )

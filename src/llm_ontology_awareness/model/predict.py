@@ -55,5 +55,5 @@ if __name__ == "__main__":
     run_args = RunArguments()
     model = initialize_model(run_args)
     results = predict(model, tokenizer, dataset, stop=19)
-    with open(os.path.join(args.output_dir, "results.txt"), "w") as f:
+    with open(args.output_dir / "results.txt", "w") as f:
         f.writelines(results)
