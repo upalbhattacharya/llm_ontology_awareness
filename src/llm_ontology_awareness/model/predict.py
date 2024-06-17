@@ -24,20 +24,36 @@ def predict(model, tokenizer, dataset, **kwargs):
 
 
 if __name__ == "__main__":
+    import argparse
     import os
+    from pathlib import Path
 
     from dotenv import load_dotenv
 
     load_dotenv()
 
-    in_file = "data.json"
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-f", "--file", help="Path to dataset file to read", type=str, required=True
+    )
+    parser.add_argument(
+        "-o",
+        "--output_dir",
+        help="Path to save generated outputs",
+        type=str,
+        default=None,
+    )
+    args = parser.parse_args()
+    if args.output_dir:
+        args.output_dir = Path(args.file).parents[0]
+
     model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
     tokenizer = AutoTokenizer.from_pretrained(
         model_name, token=os.environ.get("HF_TOKEN")
     )
-    dataset = IndividualToClassInstructBinaryDataset(in_file, model_name)
+    dataset = IndividualToClassInstructBinaryDataset(args.file, model_name)
     run_args = RunArguments()
     model = initialize_model(run_args)
     results = predict(model, tokenizer, dataset, stop=19)
-    with open("results.txt", "w") as f:
+    with open(os.path.join(args.output_dir, "results.txt"), "w") as f:
         f.writelines(results)
