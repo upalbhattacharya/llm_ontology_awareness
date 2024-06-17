@@ -28,7 +28,7 @@ def predict(model, tokenizer, dataset, **kwargs) -> pl.DataFrame:
         results, schema=[("Individual", str), ("Class", str), ("Response", str)]
     )
 
-    return results
+    return df
 
 
 if __name__ == "__main__":
