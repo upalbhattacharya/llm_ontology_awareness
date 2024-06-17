@@ -2,6 +2,8 @@
 
 import re
 
+import polars as pl
+
 
 def binary_classify(response) -> bool:
     value_map = {
@@ -12,4 +14,6 @@ def binary_classify(response) -> bool:
     return value_map.get(re.search(pattern, response).group(0))
 
 
-format_types = {"binary_classify": binary_classify}
+format_types = {
+    "binary_classify": {"function": binary_classify, "return_dtype": pl.Boolean}
+}

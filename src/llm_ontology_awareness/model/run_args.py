@@ -39,6 +39,3 @@ class RunArguments:
     task_name: Optional[str] = field(
         default="binary_classify", metadata={"help": "Type of task"}
     )
-    return_dtype: Optional[Any] = field(
-        default=pl.Boolean, metadata={"help": "Response format type"}
-    )
