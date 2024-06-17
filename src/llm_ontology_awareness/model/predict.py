@@ -66,9 +66,9 @@ if __name__ == "__main__":
     model = initialize_model(run_args)
     df = predict(model, tokenizer, dataset, stop=19)
 
-    df.with_columns(
+    df = df.with_columns(
         pl.col("Response")
-        .apply(
+        .map_elements(
             function=format_types[run_args.task_name]["function"],
             return_dtype=format_types[run_args.task_name]["return_dtype"],
         )
