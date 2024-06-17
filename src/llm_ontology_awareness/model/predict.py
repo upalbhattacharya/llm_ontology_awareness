@@ -67,9 +67,11 @@ if __name__ == "__main__":
     df = predict(model, tokenizer, dataset, stop=19)
 
     df.with_columns(
-        pl.col("Response").apply(
-            function=format_types[run_args.task_name],
-            return_dtype=run_args.return_dtype,
+        pl.col("Response")
+        .apply(
+            function=format_types[run_args.task_name].function,
+            return_dtype=format_types[run_args.task_name].return_dtype,
         )
+        .alias("Prediction")
     )
     df.write_ndjson(args.output_dir / "responses.json")
