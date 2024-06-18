@@ -22,7 +22,7 @@ def predict(model, tokenizer, dataset, run_args, **kwargs) -> (pl.DataFrame, dic
         response = tokenizer.batch_decode(response)[0]
         responses.append((inst, cl, response.replace(prompt, "")))
 
-        if kwargs["stop"] and i == kwargs["stop"]:
+        if kwargs.get("stop", None) is not None and i == kwargs["stop"]:
             break
 
     df = pl.DataFrame(
