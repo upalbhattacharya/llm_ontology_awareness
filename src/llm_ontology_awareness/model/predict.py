@@ -13,20 +13,20 @@ from llm_ontology_awareness.model.run_args import RunArguments
 
 
 def predict(model, tokenizer, dataset, run_args, **kwargs) -> (pl.DataFrame, dict):
-    y_pred = []
+    responses = []
     y_true = []
     for i, (inst, cl, prompt, label) in enumerate(iter(dataset)):
         y_true.append(label)
         tokenized = tokenizer(prompt, return_tensors="pt").to("cuda")
-        pred = model.generate(tokenized.input_ids, max_new_tokens=3).cpu()
-        pred = tokenizer.batch_decode(pred)[0]
-        y_pred.append((inst, cl, pred.replace(prompt, "")))
+        response = model.generate(tokenized.input_ids, max_new_tokens=3).cpu()
+        response = tokenizer.batch_decode(response)[0]
+        responses.append((inst, cl, response.replace(prompt, "")))
 
         if kwargs["stop"] and i == kwargs["stop"]:
             break
 
     df = pl.DataFrame(
-        y_pred, schema=[("Individual", str), ("Class", str), ("Response", str)]
+        responses, schema=[("Individual", str), ("Class", str), ("Response", str)]
     )
 
     df = df.with_columns(
@@ -37,7 +37,7 @@ def predict(model, tokenizer, dataset, run_args, **kwargs) -> (pl.DataFrame, dic
         )
         .alias("Prediction")
     )
-    metrics = task_metrics[run_args.task_name](y_true, y_pred)
+    metrics = task_metrics[run_args.task_name](y_true, df.get_column("Prediction"))
 
     return df, metrics
 
