@@ -5,6 +5,7 @@
   "device_map": 0,
   "trust_remote_code": true,
   "input": "/scratch/bhatt006/wines-ontology/data.json",
+  "output_dir": "/scratch/bhatt006/Results/llm_ontology_awareness",
   "ontology_probe_type": "individual_to_class",
   "prompt_strategy_type": "zero_shot",
   "task_type": "binary_classify"
