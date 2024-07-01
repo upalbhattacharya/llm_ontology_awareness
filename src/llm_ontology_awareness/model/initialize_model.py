@@ -18,11 +18,7 @@ load_dotenv()
 
 
 def initialize_model(run_args: RunArguments):
-    if run_args.load_in_8bit and run_args.load_in_4bit:
-        raise ValueError(
-            "You can't load the model in 8 bits and 4 bits at the same time"
-        )
-    elif run_args.load_in_8bit or run_args.load_in_4bit:
+    if run_args.load_in_8bit or run_args.load_in_4bit:
         quantization_config = BitsAndBytesConfig(
             load_in_8bit=run_args.load_in_8bit,
             load_in_4bit=run_args.load_in_4bit,

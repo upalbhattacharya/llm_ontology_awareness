@@ -32,12 +32,12 @@ def predict(model, tokenizer, dataset, run_args, **kwargs) -> (pl.DataFrame, dic
     df = df.with_columns(
         pl.col("Response")
         .map_elements(
-            function=format_types[run_args.task_name]["function"],
-            return_dtype=format_types[run_args.task_name]["return_dtype"],
+            function=format_types[run_args.task_type]["function"],
+            return_dtype=format_types[run_args.task_type]["return_dtype"],
         )
         .alias("Prediction")
     )
-    metrics = task_metrics[run_args.task_name](y_true, df.get_column("Prediction"))
+    metrics = task_metrics[run_args.task_type](y_true, df.get_column("Prediction"))
 
     return df, metrics
 
@@ -45,36 +45,40 @@ def predict(model, tokenizer, dataset, run_args, **kwargs) -> (pl.DataFrame, dic
 if __name__ == "__main__":
     import argparse
     import json
+    import logging.config
     import os
-    from pathlib import Path
 
     from dotenv import load_dotenv
+
+    from llm_ontology_awareness.model.utilities.logging_conf import LOG_CONF
 
     load_dotenv()
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "-f", "--file", help="Path to dataset file to read", type=str, required=True
-    )
-    parser.add_argument(
-        "-o",
-        "--output_dir",
-        help="Path to save generated outputs",
-        type=str,
-        default=None,
+        "-f",
+        "--args_file",
+        help="Path to `RunArguments` file",
+        type=os.PathLike,
+        required=True,
     )
     args = parser.parse_args()
-    if args.output_dir is None:
-        args.output_dir = Path(args.file).parents[0]
+    with open(args.args_file, "r") as f:
+        args_dict = json.load(f)
+        run_args = RunArguments.from_dict(args_dict)
 
-    model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
+    config = LOG_CONF
+    config["handlers"]["file_handler"]["dir"] = run_args.output_dir
+
+    logging.config.dictConfig(config)
+    logger = logging.getLogger(__name__)
+    logger.info("Test running")
     tokenizer = AutoTokenizer.from_pretrained(
-        model_name, token=os.environ.get("HF_TOKEN")
+        run_args.model_name, token=os.environ.get("HF_TOKEN")
     )
     dataset = IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(
-        args.file, model_name
+        args.input, run_args.model_name
     )
-    run_args = RunArguments()
     model = initialize_model(run_args)
     df, metrics = predict(model, tokenizer, dataset, run_args, stop=19)
     df.write_ndjson(args.output_dir / "responses.json")
