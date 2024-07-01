@@ -79,7 +79,7 @@ if __name__ == "__main__":
         run_args.model_name, token=os.environ.get("HF_TOKEN")
     )
     dataset = IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(
-        args.input, run_args.model_name
+        run_args.input, run_args.model_name
     )
     model = initialize_model(run_args)
     with open(args.output_dir / "params.json", "w") as f:
