@@ -59,7 +59,7 @@ if __name__ == "__main__":
         "-f",
         "--args_file",
         help="Path to `RunArguments` file",
-        type=os.PathLike,
+        type=str,
         required=True,
     )
     args = parser.parse_args()

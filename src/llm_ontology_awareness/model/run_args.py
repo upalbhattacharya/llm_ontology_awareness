@@ -2,6 +2,7 @@
 
 import os
 from dataclasses import dataclass, field
+from pathlib import Path
 from time import strftime
 from typing import Optional
 
@@ -15,10 +16,10 @@ task_types = ["binary_classify", "multi_label_classify"]
 @dataclass_json
 @dataclass
 class RunArguments:
-    input: Optional[os.PathLike] = field(
+    input: Optional[Path] = field(
         default=None, metadata={"help": "Dataset file to load"}
     )
-    output_dir: Optional[os.PathLike] = field(
+    output_dir: Optional[Path] = field(
         default=None, metadata={"help": "Directory to save run data"}
     )
     ontology_probe_type: Optional[str] = field(
