@@ -69,6 +69,8 @@ if __name__ == "__main__":
 
     config = LOG_CONF
     config["handlers"]["file_handler"]["dir"] = run_args.output_dir
+    if not os.path.exists(run_args.output_dir):
+        os.makedirs(run_args.output_dir)
 
     logging.config.dictConfig(config)
     logger = logging.getLogger(__name__)
