@@ -80,6 +80,9 @@ if __name__ == "__main__":
         args.input, run_args.model_name
     )
     model = initialize_model(run_args)
+    with open(args.output_dir / "params.json", "w") as f:
+        json.dump(run_args.to_dict(), f, indent=4)
+
     df, metrics = predict(model, tokenizer, dataset, run_args, stop=19)
     df.write_ndjson(args.output_dir / "responses.json")
     with open(args.output_dir / "pred_metrics.json", "w") as f:
