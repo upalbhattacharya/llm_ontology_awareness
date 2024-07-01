@@ -10,8 +10,8 @@ from itertools import product
 import polars as pl
 from torch.utils.data import Dataset
 
-with open("settings/model_templates.json", "r") as f:
-    model_templates = json.load(f)
+with open("settings/system_message_templates.json", "r") as f:
+    system_message_templates = json.load(f)
 
 
 class IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(Dataset):
@@ -19,7 +19,7 @@ class IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(Dataset)
 
     def __init__(self, in_file: str, model_name: str):
         self.df = pl.read_ndjson(in_file)
-        self.prompt_template: str = model_templates[model_name]
+        self.prompt_template: str = system_message_templates[model_name]
         self.system_message: str = (
             "You are a helpful assistant that classifies statements as True or False"
         )
