@@ -1,0 +1,11 @@
+{
+  "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "load_in_8bit": false,
+  "load_in_4bit": true,
+  "device_map": 0,
+  "trust_remote_code": true,
+  "input": "/scratch/bhatt006/wines-ontology/data.json",
+  "ontology_probe_type": "individual_to_class",
+  "prompt_strategy_type": "zero_shot",
+  "task_type": "binary_classify"
+}
