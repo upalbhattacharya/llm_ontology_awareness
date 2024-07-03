@@ -64,9 +64,8 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     with open(args.args_file, "r") as f:
-        args_dict = json.load(f)
-        run_args = RunArguments.from_dict(args_dict)
-
+        args_raw = f.read()
+        run_args = RunArguments.parse_raw(args_raw)
     config = LOG_CONF
     config["handlers"]["file_handler"]["dir"] = run_args.output_dir
     if not os.path.exists(run_args.output_dir):
@@ -83,7 +82,8 @@ if __name__ == "__main__":
     )
     model = initialize_model(run_args)
     with open(args.output_dir / "params.json", "w") as f:
-        json.dump(run_args.to_dict(), f, indent=4)
+        params_dump = run_args.model_dump()
+        json.dump(params_dump, f, indent=4)
 
     df, metrics = predict(model, tokenizer, dataset, run_args, stop=19)
     df.write_ndjson(args.output_dir / "responses.json")
