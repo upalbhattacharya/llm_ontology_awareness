@@ -81,7 +81,7 @@ if __name__ == "__main__":
         run_args.input, run_args.llm_name
     )
     model = initialize_model(run_args)
-    with open(args.output_dir / "params.json", "w") as f:
+    with open(run_args.output_dir / "params.json", "w") as f:
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
