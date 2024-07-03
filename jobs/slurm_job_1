@@ -13,7 +13,7 @@
 module load cuda/12.5
 
 # Define Visible GPUs
-CUDA_VISIBLE_GPUS=0,1,2,3
+CUDA_VISIBLE_DEVICES=0,1,2,3
 
 # Execution
 
