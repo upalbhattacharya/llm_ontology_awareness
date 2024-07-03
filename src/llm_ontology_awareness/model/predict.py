@@ -17,9 +17,7 @@ def predict(model, tokenizer, dataset, run_args, **kwargs) -> (pl.DataFrame, dic
     y_true = []
     for i, (inst, cl, prompt, label) in enumerate(iter(dataset)):
         y_true.append(label)
-        tokenized = tokenizer(prompt, return_tensors="pt").to(
-            f"cuda:{run_args.device_map}"
-        )
+        tokenized = tokenizer(prompt, return_tensors="pt").to(f"cuda:0")
         response = model.generate(tokenized.input_ids, max_new_tokens=3).cpu()
         response = tokenizer.batch_decode(response)[0]
         responses.append((inst, cl, response.replace(prompt, "")))
@@ -69,6 +67,7 @@ if __name__ == "__main__":
         args_raw = f.read()
         run_args = RunArguments.parse_raw(args_raw)
     config = LOG_CONF
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(run_args.device_map)
     config["handlers"]["file_handler"]["dir"] = run_args.output_dir
     if not os.path.exists(run_args.output_dir):
         os.makedirs(run_args.output_dir)
