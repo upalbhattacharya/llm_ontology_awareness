@@ -69,7 +69,7 @@ if __name__ == "__main__":
         args_raw = f.read()
         run_args = RunArguments.parse_raw(args_raw)
 
-    torch.cuda.set_default_device(f"cuda:{run_args.device}")
+    torch.set_default_device(f"cuda:{run_args.device}")
     get_device_info()
 
     config = LOG_CONF
