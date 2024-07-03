@@ -75,10 +75,10 @@ if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     logger.info("Test running")
     tokenizer = AutoTokenizer.from_pretrained(
-        run_args.model_name, token=os.environ.get("HF_TOKEN")
+        run_args.llm_name, token=os.environ.get("HF_TOKEN")
     )
     dataset = IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(
-        run_args.input, run_args.model_name
+        run_args.input, run_args.llm_name
     )
     model = initialize_model(run_args)
     with open(args.output_dir / "params.json", "w") as f:
