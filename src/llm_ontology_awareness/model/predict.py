@@ -86,6 +86,6 @@ if __name__ == "__main__":
         json.dump(params_dump, f, indent=4)
 
     df, metrics = predict(model, tokenizer, dataset, run_args, stop=19)
-    df.write_ndjson(args.output_dir / "responses.json")
-    with open(args.output_dir / "pred_metrics.json", "w") as f:
+    df.write_ndjson(run_args.output_dir / "responses.json")
+    with open(run_args.output_dir / "pred_metrics.json", "w") as f:
         json.dump(metrics, f, indent=4)
