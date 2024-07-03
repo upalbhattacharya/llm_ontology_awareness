@@ -30,7 +30,7 @@ def initialize_model(run_args: RunArguments):
         quantization_config = None
         torch_dtype = None
     model = AutoModelForCausalLM.from_pretrained(
-        run_args.model_name,
+        run_args.llm_name,
         quantization_config=quantization_config,
         device_map=device_map,
         trust_remote_code=run_args.trust_remote_code,
