@@ -17,9 +17,7 @@ def predict(model, tokenizer, dataset, run_args, **kwargs) -> (pl.DataFrame, dic
     y_true = []
     for i, (inst, cl, prompt, label) in enumerate(iter(dataset)):
         y_true.append(label)
-        tokenized = tokenizer(prompt, return_tensors="pt").to(
-            f"cuda:{run_args.device_map}"
-        )
+        tokenized = tokenizer(prompt, return_tensors="pt").to(f"cuda:{run_args.device}")
         response = model.generate(tokenized.input_ids, max_new_tokens=3).cpu()
         response = tokenizer.batch_decode(response)[0]
         responses.append((inst, cl, response.replace(prompt, "")))
@@ -50,9 +48,11 @@ if __name__ == "__main__":
     import logging.config
     import os
 
+    import torch
     from dotenv import load_dotenv
 
     from llm_ontology_awareness.model.utilities.logging_conf import LOG_CONF
+    from llm_ontology_awareness.model.utilities.utils import get_device_info
 
     load_dotenv()
 
@@ -68,16 +68,17 @@ if __name__ == "__main__":
     with open(args.args_file, "r") as f:
         args_raw = f.read()
         run_args = RunArguments.parse_raw(args_raw)
+
+    torch.cuda.set_default_device(f"cuda:{run_args.device}")
+    get_device_info()
+
     config = LOG_CONF
-    # os.environ["CUDA_VISIBLE_DEVICES"] = str(run_args.device_map)
     config["handlers"]["file_handler"]["dir"] = run_args.output_dir
     if not os.path.exists(run_args.output_dir):
         os.makedirs(run_args.output_dir)
 
     logging.config.dictConfig(config)
     logger = logging.getLogger(__name__)
-    logger.info("Test running")
-    logger.info(os.environ["CUDA_VISIBLE_DEVICES"])
     tokenizer = AutoTokenizer.from_pretrained(
         run_args.llm_name, token=os.environ.get("HF_TOKEN")
     )
@@ -89,7 +90,7 @@ if __name__ == "__main__":
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
-    df, metrics = predict(model, tokenizer, dataset, run_args, stop=19)
+    df, metrics = predict(model, tokenizer, dataset, run_args)
     df.write_ndjson(os.path.join(run_args.output_dir, "responses.json"))
     with open(os.path.join(run_args.output_dir, "pred_metrics.json"), "w") as f:
         json.dump(metrics, f, indent=4)

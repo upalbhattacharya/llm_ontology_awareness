@@ -25,7 +25,7 @@ def initialize_model(run_args: RunArguments):
             load_in_8bit=run_args.load_in_8bit,
             load_in_4bit=run_args.load_in_4bit,
         )
-        device_map = {"": run_args.device_map}
+        device_map = {"": run_args.device}
         # device_map = "auto"
         torch_dtype = torch.bfloat16
     else:

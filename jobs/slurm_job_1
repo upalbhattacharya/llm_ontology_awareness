@@ -12,6 +12,9 @@
 
 module load cuda/12.5
 
+# Define Visible GPUs
+CUDA_VISIBLE_GPUS=0,1,2,3
+
 # Execution
 
 # Activate Virtual Environment
@@ -21,5 +24,6 @@ source /scratch/bhatt006/.venvs/llm_ontology_awareness/bin/activate
 cd /scratch/bhatt006/Repos/llm_ontology_awareness/src/llm_ontology_awareness/model || exit
 
 # Execute
+
 python3 predict.py \
   -f /scratch/bhatt006/Repos/llm_ontology_awareness/run_args/run_args_test.json
