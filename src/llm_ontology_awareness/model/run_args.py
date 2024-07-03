@@ -38,9 +38,7 @@ class RunArguments(BaseModel):
     load_in_4bit: Optional[bool] = Field(
         default=True, metadata={"help": "Load model with 4-bit precision"}
     )
-    device_map: Optional[int] = Field(
-        default=0, metadata={"help": "GPU to load model on"}
-    )
+    device: Optional[int] = Field(default=0, metadata={"help": "GPU to load model on"})
     trust_remote_code: Optional[bool] = Field(
         default=True, metadata={"help": "Enable `trust_remote_code`"}
     )
