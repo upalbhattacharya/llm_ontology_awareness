@@ -2,6 +2,7 @@
 
 import logging
 import logging.config
+import sys
 
 LOG_CONF = {
     "version": 1,
@@ -29,6 +30,13 @@ LOG_CONF = {
     },
     "loggers": {"": {"handlers": ["stdout", "file_handler"], "level": "DEBUG"}},
 }
+
+
+def log_exception(exctype, value, traceback):
+    logging.critical("Error Information:", exc_info=(exctype, value, traceback))
+
+
+sys.excepthook = log_exception
 
 
 if __name__ == "__main__":
