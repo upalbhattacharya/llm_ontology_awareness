@@ -23,12 +23,14 @@ def initialize_model(run_args: RunArguments):
             load_in_8bit=run_args.load_in_8bit,
             load_in_4bit=run_args.load_in_4bit,
         )
-        device_map = {"": run_args.device_map}
+        # device_map = {"": run_args.device_map}
+        device_map = "auto"
         torch_dtype = torch.bfloat16
     else:
         device_map = None
         quantization_config = None
         torch_dtype = None
+
     model = AutoModelForCausalLM.from_pretrained(
         run_args.llm_name,
         quantization_config=quantization_config,

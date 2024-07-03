@@ -17,7 +17,9 @@ def predict(model, tokenizer, dataset, run_args, **kwargs) -> (pl.DataFrame, dic
     y_true = []
     for i, (inst, cl, prompt, label) in enumerate(iter(dataset)):
         y_true.append(label)
-        tokenized = tokenizer(prompt, return_tensors="pt").to("cuda")
+        tokenized = tokenizer(prompt, return_tensors="pt").to(
+            f"cuda:{run_args.device_map}"
+        )
         response = model.generate(tokenized.input_ids, max_new_tokens=3).cpu()
         response = tokenizer.batch_decode(response)[0]
         responses.append((inst, cl, response.replace(prompt, "")))
