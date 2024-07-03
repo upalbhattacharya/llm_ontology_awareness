@@ -81,11 +81,11 @@ if __name__ == "__main__":
         run_args.input, run_args.llm_name
     )
     model = initialize_model(run_args)
-    with open(run_args.output_dir / "params.json", "w") as f:
+    with open(os.path.join(run_args.output_dir, "params.json"), "w") as f:
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
     df, metrics = predict(model, tokenizer, dataset, run_args, stop=19)
-    df.write_ndjson(run_args.output_dir / "responses.json")
-    with open(run_args.output_dir / "pred_metrics.json", "w") as f:
+    df.write_ndjson(os.path.join(run_args.output_dir, "responses.json"))
+    with open(os.path.join(run_args.output_dir, "pred_metrics.json"), "w") as f:
         json.dump(metrics, f, indent=4)
