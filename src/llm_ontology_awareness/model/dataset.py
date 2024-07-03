@@ -26,7 +26,7 @@ class IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(Dataset)
         self.classify_statement: str = "{} is a {}"
 
     def __len__(self):
-        return self.df["Individual"].unique().len() * self.df["Class"].unique().len()
+        return self.df["Individual"].len()
 
     def __getitem__(self, idx):
         inst, cl, label = self.df.row(idx)
