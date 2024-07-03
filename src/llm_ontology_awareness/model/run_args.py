@@ -1,53 +1,54 @@
 #!/usr/bin/env python
 
 import os
-from dataclasses import dataclass, field
-from pathlib import Path
 from time import strftime
 from typing import Optional
 
 from dataclasses_json import dataclass_json
+from pydantic import BaseModel, Field
+from transformers import TrainingArguments
 
 ontology_probe_types = ["individual_to_class"]
 prompt_strategy_types = ["zero_shot", "few_shot"]
 task_types = ["binary_classify", "multi_label_classify"]
 
 
-@dataclass_json
-@dataclass
-class RunArguments:
-    input: Optional[Path] = field(
+class RunArguments(BaseModel):
+    input: Optional[str] = Field(
         default=None, metadata={"help": "Dataset file to load"}
     )
-    output_dir: Optional[Path] = field(
+    output_dir: Optional[str] = Field(
         default=None, metadata={"help": "Directory to save run data"}
     )
-    ontology_probe_type: Optional[str] = field(
+    ontology_probe_type: Optional[str] = Field(
         default=None,
         metadata={"help": "Name of Ontology Awareness task to probe"},
     )
-    prompt_strategy_type: Optional[str] = field(
+    prompt_strategy_type: Optional[str] = Field(
         default=None, metadata={"help": "Prompting strategy"}
     )
-    task_type: Optional[str] = field(default=None, metadata={"help": "Type of task"})
-    model_name: Optional[str] = field(
+    task_type: Optional[str] = Field(default=None, metadata={"help": "Type of task"})
+    llm_name: Optional[str] = Field(
         default=None,
         metadata={"help": "Name of model to load"},
     )
-    load_in_8bit: Optional[bool] = field(
+    load_in_8bit: Optional[bool] = Field(
         default=False, metadata={"help": "Load model with 8-bit precision"}
     )
-    load_in_4bit: Optional[bool] = field(
+    load_in_4bit: Optional[bool] = Field(
         default=True, metadata={"help": "Load model with 4-bit precision"}
     )
-    device_map: Optional[int] = field(
+    device_map: Optional[int] = Field(
         default=0, metadata={"help": "GPU to load model on"}
     )
-    trust_remote_code: Optional[bool] = field(
+    trust_remote_code: Optional[bool] = Field(
         default=True, metadata={"help": "Enable `trust_remote_code`"}
     )
+    training_args: Optional[TrainingArguments] = Field(
+        default=None, metadata={"help": "HuggingFace `TrainingArguments` for a Trainer"}
+    )
 
-    def __post_init__(self):
+    def model_post_init(self, __context):
 
         # Validation
         if self.load_in_8bit and self.load_in_4bit:
@@ -77,16 +78,24 @@ class RunArguments:
         timestamp = strftime("%Y-%m-%d-%H-%M-%S")
         self.output_dir = os.path.join(self.output_dir, timestamp)
 
+        if self.training_args is not None:
+            self.training_args.output_dir = self.output_dir
+            self.training_args.logging_dir = self.output_dir
+
 
 if __name__ == "__main__":
     import json
 
+    from pydantic_core import from_json
+    from transformers import TrainingArguments
+
     # Quick Test
-    with open("../../../runs/run_args_1.json", "r") as f:
-        args = json.load(f)
-        print(args)
-        run_args = RunArguments().from_dict(args)
+    with open("../../../runs/run_args_test.json", "r") as f:
+        raw = f.read()
+        run_args = RunArguments.parse_raw(raw)
     print(run_args)
+    print(run_args.dict())
     with open("test.json", "w") as f:
-        args_save = run_args.to_dict()
-        json.dump(args_save, f, indent=4)
+        # args_save = run_args.to_dict()
+        model_dump = run_args.model_dump()
+        json.dump(model_dump, f, indent=4)
