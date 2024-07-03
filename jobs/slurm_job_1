@@ -14,10 +14,12 @@ module load cuda/12.5
 
 # Execution
 
-echo "Test Job"
-
+# Activate Virtual Environment
 source /scratch/bhatt006/.venvs/llm_ontology_awareness/bin/activate
-python3 --version
 
-python3 /scratch/bhatt006/Repos/llm_ontology_awareness/src/llm_ontology_awareness/model/predict.py \
+# Change directory
+cd /scratch/bhatt006/Repos/llm_ontology_awareness/src/llm_ontology_awareness/model || exit
+
+# Execute
+python3 predict.py \
   -f /scratch/bhatt006/Repos/llm_ontology_awareness/run_args/run_args_test.json
