@@ -2,6 +2,8 @@
 
 #SBATCH --job-name=ontollm_1
 #SBATCH --nodes=1
+#SBATCH --partition=gpua16
+#SBATCH --gres=gpu:1
 #SBATCH --time=00:10:00
 #SBATCH --output=/scratch/bhatt006/run_logs/%x_%j.out
 #SBATCH --error=/scratch/bhatt006/run_logs/%x_%j.err
@@ -9,3 +11,5 @@
 # Execution
 
 echo "Test Job"
+
+nvidia-smi
