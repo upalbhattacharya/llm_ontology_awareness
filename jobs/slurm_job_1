@@ -8,8 +8,16 @@
 #SBATCH --output=/scratch/bhatt006/run_logs/%x_%j.out
 #SBATCH --error=/scratch/bhatt006/run_logs/%x_%j.err
 
+# Load Modules
+
+module load cuda/12.5
+
 # Execution
 
 echo "Test Job"
 
-nvidia-smi
+source /scratch/bhatt006/.venvs/llm_ontology_awareness/bin/activate
+python3 --version
+
+python3 /scratch/bhatt006/Repos/llm_ontology_awareness/src/llm_ontology_awareness/model/predict.py \
+  -f /scratch/bhatt006/Repos/llm_ontology_awareness/run_args/run_args_test.json
