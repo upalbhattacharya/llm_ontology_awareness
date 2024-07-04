@@ -45,7 +45,12 @@ if __name__ == "__main__":
     itcib = IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(
         in_file, "meta-llama/Meta-Llama-3-8B-Instruct"
     )
-    for i, (d, label) in enumerate(iter(itcib)):
-        print(d, label)
-        if i == 19:
-            break
+    print(len(itcib))
+    num_samples = len(itcib)
+    itcib = iter(itcib)
+    for i in range(num_samples):
+        inst, cl, template, label = next(itcib)
+        # for i, (inst, cl, template, label) in enumerate(iter(itcib)):
+        print(inst, cl, template, label)
+    # if i == 19:
+    # break

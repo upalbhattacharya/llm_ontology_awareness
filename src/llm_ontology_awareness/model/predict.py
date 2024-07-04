@@ -4,7 +4,7 @@ import polars as pl
 from transformers import AutoTokenizer
 
 from llm_ontology_awareness.model.dataset import (
-    IndividualToClassNoStructureDirectMembershipInstructBinaryDataset,
+    IndividualToClassNoStructureDirectMembershipInstructBinarytest_data,
 )
 from llm_ontology_awareness.model.format_response import format_types
 from llm_ontology_awareness.model.initialize_model import initialize_model
@@ -12,10 +12,13 @@ from llm_ontology_awareness.model.metrics import task_metrics
 from llm_ontology_awareness.model.run_args import RunArguments
 
 
-def predict(model, tokenizer, dataset, run_args, **kwargs) -> (pl.DataFrame, dict):
+def predict(model, tokenizer, test_data, run_args, **kwargs) -> (pl.DataFrame, dict):
     responses = []
     y_true = []
-    for i, (inst, cl, prompt, label) in enumerate(iter(dataset)):
+    num_samples = len(test_data)
+    test_data = iter(test_data)
+    for i in range(num_samples):
+        inst, cl, prompt, label = next(test_data)
         y_true.append(label)
         tokenized = tokenizer(prompt, return_tensors="pt").to(f"cuda:{run_args.device}")
         response = model.generate(tokenized.input_ids, max_new_tokens=3).cpu()
@@ -82,7 +85,7 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained(
         run_args.llm_name, token=os.environ.get("HF_TOKEN")
     )
-    dataset = IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(
+    test_data = IndividualToClassNoStructureDirectMembershipInstructBinarytest_data(
         run_args.input, run_args.llm_name
     )
     model = initialize_model(run_args)
@@ -90,7 +93,7 @@ if __name__ == "__main__":
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
-    df, metrics = predict(model, tokenizer, dataset, run_args)
+    df, metrics = predict(model, tokenizer, test_data, run_args)
     df.write_ndjson(os.path.join(run_args.output_dir, "responses.json"))
     with open(os.path.join(run_args.output_dir, "pred_metrics.json"), "w") as f:
         json.dump(metrics, f, indent=4)
