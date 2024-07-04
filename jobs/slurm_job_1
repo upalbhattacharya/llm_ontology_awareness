@@ -26,4 +26,4 @@ cd /scratch/bhatt006/Repos/llm_ontology_awareness/src/llm_ontology_awareness/mod
 # Execute
 
 python3 predict.py \
-  -f /scratch/bhatt006/Repos/llm_ontology_awareness/run_args/run_args_t.json
+  -f /scratch/bhatt006/Repos/llm_ontology_awareness/run_args/run_args_1.json
