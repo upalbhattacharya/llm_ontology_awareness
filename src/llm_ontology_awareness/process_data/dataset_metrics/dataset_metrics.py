@@ -3,6 +3,8 @@
 import os
 
 import matplotlib.pyplot as plt
+import plotly
+import plotly.express as px
 import polars as pl
 import seaborn as sns
 
@@ -10,12 +12,33 @@ import seaborn as sns
 class IndividualToClass:
 
     def binary_classify_metrics(self, df, save_path):
-        counts = df["Member"].value_counts()
-        plt.figure(figsize=(5, 8))
-        sns.set_style("whitegrid")
-        ax = sns.barplot(counts, x="Member", y="count")
-        ax.bar_label(ax.containers[0], fontsize=10)
-        ax.figure.savefig(os.path.join(save_path, "class_counts.png"))
+        target_counts = df["Member"].value_counts()
+        fig = px.bar(target_counts, x="Member", y="count", text="count")
+        fig.update_xaxes(tickangle=45)
+        plotly.offline.plot(
+            fig, filename=os.path.join(save_path, "figs", "target_counts.html")
+        )
+        target_counts.write_ndjson(os.path.join(save_path, "target_counts.json"))
+
+        cls_counts = df.group_by("Class").agg(pl.col("Member").sum())
+        cls_counts = cls_counts.rename({"Member": "count"})
+        cls_counts = cls_counts.sort("count", descending=True)
+        fig = px.bar(cls_counts, x="Class", y="count", text="count")
+        fig.update_xaxes(tickangle=45)
+        plotly.offline.plot(
+            fig, filename=os.path.join(save_path, "figs", "cls_counts.html")
+        )
+        cls_counts.write_ndjson(os.path.join(save_path, "cls_counts.json"))
+
+        ind_counts = df.group_by("Individual").agg(pl.col("Member").sum())
+        ind_counts = ind_counts.rename({"Member": "count"})
+        ind_counts = ind_counts.sort("count", descending=True)
+        fig = px.bar(ind_counts, x="Individual", y="count", text="count")
+        fig.update_xaxes(tickangle=45)
+        plotly.offline.plot(
+            fig, filename=os.path.join(save_path, "figs", "ind_counts.html")
+        )
+        ind_counts.write_ndjson(os.path.join(save_path, "ind_counts.json"))
 
 
 if __name__ == "__main__":
