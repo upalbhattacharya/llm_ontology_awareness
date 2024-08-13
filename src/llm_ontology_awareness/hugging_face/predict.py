@@ -3,13 +3,13 @@
 import polars as pl
 from transformers import AutoTokenizer
 
-from llm_ontology_awareness.model.dataset import (
+from llm_ontology_awareness.hugging_face.dataset import (
     IndividualToClassNoStructureDirectMembershipInstructBinaryDataset,
 )
-from llm_ontology_awareness.model.format_response import format_types
-from llm_ontology_awareness.model.initialize_model import initialize_model
-from llm_ontology_awareness.model.metrics import task_metrics
-from llm_ontology_awareness.model.run_args import RunArguments
+from llm_ontology_awareness.hugging_face.format_response import format_types
+from llm_ontology_awareness.hugging_face.initialize_model import initialize_model
+from llm_ontology_awareness.hugging_face.metrics import task_metrics
+from llm_ontology_awareness.hugging_face.run_args import RunArguments
 
 
 def predict(model, tokenizer, test_data, run_args, **kwargs) -> (pl.DataFrame, dict):
