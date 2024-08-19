@@ -15,7 +15,7 @@ class ProcessedOntology:
             if ontologyPath.startswith("file:///")
             else f"file:///{ontologyPath}"
         )
-        onto = owlready2.get_ontology(loadPath).load(only_local=True)
+        onto = owlready2.get_ontology(loadPath).load(only_local=False)
         # Get correct namespace to use for access
         namespaces = list(onto._namespaces.keys())
         for n in namespaces:

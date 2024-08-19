@@ -3,13 +3,13 @@
 import polars as pl
 from transformers import AutoTokenizer
 
-from llm_ontology_awareness.hugging_face.dataset import (
+from llm_ontology_awareness.model.common.dataset import (
     IndividualToClassNoStructureDirectMembershipInstructBinaryDataset,
 )
-from llm_ontology_awareness.hugging_face.format_response import format_types
-from llm_ontology_awareness.hugging_face.initialize_model import initialize_model
-from llm_ontology_awareness.hugging_face.metrics import task_metrics
-from llm_ontology_awareness.hugging_face.run_args import RunArguments
+from llm_ontology_awareness.model.common.metrics import task_metrics
+from llm_ontology_awareness.model.hugging_face.format_response import format_types
+from llm_ontology_awareness.model.hugging_face.initialize_model import initialize_model
+from llm_ontology_awareness.model.hugging_face.run_args import RunArguments
 
 
 def predict(model, tokenizer, test_data, run_args, **kwargs) -> (pl.DataFrame, dict):
@@ -54,8 +54,8 @@ if __name__ == "__main__":
     import torch
     from dotenv import load_dotenv
 
-    from llm_ontology_awareness.model.utilities.logging_conf import LOG_CONF
-    from llm_ontology_awareness.model.utilities.utils import get_device_info
+    from llm_ontology_awareness.model.common.utilities.logging_conf import LOG_CONF
+    from llm_ontology_awareness.model.common.utilities.utils import get_device_info
 
     load_dotenv()
 

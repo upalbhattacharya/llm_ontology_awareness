@@ -12,7 +12,7 @@ from transformers import (
     PretrainedConfig,
 )
 
-from llm_ontology_awareness.hugging_face.run_args import RunArguments
+from llm_ontology_awareness.model.hugging_face.run_args import RunArguments
 
 load_dotenv()
 
