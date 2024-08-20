@@ -3,9 +3,7 @@
 import polars as pl
 from transformers import AutoTokenizer
 
-from llm_ontology_awareness.model.common.dataset import (
-    IndividualToClassNoStructureDirectMembershipInstructBinaryDataset,
-)
+from llm_ontology_awareness.model.common.dataset import ClassAssertionDataset
 from llm_ontology_awareness.model.common.metrics import task_metrics
 from llm_ontology_awareness.model.hugging_face.format_response import format_types
 from llm_ontology_awareness.model.hugging_face.initialize_model import initialize_model
@@ -85,7 +83,7 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained(
         run_args.llm_name, token=os.environ.get("HF_TOKEN")
     )
-    test_data = IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(
+    test_data = ClassAssertionDataset(
         run_args.input,
         model_name=run_args.llm_name,
         system_message=run_args.system_message,

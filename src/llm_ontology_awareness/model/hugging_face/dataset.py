@@ -14,7 +14,7 @@ with open("settings/system_message_templates.json", "r") as f:
     system_message_templates = json.load(f)
 
 
-class IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(Dataset):
+class ClassAssertionDataset(Dataset):
     """Generate various individual to class mapping prompts"""
 
     def __init__(
@@ -30,14 +30,13 @@ class IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(Dataset)
         self.user_prompt_template: str = user_prompt_template
 
     def __len__(self):
-        return self.df["Individual"].len()
+        return self.df.select(pl.len()).item()
 
     def __getitem__(self, idx):
-        inst, cl, label = self.df.row(idx)
-        sentence = self.user_prompt_template.format(inst, cl)
+        *ents, label = self.df.row(idx)
+        sentence = self.user_prompt_template.format(*ents)
         return (
-            inst,
-            cl,
+            *ents,
             self.prompt_template.format(self.system_message, sentence),
             label,
         )
@@ -52,7 +51,7 @@ if __name__ == "__main__":
     with open("../../../../run_args/run_args_test.json", "r") as f:
         raw = f.read()
         run_args = RunArguments.parse_raw(raw)
-    itcib = IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(
+    itcib = ClassAssertionDataset(
         in_file,
         model_name=run_args.llm_name,
         system_message=run_args.system_message,
@@ -62,5 +61,6 @@ if __name__ == "__main__":
     num_samples = len(itcib)
     itcib = iter(itcib)
     for i in range(num_samples):
+        print(i)
         inst, cl, template, label = next(itcib)
         print(template)
