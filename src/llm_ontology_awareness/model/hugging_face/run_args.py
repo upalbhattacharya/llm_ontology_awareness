@@ -45,6 +45,13 @@ class RunArguments(BaseModel):
     training_args: Optional[TrainingArguments] = Field(
         default=None, metadata={"help": "HuggingFace `TrainingArguments` for a Trainer"}
     )
+    system_message: Optional[str] = Field(
+        default=None, metadata={"help": "System message to use for the model"}
+    )
+    user_prompt_template: Optional[str] = Field(
+        default=None,
+        metadata={"help": "User input template to use for text inputs to model"},
+    )
 
     def model_post_init(self, __context):
 
@@ -88,7 +95,7 @@ if __name__ == "__main__":
     from transformers import TrainingArguments
 
     # Quick Test
-    with open("../../../runs/run_args_test.json", "r") as f:
+    with open("../../../../run_args/run_args_test.json", "r") as f:
         raw = f.read()
         run_args = RunArguments.parse_raw(raw)
     print(run_args)

@@ -17,18 +17,24 @@ with open("../common/settings/system_message_templates.json", "r") as f:
 class IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(Dataset):
     """Generate various individual to class mapping prompts"""
 
-    def __init__(self, in_file: str, model_name: str, system_message: str):
+    def __init__(
+        self,
+        in_file: str,
+        model_name: str,
+        system_message: str,
+        user_prompt_template: str,
+    ):
         self.df = pl.read_ndjson(in_file)
         self.prompt_template: str = system_message_templates[model_name]
         self.system_message: str = system_message
-        self.classify_statement: str = "{} is a {}"
+        self.user_prompt_template: str = user_prompt_template
 
     def __len__(self):
         return self.df["Individual"].len()
 
     def __getitem__(self, idx):
         inst, cl, label = self.df.row(idx)
-        sentence = self.classify_statement.format(inst, cl)
+        sentence = self.user_prompt_template.format(inst, cl)
         return (
             inst,
             cl,
@@ -38,17 +44,23 @@ class IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(Dataset)
 
 
 if __name__ == "__main__":
-    print("Running")
+
+    from llm_ontology_awareness.model.hugging_face.run_args import RunArguments
+
     in_file = "/home/upal/Data/ontologies/wines-ontology/data/individual_to_class/2024-06-13/data.json"
+
+    with open("../../../../run_args/run_args_test.json", "r") as f:
+        raw = f.read()
+        run_args = RunArguments.parse_raw(raw)
     itcib = IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(
-        in_file, "meta-llama/Meta-Llama-3-8B-Instruct"
+        in_file,
+        model_name=run_args.llm_name,
+        system_message=run_args.system_message,
+        user_prompt_template=run_args.user_prompt_template,
     )
     print(len(itcib))
     num_samples = len(itcib)
     itcib = iter(itcib)
     for i in range(num_samples):
         inst, cl, template, label = next(itcib)
-        # for i, (inst, cl, template, label) in enumerate(iter(itcib)):
-        print(inst, cl, template, label)
-    # if i == 19:
-    # break
+        print(template)
