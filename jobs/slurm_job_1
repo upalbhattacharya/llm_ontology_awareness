@@ -21,7 +21,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3
 source /scratch/bhatt006/.venvs/llm_ontology_awareness/bin/activate
 
 # Change directory
-cd /scratch/bhatt006/Repos/llm_ontology_awareness/src/llm_ontology_awareness/model || exit
+cd /scratch/bhatt006/Repos/llm_ontology_awareness/src/llm_ontology_awareness/model/hugging_face || exit
 
 # Execute
 
