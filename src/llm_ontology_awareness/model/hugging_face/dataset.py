@@ -10,7 +10,7 @@ from itertools import product
 import polars as pl
 from torch.utils.data import Dataset
 
-with open("../common/settings/system_message_templates.json", "r") as f:
+with open("settings/system_message_templates.json", "r") as f:
     system_message_templates = json.load(f)
 
 
