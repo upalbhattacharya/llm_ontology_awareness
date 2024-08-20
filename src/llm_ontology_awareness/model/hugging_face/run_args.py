@@ -8,9 +8,7 @@ from dataclasses_json import dataclass_json
 from pydantic import BaseModel, Field
 from transformers import TrainingArguments
 
-ontology_probe_types = ["individual_to_class"]
-prompt_strategy_types = ["zero_shot", "few_shot"]
-task_types = ["binary_classify", "multi_label_classify"]
+from llm_ontology_awareness.model.common.utilities import utils
 
 
 class RunArguments(BaseModel):
@@ -61,22 +59,22 @@ class RunArguments(BaseModel):
 
         if (
             self.ontology_probe_type is not None
-            and self.ontology_probe_type not in ontology_probe_types
+            and self.ontology_probe_type not in utils.ontology_probe_types
         ):
             raise ValueError(
-                f"`ontology_probe_type` must be one of {ontology_probe_types}"
+                f"`ontology_probe_type` must be one of {utils.ontology_probe_types}"
             )
 
         if (
             self.prompt_strategy_type is not None
-            and self.prompt_strategy_type not in prompt_strategy_types
+            and self.prompt_strategy_type not in utils.prompt_strategy_types
         ):
             raise ValueError(
-                f"`prompt_strategy_type` must be one of {prompt_strategy_types}"
+                f"`prompt_strategy_type` must be one of {utils.prompt_strategy_types}"
             )
 
-        if self.task_type is not None and self.task_type not in task_types:
-            raise ValueError(f"`task_type` must be one of {task_types}")
+        if self.task_type is not None and self.task_type not in utils.task_types:
+            raise ValueError(f"`task_type` must be one of {utils.task_types}")
 
         # Updation
         self.output_dir = "output" if self.output_dir is None else self.output_dir
