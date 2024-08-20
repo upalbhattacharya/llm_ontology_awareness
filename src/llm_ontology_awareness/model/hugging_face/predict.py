@@ -86,7 +86,10 @@ if __name__ == "__main__":
         run_args.llm_name, token=os.environ.get("HF_TOKEN")
     )
     test_data = IndividualToClassNoStructureDirectMembershipInstructBinaryDataset(
-        run_args.input, run_args.llm_name
+        run_args.input,
+        model_name=run_args.llm_name,
+        system_message=run_args.system_message,
+        user_prompt_template=run_args.user_prompt_template,
     )
     model = initialize_model(run_args)
     with open(os.path.join(run_args.output_dir, "params.json"), "w") as f:
