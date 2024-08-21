@@ -53,6 +53,10 @@ class RunArguments(BaseModel):
         default=None,
         metadata={"help": "User input template to use for text inputs to model"},
     )
+    description: Optional[str] = Field(
+        default=None,
+        metadata={"help": "Description of the task"},
+    )
 
     def model_post_init(self, __context):
 
