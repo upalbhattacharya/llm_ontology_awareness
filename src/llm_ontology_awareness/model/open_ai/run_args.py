@@ -30,18 +30,21 @@ class RunArguments(BaseModel):
         default=None,
         metadata={"help": "Name of model to load"},
     )
-    load_in_8bit: Optional[bool] = Field(
-        default=False, metadata={"help": "Load model with 8-bit precision"}
-    )
-    load_in_4bit: Optional[bool] = Field(
-        default=True, metadata={"help": "Load model with 4-bit precision"}
-    )
-    device: Optional[int] = Field(default=0, metadata={"help": "GPU to load model on"})
-    trust_remote_code: Optional[bool] = Field(
-        default=True, metadata={"help": "Enable `trust_remote_code`"}
-    )
-    training_args: Optional[TrainingArguments] = Field(
-        default=None, metadata={"help": "HuggingFace `TrainingArguments` for a Trainer"}
+    # load_in_8bit: Optional[bool] = Field(
+    #     default=False, metadata={"help": "Load model with 8-bit precision"}
+    # )
+    # load_in_4bit: Optional[bool] = Field(
+    #     default=True, metadata={"help": "Load model with 4-bit precision"}
+    # )
+    # device: Optional[int] = Field(default=0, metadata={"help": "GPU to load model on"})
+    # trust_remote_code: Optional[bool] = Field(
+    #     default=True, metadata={"help": "Enable `trust_remote_code`"}
+    # )
+    # training_args: Optional[TrainingArguments] = Field(
+    #     default=None, metadata={"help": "HuggingFace `TrainingArguments` for a Trainer"}
+    # )
+    max_tokens: Optional[int] = Field(
+        default=1, metadata={"help": "Maximum number of tokens to generate"}
     )
     system_message: Optional[str] = Field(
         default=None, metadata={"help": "System message to use for the model"}
@@ -54,8 +57,8 @@ class RunArguments(BaseModel):
     def model_post_init(self, __context):
 
         # Validation
-        if self.load_in_8bit and self.load_in_4bit:
-            raise ValueError("Cannot load in 4 bit and 8 bit simultaneously")
+        # if self.load_in_8bit and self.load_in_4bit:
+        #     raise ValueError("Cannot load in 4 bit and 8 bit simultaneously")
 
         if (
             self.ontology_probe_type is not None
@@ -81,9 +84,10 @@ class RunArguments(BaseModel):
         timestamp = strftime("%Y-%m-%d-%H-%M-%S")
         self.output_dir = os.path.join(self.output_dir, timestamp)
 
-        if self.training_args is not None:
-            self.training_args.output_dir = self.output_dir
-            self.training_args.logging_dir = self.output_dir
+        # if self.training_args is not None:
+        #     self.training_args.output_dir = self.output_dir
+        #     self.training_args.logging_dir = self.output_dir
+        #
 
 
 if __name__ == "__main__":

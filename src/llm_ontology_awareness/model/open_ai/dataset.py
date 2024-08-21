@@ -10,22 +10,17 @@ from itertools import product
 import polars as pl
 from torch.utils.data import Dataset
 
-with open("settings/system_message_templates.json", "r") as f:
-    system_message_templates = json.load(f)
 
-
-class ClassAssertionHFDataset(Dataset):
+class ClassAssertionOpenAIDataset(Dataset):
     """Generate various individual to class mapping prompts"""
 
     def __init__(
         self,
         in_file: str,
-        model_name: str,
         system_message: str,
         user_prompt_template: str,
     ):
         self.df = pl.read_ndjson(in_file)
-        self.prompt_template: str = system_message_templates[model_name]
         self.system_message: str = system_message
         self.user_prompt_template: str = user_prompt_template
 
@@ -34,10 +29,20 @@ class ClassAssertionHFDataset(Dataset):
 
     def __getitem__(self, idx):
         *ents, label = self.df.row(idx)
-        sentence = self.user_prompt_template.format(*ents)
+        # TODO: Make format more generalizable
+        messages = [
+            {
+                "role": "system",
+                "content": self.system_message,
+            },
+            {
+                "role": "user",
+                "content": self.user_prompt_template.format(*ents),
+            },
+        ]
         return (
             *ents,
-            self.prompt_template.format(self.system_message, sentence),
+            messages,
             label,
         )
 
@@ -51,9 +56,8 @@ if __name__ == "__main__":
     with open("../../../../run_args/run_args_test.json", "r") as f:
         raw = f.read()
         run_args = RunArguments.parse_raw(raw)
-    itcib = ClassAssertionHFDataset(
+    itcib = ClassAssertionOpenAIDataset(
         in_file,
-        model_name=run_args.llm_name,
         system_message=run_args.system_message,
         user_prompt_template=run_args.user_prompt_template,
     )
