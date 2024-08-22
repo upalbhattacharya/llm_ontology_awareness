@@ -62,6 +62,8 @@ if __name__ == "__main__":
     y_true = pl.read_ndjson(args.y_true)
     y_pred = pl.read_ndjson(args.y_pred)
 
+    print(y_pred["Prediction"].unique())
+
     metrics = task_metrics[run_args.task_type](
         y_true.get_column("Member"), y_pred.get_column("Prediction")
     )

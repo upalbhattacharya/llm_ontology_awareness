@@ -1,10 +1,11 @@
 {
-  "llm_name": "gpt-4o-mini",
+  "llm_name": "gpt-4o",
   "input": "/home/upal/Data/ontologies/wines-ontology/data/individual_to_class/2024-06-13/data.json",
   "output_dir": "/home/upal/Results/llm_ontology_awareness",
   "ontology_probe_type": "individual_to_class",
   "prompt_strategy_type": "zero_shot",
   "task_type": "binary_classify",
-  "system_message": "You are a helpful assistant that classifies statements as True or False only",
-  "user_prompt_template": "{} is a {}"
+  "system_message": "You are a wine expert that classifies statements as True or False only",
+  "user_prompt_template": "{} is a {}",
+  "description": "Zero-Shot, Domain-based Prompt, No pre-qualification Class Assertion binary classification on Wines Ontology"
 }
