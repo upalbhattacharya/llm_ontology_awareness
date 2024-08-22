@@ -29,12 +29,20 @@ def create_batch(test_data, run_args, **kwargs) -> (pl.DataFrame, dict):
             },
         }
         tasks.append(task)
-        label_mapping.append((f"task-{i}", label))
+        label_mapping.append((f"task-{i}", inst, cl, label))
 
         if kwargs.get("stop", None) is not None and i == kwargs["stop"]:
             break
 
-    df = pl.DataFrame(label_mapping, schema=[("Custom ID", str), ("Label", str)])
+    df = pl.DataFrame(
+        label_mapping,
+        schema=[
+            ("Custom ID", str),
+            ("Individual", str),
+            ("Class", str),
+            ("Member", bool),
+        ],
+    )
 
     return tasks, df
 
