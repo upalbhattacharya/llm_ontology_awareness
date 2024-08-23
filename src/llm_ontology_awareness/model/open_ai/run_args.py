@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import os
-from time import strftime
 from typing import Optional
 
 from dataclasses_json import dataclass_json
@@ -85,8 +84,6 @@ class RunArguments(BaseModel):
 
         # Updation
         self.output_dir = "output" if self.output_dir is None else self.output_dir
-        timestamp = strftime("%Y-%m-%d-%H-%M-%S")
-        self.output_dir = os.path.join(self.output_dir, timestamp)
 
         # if self.training_args is not None:
         #     self.training_args.output_dir = self.output_dir

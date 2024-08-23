@@ -51,7 +51,6 @@ if __name__ == "__main__":
     import argparse
     import json
     import logging.config
-    import os
 
     from dotenv import load_dotenv
 
@@ -72,10 +71,14 @@ if __name__ == "__main__":
         args_raw = f.read()
         run_args = RunArguments.parse_raw(args_raw)
 
+    # Get filename to name output directory
+    dir_name = os.path.splitext(os.path.basename(run_args.args_file))[0]
+    output_dir = os.path.join(args.output_dir, dir_name)
+
     config = LOG_CONF
-    config["handlers"]["file_handler"]["dir"] = run_args.output_dir
-    if not os.path.exists(run_args.output_dir):
-        os.makedirs(run_args.output_dir)
+    config["handlers"]["file_handler"]["dir"] = os.path.join(output_dir)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     logging.config.dictConfig(config)
     logger = logging.getLogger(__name__)
@@ -84,12 +87,12 @@ if __name__ == "__main__":
         system_message=run_args.system_message,
         user_prompt_template=run_args.user_prompt_template,
     )
-    with open(os.path.join(run_args.output_dir, "params.json"), "w") as f:
+    with open(os.path.join(output_dir, "params.json"), "w") as f:
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
     tasks, df = create_batch(test_data, run_args)
-    df.write_ndjson(os.path.join(run_args.output_dir, "label_mapping.json"))
-    with open(os.path.join(run_args.output_dir, "batch_tasks.jsonl"), "w") as f:
+    df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
+    with open(os.path.join(output_dir, "batch_tasks.jsonl"), "w") as f:
         for obj in tasks:
             f.write(json.dumps(obj) + "\n")

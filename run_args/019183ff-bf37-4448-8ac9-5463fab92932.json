@@ -1,5 +1,6 @@
 {
   "llm_name": "gpt-4o",
+  "max_tokens": 1,
   "input": "/home/upal/Data/ontologies/wines-ontology/data/individual_to_class/2024-06-13/data.json",
   "output_dir": "/home/upal/Results/llm_ontology_awareness",
   "ontology_probe_type": "individual_to_class",

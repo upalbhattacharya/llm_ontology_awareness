@@ -22,6 +22,7 @@ parser.add_argument(
 args = parser.parse_args()
 output_dir = os.path.dirname(args.batch_file)
 
+
 # Upload batch input
 batch_file = client.files.create(file=open(args.batch_file, "rb"), purpose="batch")
 
@@ -29,7 +30,7 @@ id_dict = {
     "batch_file_id": batch_file.id,
 }
 
-# Submit batch
+# Submit batch job
 submit_batch = client.batches.create(
     input_file_id=batch_file.id,
     endpoint="/v1/chat/completions",
@@ -38,9 +39,13 @@ submit_batch = client.batches.create(
         "description": output_dir,
     },
 )
-print(submit_batch)
 
 id_dict["batch_job_id"] = submit_batch.id
 
-with open(os.path.join(output_dir, "ids.json"), "w") as f:
+runs_dir = os.path.join(output_dir, "runs", id_dict["batch_job_id"])
+# Make 'runs' directory
+if not os.path.exists(runs_dir):
+    os.makedirs(runs_dir)
+
+with open(os.path.join(runs_dir, "ids.json"), "w") as f:
     json.dump(id_dict, f, indent=4)
