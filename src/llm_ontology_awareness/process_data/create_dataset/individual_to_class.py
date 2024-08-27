@@ -8,18 +8,15 @@ from itertools import product
 from pathlib import Path
 from typing import Optional
 
+import ontospy
 import polars as pl
-
-from llm_ontology_awareness.process_data.process_ontology.process_ontology import (
-    ProcessedOntology,
-)
 
 
 class IndividualToClassDataset:
     """Generate individual to class membership dataset"""
 
     def __init__(self, ontologyPath: str):
-        self.onto = ProcessedOntology(ontologyPath)
+        self.model = ontospy.Ontospy(ontologyPath, hide_individuals=False)
 
     def individual_direct_membership_binary_classify(
         self,
@@ -27,8 +24,14 @@ class IndividualToClassDataset:
     ) -> None:
 
         entries = [
-            (ind.name, cl.name, cl in ind.is_a)
-            for (ind, cl) in product(self.onto.individuals, self.onto.classes)
+            (
+                ind.locale,
+                cl.locale,
+                cl.locale in map(lambda x: x.locale, ind._instance_of),
+            )
+            for (ind, cl) in product(
+                list(self.model.all_individuals), list(self.model.all_classes)
+            )
         ]
         df = pl.DataFrame(
             entries, schema=[("Individual", str), ("Class", str), ("Member", bool)]
