@@ -12,6 +12,14 @@ import polars as pl
 
 class IndividualToClass:
 
+    def __init__(self, y_true_file: str, y_pred_file: str):
+        self.y_true = pl.read_ndjson(y_true_file)
+        self.y_pred = pl.read_ndjson(y_pred_file)
+        self.metrics = defaultdict(float)
+
+    def label_imbalance(self):
+        pass
+
     def binary_classify_metrics(self, args):
         stat_dict = defaultdict(float)
         pred_df = pl.read_ndjson(args.pred_file)
