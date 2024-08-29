@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import logging
+import math
 import os
 
 import polars as pl
@@ -72,8 +73,8 @@ if __name__ == "__main__":
         run_args = RunArguments.parse_raw(args_raw)
 
     # Get filename to name output directory
-    dir_name = os.path.splitext(os.path.basename(run_args.args_file))[0]
-    output_dir = os.path.join(args.output_dir, dir_name)
+    dir_name = os.path.splitext(os.path.basename(args.args_file))[0]
+    output_dir = os.path.join(run_args.output_dir, dir_name)
 
     config = LOG_CONF
     config["handlers"]["file_handler"]["dir"] = os.path.join(output_dir)
@@ -93,6 +94,14 @@ if __name__ == "__main__":
 
     tasks, df = create_batch(test_data, run_args)
     df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
-    with open(os.path.join(output_dir, "batch_tasks.jsonl"), "w") as f:
-        for obj in tasks:
-            f.write(json.dumps(obj) + "\n")
+    iterator = iter(tasks)
+    for i in range(math.ceil(len(tasks) / 50000)):
+        with open(
+            os.path.join(output_dir, f"batch_tasks_{i + 1}.jsonl"),
+            "w",
+        ) as f:
+            try:
+                for j in range(50000):
+                    f.write(json.dumps(next(iterator)) + "\n")
+            except StopIteration:
+                exit(0)

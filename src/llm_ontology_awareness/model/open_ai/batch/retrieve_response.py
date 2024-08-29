@@ -20,17 +20,21 @@ parser.add_argument(
     required=True,
 )
 args = parser.parse_args()
+output_dir = os.path.dirname(args.job_dict)
 
 with open(args.job_dict, "r") as f:
     ids = json.load(f)
 
-response = client.batches.retrieve(ids["batch_job_id"])
-if response.status != "completed":
-    print(response)
-else:
-    output_dir = os.path.dirname(args.job_dict)
-    output_file_id = response.output_file_id
-    file_response = client.files.content(output_file_id).content
+responses = [client.batches.retrieve(idx) for idx in ids["batch_job_id"]]
 
-    with open(os.path.join(output_dir, "batch_output.jsonl"), "wb") as f:
-        f.write(file_response)
+if not all([r.status == "completed" for r in responses]):
+    incomplete_jobs = list(filter(lambda y: y.status != "completed", responses))
+    print(f"{len(incomplete_jobs)}/{len(responses)} jobs completed")
+    print(incomplete_jobs)
+else:
+    for i, response in enumerate(responses):
+        output_file_id = response.output_file_id
+        file_response = client.files.content(output_file_id).content
+
+        with open(os.path.join(output_dir, f"batch_output_{i+1}.jsonl"), "wb") as f:
+            f.write(file_response)

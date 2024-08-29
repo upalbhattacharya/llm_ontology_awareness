@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import argparse
+import glob
 import json
 import os
 
@@ -12,8 +13,8 @@ from llm_ontology_awareness.model.open_ai.run_args import RunArguments
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "-f",
-    "--response_file",
-    help="Response object",
+    "--response_file_dir",
+    help="Response objects directory",
     type=str,
     required=True,
 )
@@ -37,19 +38,22 @@ with open(args.run_args, "r") as f:
     args_raw = f.read()
     run_args = RunArguments.parse_raw(args_raw)
 
-output_dir = os.path.dirname(args.response_file)
+output_dir = args.response_file_dir
+path_glob = f"{args.response_file_dir}/batch_output_*.jsonl"
+batch_output_files = glob.glob(path_glob)
+results = []
 
 # Create Prediction DataFrame
-results = []
-with open(os.path.join(output_dir, "batch_output.jsonl"), "r") as f:
-    for line in f:
-        json_object = json.loads(line.strip())
-        results.append(
-            (
-                json_object["custom_id"],
-                json_object["response"]["body"]["choices"][0]["message"]["content"],
+for batch_output_path in batch_output_files:
+    with open(batch_output_path, "r") as f:
+        for line in f:
+            json_object = json.loads(line.strip())
+            results.append(
+                (
+                    json_object["custom_id"],
+                    json_object["response"]["body"]["choices"][0]["message"]["content"],
+                )
             )
-        )
 
 df = pl.DataFrame(results, schema=[("Custom ID", str), ("Response", str)])
 
