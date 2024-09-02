@@ -1,0 +1,12 @@
+{
+  "llm_name": "gpt-4o",
+  "max_tokens": 1,
+  "input": "/home/upal/Data/ontologies/case-uco-owl-trafficking-renamed/data/individual_to_class/2024-09-02/data.json",
+  "output_dir": "/home/upal/Results/llm_ontology_awareness/case-uco-owl-trafficking-renamed",
+  "ontology_probe_type": "individual_to_class",
+  "prompt_strategy_type": "zero_shot",
+  "task_type": "binary_classify",
+  "system_message": "You are an ontology expert that classifies statements as True or False only",
+  "user_prompt_template": "The individual {} is a member of the class {}",
+  "description": "Zero-Shot, Ontology Prompt, entity pre-qualification Class Assertion binary classification on CASE, UCO and OWL Trafficking Ontology"
+}
