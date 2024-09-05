@@ -7,8 +7,6 @@ from dataclasses_json import dataclass_json
 from pydantic import BaseModel, Field
 from transformers import TrainingArguments
 
-from llm_ontology_awareness.model.common.utilities import utils
-
 
 class RunArguments(BaseModel):
     input: Optional[str] = Field(
@@ -29,19 +27,6 @@ class RunArguments(BaseModel):
         default=None,
         metadata={"help": "Name of model to load"},
     )
-    # load_in_8bit: Optional[bool] = Field(
-    #     default=False, metadata={"help": "Load model with 8-bit precision"}
-    # )
-    # load_in_4bit: Optional[bool] = Field(
-    #     default=True, metadata={"help": "Load model with 4-bit precision"}
-    # )
-    # device: Optional[int] = Field(default=0, metadata={"help": "GPU to load model on"})
-    # trust_remote_code: Optional[bool] = Field(
-    #     default=True, metadata={"help": "Enable `trust_remote_code`"}
-    # )
-    # training_args: Optional[TrainingArguments] = Field(
-    #     default=None, metadata={"help": "HuggingFace `TrainingArguments` for a Trainer"}
-    # )
     max_tokens: Optional[int] = Field(
         default=1, metadata={"help": "Maximum number of tokens to generate"}
     )
@@ -56,39 +41,16 @@ class RunArguments(BaseModel):
         default=None,
         metadata={"help": "Description of the task"},
     )
+    kwargs: Optional[dict] = Field(
+        default={},
+        metadata={
+            "help": "Named extra arguments. (Used for different types of prompts)"
+        },
+    )
 
     def model_post_init(self, __context):
 
-        # Validation
-        # if self.load_in_8bit and self.load_in_4bit:
-        #     raise ValueError("Cannot load in 4 bit and 8 bit simultaneously")
-
-        if (
-            self.ontology_probe_type is not None
-            and self.ontology_probe_type not in utils.ontology_probe_types
-        ):
-            raise ValueError(
-                f"`ontology_probe_type` must be one of {utils.ontology_probe_types}"
-            )
-
-        if (
-            self.prompt_strategy_type is not None
-            and self.prompt_strategy_type not in utils.prompt_strategy_types
-        ):
-            raise ValueError(
-                f"`prompt_strategy_type` must be one of {utils.prompt_strategy_types}"
-            )
-
-        if self.task_type is not None and self.task_type not in utils.task_types:
-            raise ValueError(f"`task_type` must be one of {utils.task_types}")
-
-        # Updation
         self.output_dir = "output" if self.output_dir is None else self.output_dir
-
-        # if self.training_args is not None:
-        #     self.training_args.output_dir = self.output_dir
-        #     self.training_args.logging_dir = self.output_dir
-        #
 
 
 if __name__ == "__main__":
@@ -98,8 +60,12 @@ if __name__ == "__main__":
     from transformers import TrainingArguments
 
     # Quick Test
-    with open("../../../../run_args/run_args_test.json", "r") as f:
+    with open(
+        "/home/upal/Repos/llm_ontology_awareness/run_args/individual_to_class/ranked-retrieval/run_args_ranked_retrieval_test.json",
+        "r",
+    ) as f:
         raw = f.read()
+        print(raw)
         run_args = RunArguments.parse_raw(raw)
     print(run_args)
     print(run_args.dict())

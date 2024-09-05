@@ -7,11 +7,14 @@ import os
 import polars as pl
 from tqdm import tqdm
 
-from llm_ontology_awareness.model.open_ai.dataset import ClassAssertionOpenAIDataset
+from llm_ontology_awareness.model.open_ai.datasets.individual_to_class import (
+    ClassAssertionBinaryClassificationDataset,
+    ClassAssertionRankedRetrievalDataset,
+)
 from llm_ontology_awareness.model.open_ai.run_args import RunArguments
 
 
-def create_batch(test_data, run_args, **kwargs) -> (pl.DataFrame, dict):
+def create_binary_classify_batch(test_data, run_args, **kwargs) -> (pl.DataFrame, dict):
     tasks = []
     label_mapping = []
     num_samples = len(test_data)
@@ -42,6 +45,44 @@ def create_batch(test_data, run_args, **kwargs) -> (pl.DataFrame, dict):
             ("Individual", str),
             ("Class", str),
             ("Member", bool),
+        ],
+    )
+
+    return tasks, df
+
+
+def create_ranked_retrieval_batch(
+    test_data, run_args, **kwargs
+) -> (pl.DataFrame, dict):
+    tasks = []
+    label_mapping = []
+    num_samples = len(test_data)
+    test_data = iter(test_data)
+
+    for i in tqdm(range(num_samples)):
+        inst, messages, label = next(test_data)
+        task = {
+            "custom_id": f"task-{i}",
+            "method": "POST",
+            "url": "/v1/chat/completions",
+            "body": {
+                "model": run_args.llm_name,
+                "messages": messages,
+                # "max_tokens": run_args.max_tokens,
+            },
+        }
+        tasks.append(task)
+        label_mapping.append((f"task-{i}", inst, label))
+
+        if kwargs.get("stop", None) is not None and i == kwargs["stop"]:
+            break
+
+    df = pl.DataFrame(
+        label_mapping,
+        schema=[
+            ("Custom ID", str),
+            ("Individual", str),
+            ("Member", list[str]),
         ],
     )
 
@@ -83,18 +124,34 @@ if __name__ == "__main__":
 
     logging.config.dictConfig(config)
     logger = logging.getLogger(__name__)
-    test_data = ClassAssertionOpenAIDataset(
-        run_args.input,
-        system_message=run_args.system_message,
-        user_prompt_template=run_args.user_prompt_template,
-    )
+
     with open(os.path.join(output_dir, "params.json"), "w") as f:
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
-    tasks, df = create_batch(test_data, run_args)
-    df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
-    iterator = iter(tasks)
+    if run_args.task_type == "binary_classify":
+        test_data = ClassAssertionBinaryClassificationDataset(
+            run_args.input,
+            system_message=run_args.system_message,
+            user_prompt_template=run_args.user_prompt_template,
+            task_type=run_args.task_type,
+        )
+        tasks, df = create_binary_classify_batch(test_data, run_args)
+        df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
+        iterator = iter(tasks)
+
+    if run_args.task_type == "ranked_retrieval":
+        test_data = ClassAssertionRankedRetrievalDataset(
+            run_args.input,
+            system_message=run_args.system_message,
+            user_prompt_template=run_args.user_prompt_template,
+            task_type=run_args.task_type,
+            **run_args.kwargs,
+        )
+        tasks, df = create_ranked_retrieval_batch(test_data, run_args)
+        df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
+        iterator = iter(tasks)
+
     for i in range(math.ceil(len(tasks) / 50000)):
         with open(
             os.path.join(output_dir, f"batch_tasks_{i + 1}.jsonl"),
