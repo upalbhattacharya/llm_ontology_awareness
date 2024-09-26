@@ -4,17 +4,14 @@
 Module to generate different datasets for various prompts for Llama3 models.
 """
 
-import json
-from itertools import product
-
 import polars as pl
 from torch.utils.data import Dataset
 
-from llm_ontology_awareness.metrics.task_map.individual_to_class import task_types
+from llm_ontology_awareness.task_map.term_typing import task_types
 
 
-class ClassAssertionBinaryClassificationDataset(Dataset):
-    """Generate various individual to class mapping prompts"""
+class TermTypingBinaryClassificationDataset(Dataset):
+    """Generate binary classification prompts for class assertions"""
 
     def __init__(
         self,
@@ -41,7 +38,6 @@ class ClassAssertionBinaryClassificationDataset(Dataset):
 
     def __getitem__(self, idx):
         *ents, label = self.df.row(idx)
-        # TODO: Make format more generalizable
         messages = [
             {
                 "role": "system",
@@ -59,8 +55,8 @@ class ClassAssertionBinaryClassificationDataset(Dataset):
         )
 
 
-class ClassAssertionRankedRetrievalDataset(Dataset):
-    """Generate various individual to class mapping prompts"""
+class TermTypingRankedRetrievalDataset(Dataset):
+    """Generate Ranked retrieval prompts for class assertions"""
 
     def __init__(
         self,
@@ -90,7 +86,6 @@ class ClassAssertionRankedRetrievalDataset(Dataset):
 
     def __getitem__(self, idx):
         *ents, label = self.df.row(idx)
-        # TODO: Make format more generalizable
         messages = [
             {
                 "role": "system",
@@ -129,7 +124,7 @@ if __name__ == "__main__":
         raw = f.read()
         run_args = RunArguments.parse_raw(raw)
 
-    itcib = ClassAssertionRankedRetrievalDataset(
+    itcib = TermTypingRankedRetrievalDataset(
         args.data,
         system_message=run_args.system_message,
         user_prompt_template=run_args.user_prompt_template,

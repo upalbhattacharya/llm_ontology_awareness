@@ -7,9 +7,9 @@ import os
 import polars as pl
 from tqdm import tqdm
 
-from llm_ontology_awareness.model.open_ai.datasets.individual_to_class import (
-    ClassAssertionBinaryClassificationDataset,
-    ClassAssertionRankedRetrievalDataset,
+from llm_ontology_awareness.model.open_ai.datasets.term_typing import (
+    TermTypingBinaryClassificationDataset,
+    TermTypingRankedRetrievalDataset,
 )
 from llm_ontology_awareness.model.open_ai.run_args import RunArguments
 
@@ -130,7 +130,7 @@ if __name__ == "__main__":
         json.dump(params_dump, f, indent=4)
 
     if run_args.task_type == "binary_classify":
-        test_data = ClassAssertionBinaryClassificationDataset(
+        test_data = TermTypingBinaryClassificationDataset(
             run_args.input,
             system_message=run_args.system_message,
             user_prompt_template=run_args.user_prompt_template,
@@ -141,7 +141,7 @@ if __name__ == "__main__":
         iterator = iter(tasks)
 
     if run_args.task_type == "ranked_retrieval":
-        test_data = ClassAssertionRankedRetrievalDataset(
+        test_data = TermTypingRankedRetrievalDataset(
             run_args.input,
             system_message=run_args.system_message,
             user_prompt_template=run_args.user_prompt_template,

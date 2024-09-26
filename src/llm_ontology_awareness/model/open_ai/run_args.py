@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 
-import os
 from typing import Optional
 
-from dataclasses_json import dataclass_json
 from pydantic import BaseModel, Field
-from transformers import TrainingArguments
 
 
 class RunArguments(BaseModel):
@@ -54,14 +51,18 @@ class RunArguments(BaseModel):
 
 
 if __name__ == "__main__":
+
+    import argparse
     import json
 
-    from pydantic_core import from_json
-    from transformers import TrainingArguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-r", "--run_args_file", type=str, required=True, help="`run_args` file to load"
+    )
+    args = parser.parse_args()
 
-    # Quick Test
     with open(
-        "/home/upal/Repos/llm_ontology_awareness/run_args/individual_to_class/ranked-retrieval/run_args_ranked_retrieval_test.json",
+        args.run_args_file,
         "r",
     ) as f:
         raw = f.read()

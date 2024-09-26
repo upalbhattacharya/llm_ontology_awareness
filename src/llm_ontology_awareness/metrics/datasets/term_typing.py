@@ -9,7 +9,7 @@ import ontospy
 import polars as pl
 
 
-class ClassAssertionBinaryClassification:
+class TermTypingBinaryClassification:
 
     def __init__(self, data_path, ontology_path):
         self.data = pl.read_ndjson(data_path)
@@ -108,7 +108,7 @@ class ClassAssertionBinaryClassification:
         return metrics
 
 
-class ClassAssertionRankedRetrieval:
+class TermTypingRankedRetrieval:
 
     def __init__(self, data_path, ontology_path):
         self.data = pl.read_ndjson(data_path)
@@ -200,7 +200,7 @@ class ClassAssertionRankedRetrieval:
 if __name__ == "__main__":
     import argparse
 
-    from llm_ontology_awareness.metrics.task_map.individual_to_class import task_types
+    from llm_ontology_awareness.task_map.term_typing import task_types
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--data_path", help="Path to Data DataFrame")

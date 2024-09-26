@@ -147,7 +147,7 @@ class ClassAssertionRankedRetrievalDataset:
 if __name__ == "__main__":
     import argparse
 
-    from llm_ontology_awareness.metrics.task_map.individual_to_class import task_types
+    from llm_ontology_awareness.task_map.class_assertion import task_types
 
     # Get input and output files
     parser = argparse.ArgumentParser(

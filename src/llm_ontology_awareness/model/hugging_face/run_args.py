@@ -1,14 +1,9 @@
 #!/usr/bin/env python
 
-import os
-from time import strftime
 from typing import Optional
 
-from dataclasses_json import dataclass_json
 from pydantic import BaseModel, Field
 from transformers import TrainingArguments
-
-from llm_ontology_awareness.model.common.utilities import utils
 
 
 class RunArguments(BaseModel):
@@ -50,6 +45,16 @@ class RunArguments(BaseModel):
         default=None,
         metadata={"help": "User input template to use for text inputs to model"},
     )
+    description: Optional[str] = Field(
+        default=None,
+        metadata={"help": "Description of the task"},
+    )
+    kwargs: Optional[dict] = Field(
+        default={},
+        metadata={
+            "help": "Named extra arguments. (Used for different types of prompts)"
+        },
+    )
 
     def model_post_init(self, __context):
 
@@ -57,29 +62,7 @@ class RunArguments(BaseModel):
         if self.load_in_8bit and self.load_in_4bit:
             raise ValueError("Cannot load in 4 bit and 8 bit simultaneously")
 
-        if (
-            self.ontology_probe_type is not None
-            and self.ontology_probe_type not in utils.ontology_probe_types
-        ):
-            raise ValueError(
-                f"`ontology_probe_type` must be one of {utils.ontology_probe_types}"
-            )
-
-        if (
-            self.prompt_strategy_type is not None
-            and self.prompt_strategy_type not in utils.prompt_strategy_types
-        ):
-            raise ValueError(
-                f"`prompt_strategy_type` must be one of {utils.prompt_strategy_types}"
-            )
-
-        if self.task_type is not None and self.task_type not in utils.task_types:
-            raise ValueError(f"`task_type` must be one of {utils.task_types}")
-
-        # Updation
         self.output_dir = "output" if self.output_dir is None else self.output_dir
-        timestamp = strftime("%Y-%m-%d-%H-%M-%S")
-        self.output_dir = os.path.join(self.output_dir, timestamp)
 
         if self.training_args is not None:
             self.training_args.output_dir = self.output_dir
@@ -87,16 +70,29 @@ class RunArguments(BaseModel):
 
 
 if __name__ == "__main__":
+
+    import argparse
     import json
 
-    from pydantic_core import from_json
-    from transformers import TrainingArguments
-
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-r",
+        "--run_args_file",
+        help="`run_args` file to load for checking of model",
+        type=str,
+        required=True,
+    )
+    args = parser.parse_args()
     # Quick Test
-    with open("../../../../run_args/run_args_test.json", "r") as f:
+    with open(args.run_args_file, "r") as f:
         raw = f.read()
         run_args = RunArguments.parse_raw(raw)
     print(run_args)
+    print(run_args.dict())
+    with open("test.json", "w") as f:
+        # args_save = run_args.to_dict()
+        model_dump = run_args.model_dump()
+        json.dump(model_dump, f, indent=4)
     print(run_args.dict())
     with open("test.json", "w") as f:
         # args_save = run_args.to_dict()

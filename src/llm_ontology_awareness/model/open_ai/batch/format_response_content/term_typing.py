@@ -7,8 +7,8 @@ import os
 
 import polars as pl
 
-from llm_ontology_awareness.model.common.format_response import format_types
 from llm_ontology_awareness.model.open_ai.run_args import RunArguments
+from llm_ontology_awareness.task_map.term_typing import task_types
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -60,14 +60,19 @@ df = pl.DataFrame(results, schema=[("Custom ID", str), ("Response", str)])
 y_true_df = pl.read_ndjson(args.label_mapping)
 
 join_df = df.join(y_true_df, on="Custom ID")
-join_df = join_df.select(["Individual", "Class", "Response"])
+print(join_df)
+columns = task_types[run_args.task_type]["format_response"]["df_columns"]
+columns.append("Response")
+print(columns)
+join_df = join_df.select(columns)
 join_df = join_df.with_columns(
     pl.col("Response")
     .map_elements(
-        function=format_types[run_args.task_type]["function"],
-        return_dtype=format_types[run_args.task_type]["return_dtype"],
+        function=task_types[run_args.task_type]["format_response"]["function"],
+        return_dtype=task_types[run_args.task_type]["format_response"]["return_dtype"],
     )
     .alias("Prediction")
 )
+print(join_df)
 
 join_df.write_ndjson(os.path.join(output_dir, "responses.json"))
