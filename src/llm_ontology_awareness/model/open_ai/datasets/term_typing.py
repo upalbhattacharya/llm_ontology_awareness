@@ -9,7 +9,6 @@ from torch.utils.data import Dataset
 
 from llm_ontology_awareness.task_map.term_typing import task_types
 
-
 class TermTypingBinaryClassificationDataset(Dataset):
     """Generate binary classification prompts for class assertions"""
 
