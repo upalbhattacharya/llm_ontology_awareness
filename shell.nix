@@ -6,9 +6,8 @@ in pkgs.mkShell {
   packages = [
     (pkgs.python3.withPackages (python-pkgs:
       with python-pkgs; [
-        ontospy
         openai
-        polar
+        polars
         pydantic
         python-dotenv
         scikit-learn
