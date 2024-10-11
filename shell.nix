@@ -18,6 +18,8 @@ in pkgs.mkShell {
         python-lsp-server
         flake8
       ]))
+    # nix-based
+    pkgs.nix-nl
     pkgs.nixfmt-rfc-style
   ];
 }
