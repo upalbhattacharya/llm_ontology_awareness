@@ -16,7 +16,7 @@ in pkgs.mkShell {
         transformers
         black
         isort
-        python-language-server
+        pylsp
         flake8
       ]))
   ];
