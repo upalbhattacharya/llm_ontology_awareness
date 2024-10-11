@@ -8,6 +8,20 @@ import polars as pl
 from llm_ontology_awareness.task_map.term_typing import task_types
 from torch.utils.data import Dataset
 
+test_str = [
+    "helloworld",
+    "helloworld",
+    "helloworld",
+    "helloworld",
+    "helloworld",
+    "helloworld",
+    "helloworld",
+    "helloworld",
+    "helloworld",
+    "helloworld",
+    "helloworld",
+]
+
 
 class TermTypingBinaryClassificationDataset(Dataset):
     """Generate binary classification prompts for class assertions"""
