@@ -2,7 +2,7 @@ let
   # We pin to a specific nixpkgs commit for reproducibility.
   # Last updated: 2024-04-29. Check for new commits at https://status.nixos.org.
   pkgs = import <nixpkgs> { };
-  python = pkgs.python311;
+  python = pkgs.python312;
 in pkgs.mkShell {
   packages = [
     (python.withPackages (python-pkgs:
