@@ -10,6 +10,8 @@ notebooks/
 # Environments
 .env
 env/
+.direnv
+.envrc
 env.bak/
 
 # Jupyter
