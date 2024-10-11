@@ -5,7 +5,7 @@ let
   python = pkgs.python310;
 in pkgs.mkShell {
   packages = [
-    (pkgs.python.withPackages (python-pkgs:
+    (python.withPackages (python-pkgs:
       with python-pkgs; [
         openai
         polars
