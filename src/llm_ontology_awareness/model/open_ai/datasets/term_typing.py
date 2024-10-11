@@ -4,9 +4,23 @@
 Module to generate different datasets for various prompts for Llama3 models.
 """
 
-from torch.utils.data import Dataset
 import polars as pl
 from llm_ontology_awareness.task_map.term_typing import task_types
+from torch.utils.data import Dataset
+
+hello = [
+    "tobeornot",
+    "tobeornot",
+    "tobeornot",
+    "tobeornot",
+    "tobeornot",
+    "tobeornot",
+    "tobeornot",
+    "tobeornot",
+    "tobeornot",
+    "tobeornot",
+    "tobeornot",
+]
 
 
 class TermTypingBinaryClassificationDataset(Dataset):
