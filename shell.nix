@@ -19,7 +19,7 @@ in pkgs.mkShell {
         flake8
       ]))
     # nix-based
-    pkgs.nix-nl
+    pkgs.nixd
     pkgs.nixfmt-rfc-style
   ];
 }
