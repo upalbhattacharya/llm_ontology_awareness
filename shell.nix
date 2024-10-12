@@ -1,10 +1,11 @@
 let
   pkgs = import <nixpkgs> { };
   python = pkgs.python312;
-in pkgs.mkShell {
+in
+pkgs.mkShell {
   packages = [
-    (python.withPackages (python-pkgs:
-      with python-pkgs; [
+    (python.withPackages (
+      python-pkgs: with python-pkgs; [
         openai
         polars
         pydantic
@@ -15,10 +16,10 @@ in pkgs.mkShell {
         transformers
         black
         isort
-        python-lsp-server
         flake8
-      ]))
-    # nix-based
+      ]
+    ))
+    pkgs.pyright
     pkgs.nixd
     pkgs.nixfmt-rfc-style
   ];
