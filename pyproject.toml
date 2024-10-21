@@ -1,24 +1,22 @@
 [project]
 name = "llm_ontology_awareness"
-version = "0.0.1"
+version = "1.0.0"
 description = "Tools to generate and evaluate different prompts for various degrees of ontology awareness"
 authors = [
   {name="Upal Bhattacharya", email="u.bhattacharya@uu.nl"},
 ]
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
-"dataclasses_json>=0.6.7",
-"ontospy>=2.1.1",
-"openai>=1.43.0",
-"polars>=1.6.0",
-"pydantic>=2.8.2",
-"pydantic_core>=2.20.1",
-"python-dotenv>=1.0.1",
-"scikit_learn>=1.5.1",
-"torch>=2.4.0",
-"tqdm>=4.66.5",
-"transformers>=4.44.2"
+#"ontospy",
+"openai",
+"polars",
+"pydantic",
+"python-dotenv",
+"scikit_learn",
+"torch",
+"tqdm",
+"transformers"
 ]
 
 [build-system]
