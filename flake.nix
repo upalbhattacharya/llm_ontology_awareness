@@ -16,6 +16,16 @@
         pkgs = nixpkgs.legacyPackages.${system};
         python = pkgs.python312;
 
+        # Build Packages
+        pythonBuildPackages = (
+          python.withPackages (
+            ps:
+            with ps; [
+              setuptools
+            ]
+          )
+        );
+
         # Python modules for actual package
         modulePythonPackages = (
           python.withPackages (
@@ -64,7 +74,7 @@
           version = "0.1.0";
           src = ./.;
           build-system = [
-            python.setuptools
+            pythonBuildPackages
             modulePythonPackages
           ];
         };
