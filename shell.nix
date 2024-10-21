@@ -48,7 +48,6 @@
           )
         );
 
-
         # Other development packages available in the nixpkgs
         devPackages = (
           with pkgs;
@@ -68,7 +67,6 @@
           build-system = [
             buildPythonPackages
             modulePythonPackages
-            
           ];
         };
 
