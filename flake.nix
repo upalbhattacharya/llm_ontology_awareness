@@ -19,8 +19,7 @@
         # Build Packages
         pythonBuildPackages = (
           python.withPackages (
-            ps:
-            with ps; [
+            ps: with ps; [
               setuptools
             ]
           )
@@ -29,17 +28,16 @@
         # Python modules for actual package
         modulePythonPackages = (
           python.withPackages (
-            ps:
-            with ps; [
-            # ontospy
-            openai
-            polars
-            pydantic
-            python-dotenv
-            scikit-learn
-            torch
-            tqdm
-            transformers
+            ps: with ps; [
+              # ontospy
+              openai
+              polars
+              pydantic
+              python-dotenv
+              scikit-learn
+              torch
+              tqdm
+              transformers
             ]
           )
         );
@@ -71,7 +69,7 @@
           # Change name here
           pname = "llm_zero_shot_term_typing_impact";
           pyproject = true;
-          version = "0.1.0";
+          version = "1.0.0";
           src = ./.;
           build-system = [
             pythonBuildPackages
