@@ -26,7 +26,7 @@
             polars
             pydantic
             python-dotenv
-            scikit_learn
+            scikit-learn
             torch
             tqdm
             transformers
