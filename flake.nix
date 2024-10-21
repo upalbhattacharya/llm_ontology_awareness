@@ -25,7 +25,7 @@
             owner = "lambdamusic";
             repo = "${name}";
             rev = "${version}";
-            sha256 = "";
+            sha256 = "" 3/3hnANlhq8z6W7obVq8Z+jR1dXwQD/ha6q94WaJRHI;
             #sha256 = "1ibrwal80z27c2mh9hx85idmzilx6cpcmgc15z3lyz57bz0krigb";
           };
 
