@@ -16,6 +16,20 @@
         pkgs = nixpkgs.legacyPackages.${system};
         python = pkgs.python312;
 
+        # GitHub-based python packages
+        ontospy = pkgs.python3Packages.buildPythonPackage rec {
+          name = "Ontospy";
+          version = "v2.1.1";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "lambdamusic";
+            repo = "${name}";
+            rev = "${version}";
+            #sha256 = "1ibrwal80z27c2mh9hx85idmzilx6cpcmgc15z3lyz57bz0krigb";
+          };
+
+        };
+
         # Build Packages
         pythonBuildPackages = (
           python.withPackages (
