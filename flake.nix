@@ -43,7 +43,7 @@
         modulePythonPackages = (
           python.withPackages (
             ps: with ps; [
-              # ontospy
+              ontospy
               openai
               polars
               pydantic
