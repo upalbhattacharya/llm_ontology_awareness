@@ -14,7 +14,7 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        python = pkgs.python312;
+        python = pkgs.python310;
 
         # GitHub-based python packages
         ontospy = pkgs.python3Packages.buildPythonPackage rec {
