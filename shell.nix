@@ -84,9 +84,9 @@
         devShells.default = pkgs.mkShell {
           packages = [
             pkgs.bashInteractive
-            devPackages
             devPythonPackages
-            packagePythonPackages
+            modulePythonPackages
+            devPackages
             myapp
           ];
         };
