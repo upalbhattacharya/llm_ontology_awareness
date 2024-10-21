@@ -29,8 +29,17 @@
         modulePythonPackages = (
           python.withPackages (
             ps:
-            with ps;
-            [
+            with ps; [
+            ontospy
+            openai
+            polars
+            pydantic
+            pydantic_core
+            python-dotenv
+            scikit_learn
+            torch
+            tqdm
+            transformers
             ]
           )
         );
