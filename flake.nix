@@ -25,7 +25,6 @@
             openai
             polars
             pydantic
-            pydantic_core
             python-dotenv
             scikit_learn
             torch
