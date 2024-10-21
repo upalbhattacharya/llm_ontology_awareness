@@ -14,7 +14,7 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        python = pkgs.python310;
+        python = pkgs.python312;
 
         # GitHub-based python packages
         ontospy = pkgs.python3Packages.buildPythonPackage rec {
@@ -25,8 +25,7 @@
             owner = "lambdamusic";
             repo = "${name}";
             rev = "${version}";
-            sha256 = "02gcp647wh4kzab4drhk12ir66cd7p50d5bmcl90wlz1bfbx40xf";
-            #sha256 = "1ibrwal80z27c2mh9hx85idmzilx6cpcmgc15z3lyz57bz0krigb";
+            sha256 = "c2b13b650f0ab510a650aafee47d109710517a57";
           };
 
         };
