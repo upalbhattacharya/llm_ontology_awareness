@@ -1,24 +1,18 @@
 [project]
-name = "llm_zero_shot_term_typing_impact"
-version = "1.0.0"
-description = "Tools to generate and evaluate different prompts for various degrees of ontology awareness"
+name = "llm_ontology_awareness"
+version = "0.3.0"
+description = "LLM Ontology Awareness"
 authors = [
   {name="Upal Bhattacharya", email="u.bhattacharya@uu.nl"},
 ]
 readme = "README.md"
-requires-python = ">=3.9"
-dependencies = [
-# "ontospy",
-"openai",
-"polars",
-"pydantic",
-"python-dotenv",
-"scikit_learn",
-"torch",
-"tqdm",
-"transformers"
-]
+dynamic = ["dependencies", "optional-dependencies"]
+requires-python = ">=3.12"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+optional-dependencies.dev = { file = ["requirements-dev.txt"] }
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
