@@ -51,7 +51,7 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
     #     .alias("Prediction")
     # )
 
-    return label_mapping, df
+    return label_mapping_df, df
 
 
 if __name__ == "__main__":
