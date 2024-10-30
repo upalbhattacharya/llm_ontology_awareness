@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import logging
+
 import polars as pl
 from llm_ontology_awareness.model.hugging_face.datasets.term_typing import (
     TermTypingRankedRetrievalDataset,
