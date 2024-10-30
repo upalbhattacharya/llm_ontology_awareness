@@ -37,14 +37,14 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
 
     df = pl.DataFrame(responses, schema=[("Custom ID", str), ("Response", str)])
 
-    df = df.with_columns(
-        pl.col("Response")
-        .map_elements(
-            function=format_types[run_args.task_type]["function"],
-            return_dtype=format_types[run_args.task_type]["return_dtype"],
-        )
-        .alias("Prediction")
-    )
+    # df = df.with_columns(
+    #     pl.col("Response")
+    #     .map_elements(
+    #         function=format_types[run_args.task_type]["function"],
+    #         return_dtype=format_types[run_args.task_type]["return_dtype"],
+    #     )
+    #     .alias("Prediction")
+    # )
 
     return df
 
