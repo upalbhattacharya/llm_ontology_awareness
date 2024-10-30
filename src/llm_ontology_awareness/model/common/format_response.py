@@ -19,10 +19,12 @@ def binary_classify(response: str) -> bool:
 
 
 def ranked_retrieval(response: str) -> list:
-    replace_p = ["<|eot_id|>", "[", "]"]
+    rep_pat = ["<|eot_id|>", "[", "]"]
+    replace_p = re.compile(f"(?:{ rep_pat.join("|")})")    
     ranks = list(filter(None, response.split("\n")))
 
     # Filter
+    ranks = [
 
     ranks = [
         item.replace("[", "").replace("]", "")
