@@ -20,6 +20,7 @@ def binary_classify(response: str) -> bool:
 
 def ranked_retrieval(response: str) -> list:
     ranks = list(filter(None, response.split("\n")))
+    ranks = [item.replace("[", "").replace("]", "") for item in ranks]
     ranks = [
         item.replace("[", "").replace("]", "")
         for item in ranks
