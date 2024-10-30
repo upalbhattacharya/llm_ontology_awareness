@@ -5,9 +5,8 @@ Module to generate different datasets for various prompts for Llama3 models.
 """
 
 import polars as pl
-from torch.utils.data import Dataset
-
 from llm_ontology_awareness.task_map.term_typing import task_types
+from torch.utils.data import Dataset
 
 
 class TermTypingHFDataset(Dataset):
@@ -89,24 +88,35 @@ class TermTypingRankedRetrievalDataset(Dataset):
 
 
 if __name__ == "__main__":
+    import argparse
 
     from llm_ontology_awareness.model.hugging_face.run_args import RunArguments
 
-    in_file = "/home/upal/Data/ontologies/wines-ontology/data/individual_to_class/2024-06-13/data.json"
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-d", "--data", help="Path to data DataFrame", type=str, required=True
+    )
+    parser.add_argument(
+        "-r", "--run_args", help="Path to RunArguments", type=str, required=True
+    )
 
-    with open("../../../../run_args/run_args_test.json", "r") as f:
+    args = parser.parse_args()
+
+    with open(args.run_args, "r") as f:
         raw = f.read()
         run_args = RunArguments.parse_raw(raw)
-    itcib = TermTypingHFDataset(
-        in_file,
-        model_name=run_args.llm_name,
+
+    itcib = TermTypingRankedRetrievalDataset(
+        args.data,
         system_message=run_args.system_message,
         user_prompt_template=run_args.user_prompt_template,
+        task_type=run_args.task_type,
+        **run_args.kwargs,
     )
     print(len(itcib))
     num_samples = len(itcib)
     itcib = iter(itcib)
     for i in range(num_samples):
         print(i)
-        inst, cl, template, label = next(itcib)
+        inst, template, label = next(itcib)
         print(template)
