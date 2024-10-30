@@ -6,6 +6,7 @@ from llm_ontology_awareness.model.hugging_face.datasets.term_typing import (
 )
 from llm_ontology_awareness.model.hugging_face.initialize_model import initialize_model
 from llm_ontology_awareness.model.hugging_face.run_args import RunArguments
+from tqdm import tqdm
 from transformers import AutoTokenizer
 
 
@@ -14,7 +15,7 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
     label_mapping = []
     num_samples = len(test_data)
     test_data = iter(test_data)
-    for i in range(num_samples):
+    for i in tqdm(range(num_samples)):
         inst, prompt, label = next(test_data)
         label_mapping.append((f"task-{i}", inst, label))
         tokenized = tokenizer(prompt, return_tensors="pt").to(f"cuda:{run_args.device}")
