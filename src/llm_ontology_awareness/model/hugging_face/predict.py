@@ -26,6 +26,7 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
         ).cpu()
         response = tokenizer.batch_decode(response)[0]
         responses.append((f"task-{i}", response.replace(prompt, "")))
+        logging.info(response)
 
         if kwargs.get("stop", None) is not None and i == kwargs["stop"]:
             break
