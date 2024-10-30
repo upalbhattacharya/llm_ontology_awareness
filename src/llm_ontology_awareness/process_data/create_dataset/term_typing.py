@@ -21,7 +21,7 @@ class ParseKwargs(argparse.Action):
             getattr(namespace, self.dest)[key] = value
 
 
-class ClassAssertionBinaryClassificationDataset:
+class TermTypingBinaryClassificationDataset:
     """Generate individual to class membership dataset"""
 
     def __init__(self, ontologyPath: str, **kwargs):
@@ -95,7 +95,7 @@ class ClassAssertionBinaryClassificationDataset:
             )
 
 
-class ClassAssertionRankedRetrievalDataset:
+class TermTypingRankedRetrievalDataset:
     """Generate individual to class membership dataset"""
 
     def __init__(self, ontologyPath: str, **kwargs):
