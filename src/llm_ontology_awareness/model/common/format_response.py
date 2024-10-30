@@ -28,5 +28,5 @@ def ranked_retrieval(response: str) -> list:
     ]
 
     pattern = re.compile(r"^\d+.*\s+(.*)", re.MULTILINE)
-    items = [re.search(pattern, r).group(3) for r in ranks]
+    items = [re.search(pattern, r).group(1) for r in ranks]
     return items
