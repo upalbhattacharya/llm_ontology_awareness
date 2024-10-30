@@ -20,11 +20,12 @@ def binary_classify(response: str) -> bool:
 
 def ranked_retrieval(response: str) -> list:
     ranks = list(filter(None, response.split("\n")))
-    ranks = [item for item in ranks if re.match(r"^\d", item)]
+    ranks = [
+        item.replace("[", "").replace("]", "")
+        for item in ranks
+        if re.match(r"^\d", item)
+    ]
 
     pattern = re.compile(r"^\d+.*\s+(.*)", re.MULTILINE)
-    item = [
-        re.search(pattern, r.replace("[", "").replace("]", "")).group(1) for r in ranks
-    ]
-    # items = [re.search(pattern, r).group(3) for r in ranks]
+    items = [re.search(pattern, r).group(3) for r in ranks]
     return items
