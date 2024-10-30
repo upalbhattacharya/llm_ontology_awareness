@@ -75,27 +75,32 @@ if __name__ == "__main__":
         args_raw = f.read()
         run_args = RunArguments.parse_raw(args_raw)
 
+    # Get filename to name output directory
+    dir_name = os.path.splitext(os.path.basename(args.args_file))[0]
+    output_dir = os.path.join(run_args.output_dir, dir_name)
+
     torch.set_default_device(f"cuda:{run_args.device}")
     get_device_info()
 
     config = LOG_CONF
-    config["handlers"]["file_handler"]["dir"] = run_args.output_dir
-    if not os.path.exists(run_args.output_dir):
-        os.makedirs(run_args.output_dir)
+    config["handlers"]["file_handler"]["dir"] = output_dir
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     logging.config.dictConfig(config)
     logger = logging.getLogger(__name__)
     tokenizer = AutoTokenizer.from_pretrained(
         run_args.llm_name, token=os.environ.get("HF_TOKEN")
     )
-    test_data = ClassAssertionHFDataset(
+    test_data = TermTypingRankedRetrievalDataset(
         run_args.input,
-        model_name=run_args.llm_name,
         system_message=run_args.system_message,
         user_prompt_template=run_args.user_prompt_template,
+        task_type=run_args.task_type,
+        **run_args.kwargs,
     )
     model = initialize_model(run_args)
-    with open(os.path.join(run_args.output_dir, "params.json"), "w") as f:
+    with open(os.path.join(output_dir, "params.json"), "w") as f:
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
