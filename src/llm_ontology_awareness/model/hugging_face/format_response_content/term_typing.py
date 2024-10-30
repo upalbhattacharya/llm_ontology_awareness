@@ -37,12 +37,9 @@ with open(args.run_args, "r") as f:
     args_raw = f.read()
     run_args = RunArguments.parse_raw(args_raw)
 
-output_dir = args.response_file_dir
-path_glob = f"{args.response_file_dir}/batch_output_*.jsonl"
-batch_output_files = glob.glob(path_glob)
-results = []
+response_file_dir = os.path.dirname(args.response_file)
 
-df = pl.DataFrame(results, schema=[("Custom ID", str), ("Response", str)])
+output_dir = response_file_dir
 
 df = pl.read_ndjson(args.response_file)
 y_true_df = pl.read_ndjson(args.label_mapping)
