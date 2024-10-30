@@ -25,6 +25,9 @@ class RunArguments(BaseModel):
         default=None,
         metadata={"help": "Name of model to load"},
     )
+    max_tokens: Optional[int] = Field(
+        default=1, metadata={"help": "Maximum number of tokens to generate"}
+    )
     load_in_8bit: Optional[bool] = Field(
         default=False, metadata={"help": "Load model with 8-bit precision"}
     )
