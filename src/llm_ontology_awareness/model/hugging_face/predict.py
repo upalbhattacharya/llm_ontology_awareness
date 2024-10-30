@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
 import polars as pl
-from llm_ontology_awareness.model.common.dataset import ClassAssertionHFDataset
 from llm_ontology_awareness.model.common.format_response import format_types
+from llm_ontology_awareness.model.hugging_face.datasets.term_typing import (
+    TermTypingRankedRetrievalDataset,
+)
 from llm_ontology_awareness.model.hugging_face.initialize_model import initialize_model
 from llm_ontology_awareness.model.hugging_face.run_args import RunArguments
 from transformers import AutoTokenizer
