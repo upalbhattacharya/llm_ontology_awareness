@@ -87,6 +87,7 @@ class TermTypingRankedRetrievalDataset(Dataset):
 
 {self.user_prompt_template.format(*ents)}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
 
+
                                                                                  return (
             *ents,
             messages,
