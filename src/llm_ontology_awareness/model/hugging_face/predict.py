@@ -3,20 +3,19 @@
 import polars as pl
 from llm_ontology_awareness.model.common.dataset import ClassAssertionHFDataset
 from llm_ontology_awareness.model.common.format_response import format_types
-from llm_ontology_awareness.model.common.task_metrics import task_metrics
 from llm_ontology_awareness.model.hugging_face.initialize_model import initialize_model
 from llm_ontology_awareness.model.hugging_face.run_args import RunArguments
 from transformers import AutoTokenizer
 
 
-def predict(model, tokenizer, test_data, run_args, **kwargs) -> (pl.DataFrame, dict):
+def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
     responses = []
-    y_true = []
+    label_mapping = []
     num_samples = len(test_data)
     test_data = iter(test_data)
     for i in range(num_samples):
         inst, cl, prompt, label = next(test_data)
-        y_true.append(label)
+        label_mapping.append((f"task-{i}", inst, label))
         tokenized = tokenizer(prompt, return_tensors="pt").to(f"cuda:{run_args.device}")
         response = model.generate(
             tokenized.input_ids, max_new_tokens=run_args.max_tokens
@@ -26,6 +25,15 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> (pl.DataFrame, d
 
         if kwargs.get("stop", None) is not None and i == kwargs["stop"]:
             break
+
+    label_mapping_df = pl.DataFrame(
+        label_mapping,
+        schema=[
+            ("Custom ID", str),
+            ("Individual", str),
+            ("Member", list[str]),
+        ],
+    )
 
     df = pl.DataFrame(
         responses, schema=[("Individual", str), ("Class", str), ("Response", str)]
@@ -39,9 +47,8 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> (pl.DataFrame, d
         )
         .alias("Prediction")
     )
-    metrics = task_metrics[run_args.task_type](y_true, df.get_column("Prediction"))
 
-    return df, metrics
+    return df
 
 
 if __name__ == "__main__":
