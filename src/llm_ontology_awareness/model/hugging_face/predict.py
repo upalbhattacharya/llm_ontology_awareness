@@ -16,7 +16,6 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
     test_data = iter(test_data)
     for i in range(num_samples):
         inst, prompt, label = next(test_data)
-        print(inst, prompt, label)
         label_mapping.append((f"task-{i}", inst, label))
         tokenized = tokenizer(prompt, return_tensors="pt").to(f"cuda:{run_args.device}")
         response = model.generate(
