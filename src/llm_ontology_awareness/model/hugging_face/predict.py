@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 
 import polars as pl
-from transformers import AutoTokenizer
-
 from llm_ontology_awareness.model.common.dataset import ClassAssertionHFDataset
 from llm_ontology_awareness.model.common.format_response import format_types
 from llm_ontology_awareness.model.common.task_metrics import task_metrics
 from llm_ontology_awareness.model.hugging_face.initialize_model import initialize_model
 from llm_ontology_awareness.model.hugging_face.run_args import RunArguments
+from transformers import AutoTokenizer
 
 
 def predict(model, tokenizer, test_data, run_args, **kwargs) -> (pl.DataFrame, dict):
@@ -19,7 +18,9 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> (pl.DataFrame, d
         inst, cl, prompt, label = next(test_data)
         y_true.append(label)
         tokenized = tokenizer(prompt, return_tensors="pt").to(f"cuda:{run_args.device}")
-        response = model.generate(tokenized.input_ids, max_new_tokens=3).cpu()
+        response = model.generate(
+            tokenized.input_ids, max_new_tokens=run_args.max_tokens
+        ).cpu()
         response = tokenizer.batch_decode(response)[0]
         responses.append((inst, cl, response.replace(prompt, "")))
 
@@ -51,7 +52,6 @@ if __name__ == "__main__":
 
     import torch
     from dotenv import load_dotenv
-
     from llm_ontology_awareness.model.common.utilities.logging_conf import LOG_CONF
     from llm_ontology_awareness.model.common.utilities.utils import get_device_info
 
