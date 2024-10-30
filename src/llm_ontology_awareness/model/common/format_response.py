@@ -21,8 +21,10 @@ def binary_classify(response: str) -> bool:
 def ranked_retrieval(response: str) -> list:
     rep_pat = ["<|eot_id|>", "[", "]"]
     replace_p = re.compile(f"(?:{rep_pat.join("|")})")
+    print(replace_p)
 
     ranks = list(filter(None, response.split("\n")))
+    print(ranks)
     ranks = [re.sub(replace_p, "", item) for item in ranks if re.match(r"^\d", item)]
 
     pattern = re.compile(r"^\d+.*\s+(.*)", re.MULTILINE)
