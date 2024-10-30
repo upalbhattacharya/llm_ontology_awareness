@@ -47,6 +47,7 @@ class TermTypingBinaryClassificationDataset(Dataset):
                 "content": self.user_prompt_template.format(*ents),
             },
         ]
+        print((*ents, messages, label))
         return (
             *ents,
             messages,
