@@ -20,7 +20,7 @@ def binary_classify(response: str) -> bool:
 
 def ranked_retrieval(response: str) -> list:
     rep_pat = ["<|eot_id|>", "[", "]"]
-    replace_p = re.compile(f"(?:{rep_pat.join("|")})")
+    replace_p = re.compile(f"(?:{rep_pat.join('|')})")
     print(replace_p)
 
     ranks = list(filter(None, response.split("\n")))
