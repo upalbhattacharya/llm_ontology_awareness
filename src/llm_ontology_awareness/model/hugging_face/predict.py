@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import polars as pl
-from llm_ontology_awareness.model.common.format_response import format_types
 from llm_ontology_awareness.model.hugging_face.datasets.term_typing import (
     TermTypingRankedRetrievalDataset,
 )
