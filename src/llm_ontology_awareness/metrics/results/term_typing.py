@@ -149,14 +149,12 @@ if __name__ == "__main__":
     y_true = pl.read_ndjson(args.y_true)
     y_pred = pl.read_ndjson(args.y_pred)
 
-    try:
-        print(task_types[args.task_type])
-        metrics = task_types[args.task_type]["pred_metrics"](
-            y_true, y_pred, **args.kwargs
-        )
-        with open(os.path.join(output_dir, "pred_metrics.json"), "w") as f:
-            json.dump(metrics, f, indent=4)
-    except KeyError:
-        logging.error(
-            f"Argument `task_type` must be one of: {list(task_types.keys())}. Got value {args.task_type}"
-        )
+    # try:
+    print(task_types[args.task_type])
+    metrics = task_types[args.task_type]["pred_metrics"](y_true, y_pred, **args.kwargs)
+    with open(os.path.join(output_dir, "pred_metrics.json"), "w") as f:
+        json.dump(metrics, f, indent=4)
+    # except KeyError:
+    #     logging.error(
+    #         f"Argument `task_type` must be one of: {list(task_types.keys())}. Got value {args.task_type}"
+    #     )
