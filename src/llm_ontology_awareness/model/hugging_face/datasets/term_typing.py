@@ -68,19 +68,6 @@ class TermTypingRankedRetrievalDataset(Dataset):
 
     def __getitem__(self, idx):
         *ents, label = self.df.row(idx)
-        # messages = [
-        #     {
-        #         "role": "system",
-        #         "content": self.system_message.format(
-        #             **self.extra_args, classes=self.classes
-        #         ),
-        #     },
-        #     {
-        #         "role": "user",
-        #         "content": self.user_prompt_template.format(*ents),
-        #     },
-        # ]
-
         messages = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
 
 {self.system_message.format(**self.extra_args, classes=self.classes)}<|eot_id|><|start_header_id|>user<|end_header_id|>
