@@ -122,7 +122,6 @@ if __name__ == "__main__":
     import os
 
     import polars as pl
-
     from llm_ontology_awareness.task_map.term_typing import task_types
 
     parser = argparse.ArgumentParser()
@@ -151,12 +150,13 @@ if __name__ == "__main__":
     y_pred = pl.read_ndjson(args.y_pred)
 
     try:
+        print(task_types[args.task_type])
         metrics = task_types[args.task_type]["pred_metrics"](
             y_true, y_pred, **args.kwargs
         )
+        with open(os.path.join(output_dir, "pred_metrics.json"), "w") as f:
+            json.dump(metrics, f, indent=4)
     except KeyError:
         logging.error(
             f"Argument `task_type` must be one of: {list(task_types.keys())}. Got value {args.task_type}"
         )
-    with open(os.path.join(output_dir, "pred_metrics.json"), "w") as f:
-        json.dump(metrics, f, indent=4)
