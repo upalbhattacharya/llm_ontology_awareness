@@ -9,7 +9,7 @@ from openai import OpenAI
 load_dotenv()
 
 
-def predict(dataset):
+def predict(dataset, run_args):
 
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     pass
