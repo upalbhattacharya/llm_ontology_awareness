@@ -3,7 +3,7 @@
   "max_tokens": 500,
   "input":
   "/home/upal/Data/ontologies/astronomy-ontology/data/term_typing/ranked_retrieval/2024-11-04/term_typing_ranked_retrieval_dataset.json",
-  "output_dir": "/home/upal/Results/llm_ontology_awareness/term_typing/ranked_retrieval/astronomy-ontology",
+  "output_dir": "/home/upal/Results/llm_ontology_awareness/term_typing/ranked_retrieval/astronomy-ontology/gpt-4o",
   "ontology_probe_type": "term_typing",
   "prompt_strategy_type": "zero_shot",
   "task_type": "ranked_retrieval",
