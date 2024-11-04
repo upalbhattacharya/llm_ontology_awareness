@@ -139,15 +139,13 @@ class TermTypingRankedRetrievalDataset:
             schema=[("Individual", str), ("Ranked List", list[str])],
         )
 
-        df.write_ndjson(
-            Path(final_dir) / "class_assertion_ranked_retrieval_dataset.json"
-        )
+        df.write_ndjson(Path(final_dir) / "term_typing_ranked_retrieval_dataset.json")
 
 
 if __name__ == "__main__":
     import argparse
 
-    from llm_ontology_awareness.task_map.class_assertion import task_types
+    from llm_ontology_awareness.task_map.term_typing import task_types
 
     # Get input and output files
     parser = argparse.ArgumentParser(
