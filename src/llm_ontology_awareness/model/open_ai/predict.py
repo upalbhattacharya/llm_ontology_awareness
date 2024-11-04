@@ -6,6 +6,7 @@ from llm_ontology_awareness.model.open_ai.datasets.term_typing import (
 )
 from openai import OpenAI
 
+
 from tqdm import tqdm
 
 load_dotenv()
