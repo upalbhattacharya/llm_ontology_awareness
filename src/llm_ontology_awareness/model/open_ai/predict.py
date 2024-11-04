@@ -6,8 +6,12 @@ from llm_ontology_awareness.model.open_ai.datasets.term_typing import (
 )
 from openai import OpenAI
 
+load_dotenv()
 
-def predict(**kwargs):
+
+def predict(dataset):
+
+    client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     pass
 
 
