@@ -50,7 +50,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
         print(completion["choices"][0].message.content)
         responses.append(completion)
 
-        if kwargs.get("stop", -1) != -1 & kwargs["stop"] == i:
+        if kwargs.get("stop", -1) != -1 && kwargs["stop"] == i:
             print(i)
             break
 
