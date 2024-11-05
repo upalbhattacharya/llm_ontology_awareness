@@ -16,7 +16,6 @@ load_dotenv()
 
 
 def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
-    print(kwargs.get("stop", -1))
 
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     responses = []
@@ -24,7 +23,6 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
     num_samples = len(test_data)
     test_data = iter(test_data)
     for i in tqdm(range(num_samples)):
-        print(kwargs.get("stop", -1), i)
         inst, prompt, label = next(test_data)
         # TODO: Quickfix. Change later
         if run_args.llm_name == "o1-preview":
@@ -45,16 +43,11 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
                 max_completion_tokens=run_args.max_tokens,
                 messages=prompt,
             )
-        print(dict(completion))
         completion = dict(completion)
         completion["custom_id"] = f"task-{i}"
-        print(completion["choices"][0].message.content)
         responses.append(completion)
         if (kwargs.get("stop", -1) != -1) & (kwargs["stop"] == i):
-            print(i)
             break
-
-    print(label_mapping)
 
     label_mapping_df = pl.DataFrame(
         label_mapping,
@@ -116,7 +109,6 @@ if __name__ == "__main__":
         json.dump(params_dump, f, indent=4)
 
     label_mapping_df, responses = predict(test_data, run_args, stop=0)
-    print(responses)
     label_mapping_df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
     with jsonlines.open(
         os.path.join(output_dir, "responses.jsonl"), mode="w"
