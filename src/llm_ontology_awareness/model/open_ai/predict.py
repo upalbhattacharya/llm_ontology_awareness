@@ -111,6 +111,6 @@ if __name__ == "__main__":
 
     label_mapping_df, responses = predict(test_data, run_args, stop=0)
     label_mapping_df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
-    with open(os.path.join(output_dir, "responses.jsonl"), "w") as f:
+    with open(os.path.join(output_dir, "responses.jsonl"), "a") as f:
         for obj in responses:
             json.dump(obj, f, indent=4)
