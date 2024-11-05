@@ -50,6 +50,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
         responses.append(completion)
 
         if kwargs.get("stop", -1) != -1 & kwargs["stop"] == i:
+            print(i)
             break
 
     label_mapping_df = pl.DataFrame(
