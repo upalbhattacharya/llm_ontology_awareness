@@ -54,6 +54,8 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
             print(i)
             break
 
+    print(label_mapping)
+
     label_mapping_df = pl.DataFrame(
         label_mapping,
         schema=[
