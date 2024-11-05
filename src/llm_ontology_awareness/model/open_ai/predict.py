@@ -58,6 +58,14 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
         ],
     )
 
+    df = pl.DataFrame(
+        responses,
+        schema=[
+            ("Custom ID", str),
+            ("Response", str),
+            ]
+        )
+
     return label_mapping_df, responses
 
 
