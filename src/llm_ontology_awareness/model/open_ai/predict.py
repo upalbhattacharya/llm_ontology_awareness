@@ -118,4 +118,4 @@ if __name__ == "__main__":
 
     label_mapping_df, df = predict(test_data, run_args, stop=0)
     label_mapping_df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
-    label_mapping_df.write_ndjson(os.path.join(output_dir, "responses.json"))
+    df.write_ndjson(os.path.join(output_dir, "responses.json"))
