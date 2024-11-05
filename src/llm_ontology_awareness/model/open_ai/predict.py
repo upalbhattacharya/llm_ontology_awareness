@@ -91,4 +91,7 @@ if __name__ == "__main__":
 
     label_mapping_df, responses = predict(test_data, run_args)
     label_mapping_df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
-    df.write_ndjson(os.path.join(output_dir, "responses.json"))
+    with jsonlines.open(
+        os.path.join(output_dir, "responses.jsonl"), mode="w"
+    ) as writer:
+        writer.write(responses)
