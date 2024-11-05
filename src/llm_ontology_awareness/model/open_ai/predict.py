@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Prediction script for non-Batch API models"""
 
-from typing import Dict, Union
 import logging
+from typing import Dict, Union
 
 import polars as pl
 from dotenv import load_dotenv
@@ -24,8 +24,10 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
     test_data = iter(test_data)
     for i in tqdm(range(num_samples)):
         inst, prompt, label = next(test_data)
-        if run_args.llm_name == "o1-preview": # TODO: Fix to not be hacky
-            
+        # TODO: Quickfix. Change later
+        if run_args.llm_name == "o1-preview":
+            system_message = prompt.pop("system")
+            prompt["user"] = system_message + "\n" + prompt["user"]
         label_mapping.append((f"task-{i}", inst, label))
         completion = client.chat.completions.create(
             model=run_args.llm_name,
