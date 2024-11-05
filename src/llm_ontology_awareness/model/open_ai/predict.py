@@ -26,7 +26,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
         inst, prompt, label = next(test_data)
         # TODO: Quickfix. Change later
         if run_args.llm_name == "o1-preview":
-            system_message = prompt.pop[0]
+            system_message = prompt.pop(0)
             prompt[0]["content"] = (
                 system_message["content"] + "\n" + prompt[0]["content"]
             )
