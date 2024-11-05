@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-SCRIPT_NAME="Experiments/llm_ontology_awareness/src/llm_ontology_awarenss/metrics/results/term_typing.py"
+SCRIPT_NAME="Experiments/llm_ontology_awareness/src/llm_ontology_awareness/metrics/results/term_typing.py"
+
 DEPTH=4
 Y_TRUE="Data/ontologies/astronomy-ontology/data/term_typing/ranked_retrieval/2024-11-04/term_typing_ranked_retrieval_dataset.json"
 RESULTS_DIR="Results/llm_ontology_awareness/term_typing_ranked_retrieval/zero_shot/wines-ontology"
