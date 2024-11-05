@@ -3,7 +3,7 @@
   "max_tokens": 4000,
   "input":
   "/home/upal/Data/ontologies/wines-ontology/data/term_typing/ranked_retrieval/2024-09-05/term_typing_ranked_retrieval_dataset.json",
-  "output_dir": "/home/upal/Results/llm_ontology_awareness/term_typing/ranked_retrieval/wines-ontology/o1-preview",
+  "output_dir": "/home/upal/Results/llm_ontology_awareness/term_typing/ranked_retrieval/zero_shot/wines-ontology/o1-preview",
   "ontology_probe_type": "term_typing",
   "prompt_strategy_type": "zero_shot",
   "task_type": "ranked_retrieval",
