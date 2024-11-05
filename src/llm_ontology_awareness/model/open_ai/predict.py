@@ -92,7 +92,6 @@ if __name__ == "__main__":
         args_raw = f.read()
         run_args = RunArguments.parse_raw(args_raw)
 
-    # Get filename to name output directory
     dir_name = os.path.splitext(os.path.basename(args.args_file))[0]
     output_dir = os.path.join(run_args.output_dir, dir_name)
     if not os.path.exists(output_dir):
