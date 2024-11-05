@@ -3,7 +3,6 @@
 
 from typing import Dict, Union
 
-import jsonlines
 import polars as pl
 from dotenv import load_dotenv
 from llm_ontology_awareness.model.open_ai.datasets.term_typing import (
@@ -47,3 +46,25 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
 
 if __name__ == "__main__":
     import argparse
+    import logging.config
+    import os
+
+    import jsonlines
+    from llm_ontology_awareness.model.common.utilities.logging_conf import LOG_CONF
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-f",
+        "--args_file",
+        help="Path to `RunArguments` file",
+        type=str,
+        required=True,
+    )
+    args = parser.parse_args()
+    with open(args.args_file, "r") as f:
+        args_raw = f.read()
+        run_args = RunArguments.parse_raw(args_raw)
+
+    # Get filename to name output directory
+    dir_name = os.path.splitext(os.path.basename(args.args_file))[0]
+    output_dir = os.path.join(run_args.output_dir, dir_name)
