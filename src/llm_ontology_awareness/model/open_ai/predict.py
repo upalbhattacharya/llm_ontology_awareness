@@ -68,3 +68,8 @@ if __name__ == "__main__":
     # Get filename to name output directory
     dir_name = os.path.splitext(os.path.basename(args.args_file))[0]
     output_dir = os.path.join(run_args.output_dir, dir_name)
+
+    config = LOG_CONF
+    config["handlers"]["file_handler"]["dir"] = output_dir
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
