@@ -43,11 +43,9 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
                 max_completion_tokens=run_args.max_tokens,
                 messages=prompt,
             )
-        completion = dict(completion)
-        completion["choices"] = list(completion["choices"])
 
-        completion["custom_id"] = f"task-{i}"
-        responses.append(json.dumps(completion))
+       response = completion.choices[0].message["content"]
+       responses.append((f"task-{i}", response))
         if (kwargs.get("stop", -1) != -1) & (kwargs["stop"] == i):
             break
 
