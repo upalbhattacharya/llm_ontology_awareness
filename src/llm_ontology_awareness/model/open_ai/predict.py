@@ -24,6 +24,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
     num_samples = len(test_data)
     test_data = iter(test_data)
     for i in tqdm(range(num_samples)):
+    print(kwargs.get("stop", -1), i)
         inst, prompt, label = next(test_data)
         # TODO: Quickfix. Change later
         if run_args.llm_name == "o1-preview":
