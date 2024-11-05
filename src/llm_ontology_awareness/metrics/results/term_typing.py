@@ -81,7 +81,7 @@ def ranked_retrieval(
         k: ap_k_score(y_t, y_p, 1) for k, y_t, y_p in zip(datapoints, y_true, y_pred)
     }
 
-    ap_1 = {k: v for k, v in sorted(ap_k.items(), key=lambda x: x[1], reverse=True)}
+    ap_1 = {k: v for k, v in sorted(ap_1.items(), key=lambda x: x[1], reverse=True)}
 
     map_1 = 1.0 * sum(list(ap_1.values())) / len(list(ap_1.keys()))
 
