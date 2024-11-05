@@ -33,7 +33,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
             max_completion_tokens=run_args.max_tokens,
             messages=prompt,
         )
-        logging.log(completion)
+        print(completion)
         completion["custom_id"] = f"task-{i}"
         responses.append(completion)
 
