@@ -15,9 +15,10 @@ load_dotenv()
 def predict(test_data, run_args, **kwargs) -> None:
 
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+    responses = []
+    label_mapping = []
     num_samples = len(test_data)
     test_data = iter(test_data)
-    responses = []
     for i in tqdm(range(num_samples)):
         inst, prompt, label = next(test_data)
         completion = client.chat.completions.create(
@@ -25,6 +26,8 @@ def predict(test_data, run_args, **kwargs) -> None:
             max_completion_tokens=run_args.max_tokens,
             messages=prompt,
         )
+        completion["custom_id"] = f"task-{i}"
+        responses.append(completion)
 
 
 if __name__ == "__main__":
