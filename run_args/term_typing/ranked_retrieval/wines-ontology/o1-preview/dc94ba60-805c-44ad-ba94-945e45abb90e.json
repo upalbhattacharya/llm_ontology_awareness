@@ -7,8 +7,8 @@
   "ontology_probe_type": "term_typing",
   "prompt_strategy_type": "zero_shot",
   "task_type": "ranked_retrieval",
-  "system_message": "Provide a ranked list of the top {depth} most likely classes that the following Item belongs to from the following classes: {classes}",
-  "user_prompt_template": "Item: {}",
+  "system_message": "Provide only a ranked list of the top {depth} most likely classes that the following item belongs to from the following classes: {classes}",
+  "user_prompt_template": "item: {}",
   "description": "Zero-Shot, Generic Prompt, No pre-qualification Class Assertion Ranked Retrieval on Wines Ontology",
   "kwargs": {
     "depth": 4
