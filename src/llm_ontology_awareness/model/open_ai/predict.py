@@ -39,7 +39,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
         print(dict(completion))
         completion = dict(completion)
         completion["custom_id"] = f"task-{i}"
-        print(completion["choices"]["message"][0]["content"])
+        print(completion["choices"][0]["message"]["content"])
         responses.append(completion)
 
         if kwargs.get("stop", -1) != -1 & kwargs["stop"] == i:
