@@ -73,3 +73,18 @@ if __name__ == "__main__":
     config["handlers"]["file_handler"]["dir"] = output_dir
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+
+    logging.config.dictConfig(config)
+    logger = logging.getLogger(__name__)
+
+    test_data = TermTypingRankedRetrievalDataset(
+        run_args.input,
+        system_message=run_args.system_message,
+        user_prompt_template=run_args.user_prompt_template,
+        task_type=run_args.task_type,
+        **run_args.kwargs,
+    )
+
+    with open(os.path.join(output_dir, "params.json"), "w") as f:
+        params_dump = run_args.model_dump()
+        json.dump(params_dump, f, indent=4)
