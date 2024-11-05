@@ -89,6 +89,6 @@ if __name__ == "__main__":
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
-    label_mapping_df, responses = predict(model, tokenizer, test_data, run_args)
+    label_mapping_df, responses = predict(test_data, run_args)
     label_mapping_df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
     df.write_ndjson(os.path.join(output_dir, "responses.json"))
