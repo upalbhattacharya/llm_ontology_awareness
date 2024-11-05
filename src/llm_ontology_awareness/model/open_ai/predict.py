@@ -94,12 +94,17 @@ if __name__ == "__main__":
 
     # Get filename to name output directory
     dir_name = os.path.splitext(os.path.basename(args.args_file))[0]
-    output_dir = os.path.join(run_args.output_dir, dir_name)
-
-    config = LOG_CONF
-    config["handlers"]["file_handler"]["dir"] = output_dir
+    output_dir = os.path.join(run_args.output_dir, dir_name, "runs")
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+
+    count = len(os.listdir(output_dir)) + 1
+    runs_dir = os.path.join(output_dir, f"run_{count}")
+    if not os.path.exists(runs_dir):
+        os.makedirs(runs_dir)
+
+    config = LOG_CONF
+    config["handlers"]["file_handler"]["dir"] = runs_dir
 
     logging.config.dictConfig(config)
     logger = logging.getLogger(__name__)
@@ -112,10 +117,10 @@ if __name__ == "__main__":
         **run_args.kwargs,
     )
 
-    with open(os.path.join(output_dir, "params.json"), "w") as f:
+    with open(os.path.join(runs_dir, "params.json"), "w") as f:
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
     label_mapping_df, df = predict(test_data, run_args, stop=0)
-    label_mapping_df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
-    df.write_ndjson(os.path.join(output_dir, "responses.json"))
+    label_mapping_df.write_ndjson(os.path.join(runs_dir, "label_mapping.json"))
+    df.write_ndjson(os.path.join(runs_dir, "responses.json"))
