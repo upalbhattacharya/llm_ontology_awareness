@@ -115,7 +115,8 @@ if __name__ == "__main__":
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
-    label_mapping_df, responses = predict(test_data, run_args, stop=1)
+    label_mapping_df, responses = predict(test_data, run_args, stop=0)
+    print(responses)
     label_mapping_df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
     with jsonlines.open(
         os.path.join(output_dir, "responses.jsonl"), mode="w"
