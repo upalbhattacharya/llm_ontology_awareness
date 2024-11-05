@@ -94,12 +94,12 @@ if __name__ == "__main__":
 
     # Get filename to name output directory
     dir_name = os.path.splitext(os.path.basename(args.args_file))[0]
-    output_dir = os.path.join(run_args.output_dir, dir_name, "runs")
+    output_dir = os.path.join(run_args.output_dir, dir_name)
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
     count = len(os.listdir(output_dir)) + 1
-    runs_dir = os.path.join(output_dir, f"run_{count}")
+    runs_dir = os.path.join(output_dir, "runs", f"run_{count}")
     if not os.path.exists(runs_dir):
         os.makedirs(runs_dir)
 
