@@ -33,7 +33,6 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
         label_mapping.append((f"task-{i}", inst, label))
 
         if run_args.llm_name == "o1-preview":
-
             completion = client.chat.completions.create(
                 model=run_args.llm_name,
                 messages=prompt,
