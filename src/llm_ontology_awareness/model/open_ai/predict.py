@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 """Prediction script for non-Batch API models"""
 
+from typing import Dict, Union
+
 import jsonlines
+import polars as pl
 from dotenv import load_dotenv
 from llm_ontology_awareness.model.open_ai.datasets.term_typing import (
     TermTypingRankedRetrievalDataset,
@@ -12,7 +15,7 @@ from tqdm import tqdm
 load_dotenv()
 
 
-def predict(test_data, run_args, **kwargs) -> None:
+def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
 
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     responses = []
@@ -29,6 +32,15 @@ def predict(test_data, run_args, **kwargs) -> None:
         )
         completion["custom_id"] = f"task-{i}"
         responses.append(completion)
+
+    label_mapping_df = pl.DataFrame(
+        label_mapping,
+        schema=[
+            ("Custom ID", str),
+            ("Individual", str),
+            ("Member", list[str]),
+        ],
+    )
 
 
 if __name__ == "__main__":
