@@ -37,6 +37,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
             messages=prompt,
         )
         print(dict(completion))
+        completion = dict(completion)
         completion["custom_id"] = f"task-{i}"
         responses.append(completion)
 
