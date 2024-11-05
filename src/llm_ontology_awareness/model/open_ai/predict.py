@@ -31,11 +31,19 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
                 system_message["content"] + "\n" + prompt[0]["content"]
             )
         label_mapping.append((f"task-{i}", inst, label))
-        completion = client.chat.completions.create(
-            model=run_args.llm_name,
-            max_completion_tokens=run_args.max_tokens,
-            messages=prompt,
-        )
+
+        if run_args.llm_name == "o1-preview":
+
+            completion = client.chat.completions.create(
+                model=run_args.llm_name,
+                messages=prompt,
+            )
+        else:
+            completion = client.chat.completions.create(
+                model=run_args.llm_name,
+                max_completion_tokens=run_args.max_tokens,
+                messages=prompt,
+            )
         print(dict(completion))
         completion = dict(completion)
         completion["custom_id"] = f"task-{i}"
