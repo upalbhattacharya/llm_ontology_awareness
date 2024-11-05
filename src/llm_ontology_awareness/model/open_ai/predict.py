@@ -23,6 +23,7 @@ def predict(test_data, run_args, **kwargs) -> None:
             max_completion_tokens=run_args.max_tokens,
             messages=prompt,
         )
+        pass
 
 
 if __name__ == "__main__":
