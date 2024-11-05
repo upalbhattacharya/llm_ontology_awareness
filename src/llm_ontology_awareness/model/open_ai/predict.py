@@ -46,6 +46,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
 
 if __name__ == "__main__":
     import argparse
+    import json
     import logging.config
     import os
 
