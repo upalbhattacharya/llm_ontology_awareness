@@ -121,4 +121,4 @@ if __name__ == "__main__":
     with jsonlines.open(
         os.path.join(output_dir, "responses.jsonl"), mode="w"
     ) as writer:
-        writer.write(responses)
+        writer.write_all(responses)
