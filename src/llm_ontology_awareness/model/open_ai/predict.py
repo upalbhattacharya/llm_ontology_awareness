@@ -26,8 +26,10 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
         inst, prompt, label = next(test_data)
         # TODO: Quickfix. Change later
         if run_args.llm_name == "o1-preview":
-            prompt[0]["role"] = "user"
-            print(prompt)
+            system_message = prompt.pop[0]
+            prompt[0]["content"] = (
+                system_message["content"] + "\n" + prompt[0]["content"]
+            )
         label_mapping.append((f"task-{i}", inst, label))
         completion = client.chat.completions.create(
             model=run_args.llm_name,
