@@ -2,7 +2,7 @@
 """Prediction script for non-Batch API models"""
 
 import logging
-from typing import Dict, Union
+from typing import Dict, Tuple
 
 import polars as pl
 from dotenv import load_dotenv
@@ -15,7 +15,7 @@ from tqdm import tqdm
 load_dotenv()
 
 
-def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
+def predict(test_data, run_args, **kwargs) -> Tuple[pl.DataFrame, pl.DataFrame]:
 
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     responses = []
