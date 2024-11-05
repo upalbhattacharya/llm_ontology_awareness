@@ -27,6 +27,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
         # TODO: Quickfix. Change later
         if run_args.llm_name == "o1-preview":
             prompt[0]["role"] = "user"
+            print(prompt)
         label_mapping.append((f"task-{i}", inst, label))
         completion = client.chat.completions.create(
             model=run_args.llm_name,
