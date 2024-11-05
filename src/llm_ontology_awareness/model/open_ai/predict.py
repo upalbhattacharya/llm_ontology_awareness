@@ -46,7 +46,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
         completion = dict(completion)
 
         completion["custom_id"] = f"task-{i}"
-        responses.append(completion)
+        responses.append(json.dumps(completion))
         if (kwargs.get("stop", -1) != -1) & (kwargs["stop"] == i):
             break
 
