@@ -44,7 +44,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
                 messages=prompt,
             )
         completion = dict(completion)
-        
+
         completion["custom_id"] = f"task-{i}"
         responses.append(completion)
         if (kwargs.get("stop", -1) != -1) & (kwargs["stop"] == i):
@@ -111,8 +111,6 @@ if __name__ == "__main__":
 
     label_mapping_df, responses = predict(test_data, run_args, stop=0)
     label_mapping_df.write_ndjson(os.path.join(output_dir, "label_mapping.json"))
-    with open(
-        os.path.join(output_dir, "responses.jsonl"), "a"
-    ) as f:
+    with open(os.path.join(output_dir, "responses.jsonl"), "a") as f:
         for obj in responses:
-            json.dumps(obj, indent=4, f)
+            json.dumps(obj, f, indent=4)
