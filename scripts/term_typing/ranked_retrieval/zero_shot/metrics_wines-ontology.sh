@@ -63,8 +63,13 @@ python $SCRIPT_NAME \
        -yp $RESULTS_DIR/llama3-7B/5d599257-8bf3-4470-96ff-4f344bcc6947/predictions.json \
        -n ranked_retrieval \
        -k k=$DEPTH
+
 # o1-preview
 
-
+python $SCRIPT_NAME \
+       -yt $Y_TRUE \
+       -yp $RESULTS_DIR/o1-preview/dc94ba60-805c-44ad-ba94-945e45abb90e/runs/run_1/predictions.json \
+       -n ranked_retrieval \
+       -k k=$DEPTH
 
 
