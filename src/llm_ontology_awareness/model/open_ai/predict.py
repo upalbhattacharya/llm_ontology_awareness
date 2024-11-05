@@ -16,7 +16,7 @@ load_dotenv()
 
 
 def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
-    print(kwargs["stop"])
+    print(kwargs.get("stop", -1))
 
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     responses = []
