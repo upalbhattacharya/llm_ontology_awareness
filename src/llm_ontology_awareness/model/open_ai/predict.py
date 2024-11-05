@@ -42,6 +42,8 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
         ],
     )
 
+    return label_mapping_df, responses
+
 
 if __name__ == "__main__":
     import argparse
