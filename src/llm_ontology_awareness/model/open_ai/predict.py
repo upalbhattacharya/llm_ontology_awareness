@@ -44,7 +44,7 @@ def predict(test_data, run_args, **kwargs) -> Union[Dict, pl.DataFrame]:
                 messages=prompt,
             )
 
-        response = completion.choices[0].messages["content"]
+        response = completion.choices[0].message.content
         responses.append((f"task-{i}", response))
         if (kwargs.get("stop", -1) != -1) & (kwargs["stop"] == i):
             break
