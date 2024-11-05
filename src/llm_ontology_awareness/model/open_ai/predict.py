@@ -117,7 +117,7 @@ if __name__ == "__main__":
         **run_args.kwargs,
     )
 
-    with open(os.path.join(runs_dir, "params.json"), "w") as f:
+    with open(os.path.join(output_dir, "params.json"), "w") as f:
         params_dump = run_args.model_dump()
         json.dump(params_dump, f, indent=4)
 
