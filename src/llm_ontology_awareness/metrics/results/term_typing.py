@@ -77,11 +77,13 @@ def ranked_retrieval(
 
     map_k = 1.0 * sum(list(ap_k.values())) / len(list(ap_k.keys()))
 
-    # map_k = (
-    #     1.0
-    #     * sum([ap_k(y_t, y_p, int(kwargs["k"])) for y_t, y_p in zip(y_true, y_pred)])
-    #     / len(y_true)
-    # )
+    ap_1 = {
+        k: ap_k_score(y_t, y_p, 1) for k, y_t, y_p in zip(datapoints, y_true, y_pred)
+    }
+
+    ap_1 = {k: v for k, v in sorted(ap_k.items(), key=lambda x: x[1], reverse=True)}
+
+    map_1 = 1.0 * sum(list(ap_1.values())) / len(list(ap_1.keys()))
 
     def dcg_k(y_t, y_p, k):
         return sum(
@@ -104,6 +106,7 @@ def ranked_retrieval(
         "macro_r_prec": avg_r_prec,
         "ap_k": ap_k,
         f'map_{kwargs["k"]}': map_k,
+        "map_1": map_1,
         f'ndcg_{kwargs["k"]}': ndcg_k,
     }
 
