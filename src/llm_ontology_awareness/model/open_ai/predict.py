@@ -75,7 +75,6 @@ if __name__ == "__main__":
     import logging.config
     import os
 
-    import jsonlines
     from llm_ontology_awareness.model.common.utilities.logging_conf import LOG_CONF
     from llm_ontology_awareness.model.hugging_face.run_args import RunArguments
 
