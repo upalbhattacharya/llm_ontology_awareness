@@ -40,8 +40,6 @@ for cls in selected_classes:
         ]
     )
 
-print(example_df)
-
 df = df.join(example_df, on=df.columns, how="anti")
 
 date_dir = datetime.now().strftime("%Y-%m-%d")
