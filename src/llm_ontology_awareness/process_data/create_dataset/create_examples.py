@@ -37,7 +37,7 @@ print(
             and set(pl.col("Ranked List")).interesection(set((selected_classes[0])))
             == set()
         )
-    )
+    ).sample(n=1, seed=47)
 )
 
 # date_dir = datetime.now().strftime("%Y-%m-%d")
