@@ -17,7 +17,7 @@ cd "$HOME"
 for model_dir in $RESULTS_DIR/*/
 do
     echo $model_dir
-
+done
 # GPT-4o
 
 # python $SCRIPT_NAME \
