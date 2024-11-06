@@ -27,7 +27,7 @@ do
         do
             run_dir=${run_dir%*/} 
             echo $run_dir
-            for filename in $rundir/*
+            for filename in $run_dir/*
             do
                 echo $filename
             done
