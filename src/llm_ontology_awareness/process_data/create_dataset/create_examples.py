@@ -1,19 +1,20 @@
 #!/usr/bin/env python
 
-import polars as pl
 import argparse
 import json
 import os
 
+import polars as pl
+
 parser = argparse.ArgumentParser()
-parser.add_argument("-f", "-file", type=str,
-                    help="DataFrame Dataset to load")
-parser.add_argument("-o", "--output_dir", type=str,
-                    help="Path to store generated output")
-parser.add_argument("-m", "--metrics", type=str,
-                    help="Path to metrics dictionary")
-parser.add_argument("-k", "--count", type=int, default=2
-                    help="Number of examples to select")
+parser.add_argument("-f", "-file", type=str, help="DataFrame Dataset to load")
+parser.add_argument(
+    "-o", "--output_dir", type=str, help="Path to store generated output"
+)
+parser.add_argument("-m", "--metrics", type=str, help="Path to metrics dictionary")
+parser.add_argument(
+    "-k", "--count", type=int, default=2, help="Number of examples to select"
+)
 
 args = parser.parse_args()
 key = "class_counts"
