@@ -14,10 +14,10 @@ echo $(which python)
 # Set paths from home directory
 cd "$HOME"
 
-for model_dir in $RESULTS_DIR/*/
+for model_dir in $RESULTS_DIR/*
 do
     echo $model_dir
-    for variant_dir in $model_dir/*/
+    for variant_dir in $model_dir/*
     do
         echo $variant_dir
     done
