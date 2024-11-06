@@ -27,6 +27,19 @@ with open(args.metrics, "r") as f:
 df = pl.read_ndjson(args.file)
 
 # Select top 'k' classes to select samples from
+selected_classes = list(
+    k for k, v in sorted(metrics[key].items(), lambda x: x[1], reverse=True)
+)[: args.count]
+print(
+    df.with_columns(
+        pl.when(
+            selected_classes[0] in pl.col("Ranked List")
+            and set(pl.col("Ranked List")).interesection(set((selected_classes[0])))
+            == set()
+        )
+    )
+)
+
 
 date_dir = datetime.now().strftime("%Y-%m-%d")
 final_dir = args.output_dir
