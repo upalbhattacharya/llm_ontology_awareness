@@ -24,11 +24,11 @@ do
         do
             run_dir=${run_dir%*/}
             echo $run_dir
-            # python $SCRIPT_NAME \
-                #        -yt $Y_TRUE \
-                #        -yp $run_dir/predictions.json \
-                #        -n ranked_retrieval \
-                #        -k k=$DEPTH
+            python $SCRIPT_NAME \
+                   -yt $Y_TRUE \
+                   -yp $run_dir/predictions.json \
+                   -n ranked_retrieval \
+                   -k k=$DEPTH
         done
     done
 done
