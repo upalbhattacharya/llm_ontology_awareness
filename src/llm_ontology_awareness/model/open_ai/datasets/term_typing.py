@@ -93,7 +93,7 @@ class TermTypingRankedRetrievalDataset(Dataset):
 
     def generate_examples(self):
         example_print = []
-        for row in self.examples.rows:
+        for row in self.examples.rows():
             example_print.append(row[0])
             example_print.extend([f"{i+1}. {val}" for val in row[1]])
             example_print.append("\n")
