@@ -31,7 +31,7 @@ selected_classes = list(
     k for k, v in sorted(metrics[key].items(), key=lambda x: x[1], reverse=True)
 )[: args.count]
 
-print(df.select(df["Ranked List"].list.contains("Winery")))
+print(df.filter(df["Ranked List"].list.contains("Winery")))
 
 # date_dir = datetime.now().strftime("%Y-%m-%d")
 # final_dir = args.output_dir
