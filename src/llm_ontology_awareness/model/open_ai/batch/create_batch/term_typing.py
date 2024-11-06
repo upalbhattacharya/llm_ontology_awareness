@@ -144,7 +144,7 @@ if __name__ == "__main__":
             system_message=run_args.system_message,
             user_prompt_template=run_args.user_prompt_template,
             task_type=run_args.task_type,
-            examples=run_args.examples_file,
+            examples_file=run_args.examples_file,
             **run_args.kwargs,
         )
         tasks, df = create_ranked_retrieval_batch(test_data, run_args)
