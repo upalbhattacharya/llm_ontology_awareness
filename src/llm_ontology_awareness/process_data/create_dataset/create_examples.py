@@ -33,8 +33,8 @@ selected_classes = list(
 print(
     df.with_columns(
         pl.when(
-            selected_classes[0] in pl.col("Ranked List")
-            and set(pl.col("Ranked List")).interesection(set((selected_classes[0])))
+            # selected_classes[0] in pl.col("Ranked List")
+            set(pl.col("Ranked List")).interesection(set((selected_classes[0])))
             == set()
         )
     ).sample(n=1, seed=47)
