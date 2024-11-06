@@ -24,6 +24,8 @@ with open(args.metrics, "r") as f:
 
 df = pl.read_ndjson(args.file)
 
+# Select top 'k' classes to select samples from
+
 date_dir = datetime.now().strftime("%Y-%m-%d")
 final_dir = args.output_dir
 count = sum([x.startswith(date_dir) for x in os.listdir(args.output_dir)])
