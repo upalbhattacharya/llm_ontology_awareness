@@ -97,6 +97,7 @@ class TermTypingRankedRetrievalDataset(Dataset):
             example_print.append(ind)
             example_print.extend([f"{i+1}. {val}" for val in r_list])
             example_print.append("\n")
+            print(example_print)
         print(example_print)
         return "\n".join(example_print)
 
