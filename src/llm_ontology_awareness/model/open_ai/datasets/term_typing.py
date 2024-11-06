@@ -143,9 +143,6 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "-d", "--data", help="Path to data DataFrame", type=str, required=True
-    )
-    parser.add_argument(
         "-r", "--run_args", help="Path to RunArguments", type=str, required=True
     )
 
@@ -156,10 +153,11 @@ if __name__ == "__main__":
         run_args = RunArguments.parse_raw(raw)
 
     itcib = TermTypingRankedRetrievalDataset(
-        args.data,
+        in_file=run_args.input,
         system_message=run_args.system_message,
         user_prompt_template=run_args.user_prompt_template,
         task_type=run_args.task_type,
+        example_file=run_args.example_file,
         **run_args.kwargs,
     )
     print(len(itcib))
