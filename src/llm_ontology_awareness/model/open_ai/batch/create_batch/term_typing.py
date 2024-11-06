@@ -5,13 +5,12 @@ import math
 import os
 
 import polars as pl
-from tqdm import tqdm
-
 from llm_ontology_awareness.model.open_ai.datasets.term_typing import (
     TermTypingBinaryClassificationDataset,
     TermTypingRankedRetrievalDataset,
 )
 from llm_ontology_awareness.model.open_ai.run_args import RunArguments
+from tqdm import tqdm
 
 
 def create_binary_classify_batch(test_data, run_args, **kwargs) -> (pl.DataFrame, dict):
@@ -95,7 +94,6 @@ if __name__ == "__main__":
     import logging.config
 
     from dotenv import load_dotenv
-
     from llm_ontology_awareness.model.common.utilities.logging_conf import LOG_CONF
 
     load_dotenv()
@@ -142,10 +140,11 @@ if __name__ == "__main__":
 
     if run_args.task_type == "ranked_retrieval":
         test_data = TermTypingRankedRetrievalDataset(
-            run_args.input,
+            in_file=run_args.input,
             system_message=run_args.system_message,
             user_prompt_template=run_args.user_prompt_template,
             task_type=run_args.task_type,
+            examples=run_args.examples_file,
             **run_args.kwargs,
         )
         tasks, df = create_ranked_retrieval_batch(test_data, run_args)
