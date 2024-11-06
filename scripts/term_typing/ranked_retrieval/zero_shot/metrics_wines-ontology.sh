@@ -20,6 +20,11 @@ do
     for variant_dir in $model_dir/*
     do
         echo $variant_dir
+        for run_dir in $variant_dir/runs/*
+        do
+            echo $run_dir
+        done
+
     done
     
 done
