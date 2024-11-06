@@ -3,6 +3,7 @@
 import polars as pl
 import argparse
 import json
+import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "-file", type=str,
@@ -20,11 +21,11 @@ key = "class_counts"
 with open(args.metrics, "r") as f:
     metrics = json.load(f)
 
-    
+df = pl.read_ndjson(args.file)
 
 date_dir = datetime.now().strftime("%Y-%m-%d")
-final_dir = out_dir
-count = sum([x.startswith(date_dir) for x in os.listdir(out_dir)])
+final_dir = args.output_dir
+count = sum([x.startswith(date_dir) for x in os.listdir(args.output_dir)])
 final_dir = (
     Path(final_dir) / f"{date_dir}.{count}"
     if count != 0
@@ -33,9 +34,5 @@ final_dir = (
 if not os.path.exists(final_dir):
     os.makedirs(final_dir)
 
-df = pl.DataFrame(
-    ranked_entries,
-    schema=[("Individual", str), ("Ranked List", list[str])],
-)
 
 df.write_ndjson(Path(final_dir) / "term_typing_ranked_retrieval_dataset.json")
