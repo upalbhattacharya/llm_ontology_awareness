@@ -25,7 +25,6 @@ do
         echo $variant_dir
         for run_dir in $variant_dir/runs/*/
         do
-
             run_dir=${run_dir%*/} 
             echo $run_dir
         done
