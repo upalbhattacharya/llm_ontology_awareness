@@ -9,7 +9,7 @@ class RunArguments(BaseModel):
     input: Optional[str] = Field(
         default=None, metadata={"help": "Dataset file to load"}
     )
-    example_file: Optional[str] = Field(
+    examples_file: Optional[str] = Field(
         default=None, metadata={"help": "Dataset of examples to load for few-shot"}
     )
     output_dir: Optional[str] = Field(
