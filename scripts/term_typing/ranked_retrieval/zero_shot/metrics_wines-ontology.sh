@@ -27,10 +27,12 @@ do
         do
             run_dir=${run_dir%*/} 
             echo $run_dir
+            for filename in $rundir/*
+            do
+                echo $filenam
+            done
         done
-
     done
-    
 done
 # GPT-4o
 
