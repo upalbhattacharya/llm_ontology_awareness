@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+"""(WIP) Sample selection for few-shot prompting"""
+
 import argparse
 import json
 import os
