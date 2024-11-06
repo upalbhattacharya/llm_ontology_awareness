@@ -33,8 +33,7 @@ selected_classes = list(
 print(
     df.select(
         pl.when(pl.col("Ranked List").list.contains(selected_classes[0])),
-        allow_object=True,
-    ).sample(n=1, seed=47)
+    )
 )
 
 # date_dir = datetime.now().strftime("%Y-%m-%d")
