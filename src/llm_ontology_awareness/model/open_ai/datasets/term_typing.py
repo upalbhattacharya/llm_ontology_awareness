@@ -97,7 +97,7 @@ class TermTypingRankedRetrievalDataset(Dataset):
             example_print.append(ind)
             example_print.extend([f"{i+1}. {val}" for val in r_list])
             example_print.append("\n")
-        return example_print.join("\n")
+        return "\n".join(example_print)
 
     def __getitem__(self, idx):
         *ents, label = self.df.row(idx)
