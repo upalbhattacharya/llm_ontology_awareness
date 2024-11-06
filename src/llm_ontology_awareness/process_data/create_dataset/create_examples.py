@@ -3,6 +3,18 @@
 import polars as pl
 import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument("-f", "-file", type=str,
+                    help="DataFrame Dataset to load")
+parser.add_argument("-o", "--output_dir", type=str,
+                    help="Path to store generated output")
+parser.add_argument("-m", "--metrics", type=str,
+                    help="Path to metrics dictionary")
+
+args = parser.parse_args()
+
+key = "class_counts"
+
 
         date_dir = datetime.now().strftime("%Y-%m-%d")
         final_dir = out_dir
