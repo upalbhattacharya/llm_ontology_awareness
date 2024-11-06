@@ -16,7 +16,6 @@ cd "$HOME"
 
 for model_dir in $RESULTS_DIR/*/
 do
-
     model_dir=${model_dir%*/} 
     echo $model_dir
     for variant_dir in $model_dir/*/
