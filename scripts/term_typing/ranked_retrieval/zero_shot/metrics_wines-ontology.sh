@@ -5,8 +5,8 @@ SCRIPT_NAME="Experiments/llm_ontology_awareness/src/llm_ontology_awareness/metri
 DEPTH=4
 Y_TRUE="Data/ontologies/wines-ontology/data/term_typing/ranked_retrieval/2024-09-05/term_typing_ranked_retrieval_dataset.json"
 
-RESULTS_DIR="Results/llm_ontology_awareness/term_typing/ranked_retrieval/zero_shot"
 ONTOLOGY="wines-ontology"
+RESULTS_DIR="Results/llm_ontology_awareness/term_typing/ranked_retrieval/zero_shot/$ONTOLOGY"
 
 # Check for environment
 echo $(which python)
@@ -14,27 +14,20 @@ echo $(which python)
 # Set paths from home directory
 cd "$HOME"
 
-for onto_dir in $RESULTS_DIR/*/
+for model_dir in $RESULTS_DIR/*/
 do
-    onto_dir=${onto_dir%*/} 
-    echo $onto_dir
-    for model_dir in $onto_dir/*/
+    model_dir=${model_dir%*/} 
+    for variant_dir in $model_dir/*/
     do
-        model_dir=${model_dir%*/} 
-        echo $model_dir
-        for variant_dir in $model_dir/*/
+        variant_dir=${variant_dir%*/} 
+        for run_dir in $variant_dir/runs/*/
         do
-            variant_dir=${variant_dir%*/} 
-            echo $variant_dir
-            for run_dir in $variant_dir/runs/*/
-            do
-                run_dir=${run_dir%*/} 
-                echo $run_dir
-                for filename in $run_dir/*
-                do
-                    echo $filename
-                done
-            done
+            run_dir=${run_dir%*/}
+            python $SCRIPT_NAME \
+                   -yt $Y_TRUE \
+                   -yp $run_dir/predictions.json \
+                   -n ranked_retrieval \
+                   -k k=$DEPTH
         done
     done
 done
