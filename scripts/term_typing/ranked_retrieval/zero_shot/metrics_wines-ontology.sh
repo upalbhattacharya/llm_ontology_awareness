@@ -23,11 +23,12 @@ do
         for run_dir in $variant_dir/runs/*/
         do
             run_dir=${run_dir%*/}
-            python $SCRIPT_NAME \
-                   -yt $Y_TRUE \
-                   -yp $run_dir/predictions.json \
-                   -n ranked_retrieval \
-                   -k k=$DEPTH
+            echo $run_dir
+            # python $SCRIPT_NAME \
+                #        -yt $Y_TRUE \
+                #        -yp $run_dir/predictions.json \
+                #        -n ranked_retrieval \
+                #        -k k=$DEPTH
         done
     done
 done
