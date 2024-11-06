@@ -3,9 +3,9 @@
 """(WIP) Sample selection for few-shot prompting"""
 
 import argparse
-import datetime
 import json
 import os
+from datetime import datetime
 
 import polars as pl
 
