@@ -20,6 +20,8 @@ do
     echo $onto_dir
     for model_dir in $onto_dir/*/
     do
+        model_dir=${model_dir%*/} 
+        echo $model_dir
         for variant_dir in $model_dir/*/
         do
             variant_dir=${variant_dir%*/} 
