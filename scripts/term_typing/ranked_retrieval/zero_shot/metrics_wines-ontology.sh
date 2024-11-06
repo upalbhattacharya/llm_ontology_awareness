@@ -5,11 +5,13 @@ SCRIPT_NAME="Experiments/llm_ontology_awareness/src/llm_ontology_awareness/metri
 DEPTH=4
 Y_TRUE="Data/ontologies/wines-ontology/data/term_typing/ranked_retrieval/2024-09-05/term_typing_ranked_retrieval_dataset.json"
 
-RESULTS_DIR="Results/llm_ontology_awareness/term_typing/ranked_retrieval/zero_shot/wines-ontology"
+RESULTS_DIR="Results/llm_ontology_awareness/term_typing/ranked_retrieval/zero_shot"
+ONTOLOGY="wines-ontology"
 
 # Check for environment
 echo $(which python)
 
+# Set paths from home directory
 cd "$HOME"
 
 # GPT-4o
