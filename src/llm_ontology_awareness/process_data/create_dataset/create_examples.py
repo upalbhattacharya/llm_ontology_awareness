@@ -41,16 +41,16 @@ print(
 )
 
 
-date_dir = datetime.now().strftime("%Y-%m-%d")
-final_dir = args.output_dir
-count = sum([x.startswith(date_dir) for x in os.listdir(args.output_dir)])
-final_dir = (
-    Path(final_dir) / f"{date_dir}.{count}"
-    if count != 0
-    else Path(final_dir) / date_dir
-)
-if not os.path.exists(final_dir):
-    os.makedirs(final_dir)
+# date_dir = datetime.now().strftime("%Y-%m-%d")
+# final_dir = args.output_dir
+# count = sum([x.startswith(date_dir) for x in os.listdir(args.output_dir)])
+# final_dir = (
+#     Path(final_dir) / f"{date_dir}.{count}"
+#     if count != 0
+#     else Path(final_dir) / date_dir
+# )
+# if not os.path.exists(final_dir):
+#     os.makedirs(final_dir)
 
 
-df.write_ndjson(Path(final_dir) / "term_typing_ranked_retrieval_dataset.json")
+# df.write_ndjson(Path(final_dir) / "term_typing_ranked_retrieval_dataset.json")
