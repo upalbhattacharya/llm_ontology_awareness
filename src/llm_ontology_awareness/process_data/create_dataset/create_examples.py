@@ -34,7 +34,7 @@ print(
     df.select(
         pl.when(
             # selected_classes[0] in pl.col("Ranked List")
-            set(pl.col("Ranked List")).interesection(set((selected_classes[0])))
+            set(pl.col("Ranked List")).intersection(set((selected_classes[0])))
             == set()
         )
     ).sample(n=1, seed=47)
