@@ -2,7 +2,7 @@
   "llm_name": "gpt-4o",
   "max_tokens": 500,
   "input": "/home/upal/Data/ontologies/wines-ontology/data/term_typing/ranked_retrieval/few_shot/2024-11-06/term_typing_ranked_retrieval_dataset.json",
-  "example_file": "/home/upal/Data/ontologies/wines-ontology/data/term_typing/ranked_retrieval/few_shot/2024-11-06/term_typing_ranked_retrieval_examples.json",
+  "examples_file": "/home/upal/Data/ontologies/wines-ontology/data/term_typing/ranked_retrieval/few_shot/2024-11-06/term_typing_ranked_retrieval_examples.json",
   "output_dir": "/home/upal/Results/llm_ontology_awareness/term_typing/ranked_retrieval/few-shot/wines-ontology/gpt-4o",
   "ontology_probe_type": "term_typing",
   "prompt_strategy_type": "zero_shot",
