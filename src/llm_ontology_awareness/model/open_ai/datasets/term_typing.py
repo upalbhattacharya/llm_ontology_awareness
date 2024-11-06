@@ -4,6 +4,8 @@
 Module to generate different datasets for various prompts for Llama3 models.
 """
 
+from typing import Optional
+
 import polars as pl
 from llm_ontology_awareness.task_map.term_typing import task_types
 from torch.utils.data import Dataset
@@ -64,6 +66,7 @@ class TermTypingRankedRetrievalDataset(Dataset):
         system_message: str,
         user_prompt_template: str,
         task_type: str,
+        examples_file: Optional[str] = None,
         **kwargs,
     ):
         self.task_type = task_type
@@ -72,6 +75,9 @@ class TermTypingRankedRetrievalDataset(Dataset):
                 f"`task_type` must be one of: {list(task_types.keys())}. Got {self.task_type}"
             )
         self.df = pl.read_ndjson(in_file)
+        self.examples = (
+            pl.read_ndjson(examples_file) if examples_files is not None else None
+        )
         self.system_message: str = system_message
         self.user_prompt_template: str = user_prompt_template
         self.extra_args = kwargs
@@ -84,20 +90,45 @@ class TermTypingRankedRetrievalDataset(Dataset):
     def __len__(self):
         return self.df.select(pl.len()).item()
 
+    def generate_examples(self):
+        example_print = []
+        for row in self.examples:
+            example_print.append(row["Individual"])
+            example_print.extend([f"{i+1}. {val}" for val in row["Ranked List"]])
+            example_print.append("\n")
+        return example_print.join("\n")
+
     def __getitem__(self, idx):
         *ents, label = self.df.row(idx)
-        messages = [
-            {
-                "role": "system",
-                "content": self.system_message.format(
-                    **self.extra_args, classes=self.classes
-                ),
-            },
-            {
-                "role": "user",
-                "content": self.user_prompt_template.format(*ents),
-            },
-        ]
+        if self.examples is not None:
+            messages = [
+                {
+                    "role": "system",
+                    "content": self.system_message.format(
+                        **self.extra_args,
+                        classes=self.classes,
+                        examples=self.generate_examples(),
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": self.user_prompt_template.format(*ents),
+                },
+            ]
+        else:
+            messages = [
+                {
+                    "role": "system",
+                    "content": self.system_message.format(
+                        **self.extra_args,
+                        classes=self.classes,
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": self.user_prompt_template.format(*ents),
+                },
+            ]
         return (
             *ents,
             messages,
