@@ -78,7 +78,6 @@ class TermTypingRankedRetrievalDataset(Dataset):
         self.examples = (
             pl.read_ndjson(examples_file) if examples_file is not None else None
         )
-        print(self.examples)
         self.system_message: str = system_message
         self.user_prompt_template: str = user_prompt_template
         self.extra_args = kwargs
@@ -97,8 +96,6 @@ class TermTypingRankedRetrievalDataset(Dataset):
             example_print.append(row[0])
             example_print.extend([f"{i+1}. {val}" for val in row[1]])
             example_print.append("\n")
-            print(example_print)
-        print(example_print)
         return "\n".join(example_print)
 
     def __getitem__(self, idx):
@@ -163,7 +160,6 @@ if __name__ == "__main__":
         examples_file=run_args.examples_file,
         **run_args.kwargs,
     )
-    print(len(itcib))
     num_samples = len(itcib)
     itcib = iter(itcib)
     for i in range(num_samples):
