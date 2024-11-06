@@ -14,21 +14,24 @@ echo $(which python)
 # Set paths from home directory
 cd "$HOME"
 
-for model_dir in $RESULTS_DIR/*/
+for onto_dir in $RESULTS_DIR/*/
 do
-    model_dir=${model_dir%*/} 
-    echo $model_dir
-    for variant_dir in $model_dir/*/
+    onto_dir=${onto_dir%*/} 
+    echo $onto_dir
+    for model_dir in $onto_dir/*/
     do
-        variant_dir=${variant_dir%*/} 
-        echo $variant_dir
-        for run_dir in $variant_dir/runs/*/
+        for variant_dir in $model_dir/*/
         do
-            run_dir=${run_dir%*/} 
-            echo $run_dir
-            for filename in $run_dir/*
+            variant_dir=${variant_dir%*/} 
+            echo $variant_dir
+            for run_dir in $variant_dir/runs/*/
             do
-                echo $filename
+                run_dir=${run_dir%*/} 
+                echo $run_dir
+                for filename in $run_dir/*
+                do
+                    echo $filename
+                done
             done
         done
     done
