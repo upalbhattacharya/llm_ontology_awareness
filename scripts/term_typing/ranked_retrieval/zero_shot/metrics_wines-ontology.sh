@@ -29,7 +29,7 @@ do
             echo $run_dir
             for filename in $rundir/*
             do
-                echo $filenam
+                echo $filename
             done
         done
     done
