@@ -31,7 +31,7 @@ selected_classes = list(
     k for k, v in sorted(metrics[key].items(), key=lambda x: x[1], reverse=True)
 )[: args.count]
 print(
-    df.with_columns(
+    df.select(
         pl.when(
             # selected_classes[0] in pl.col("Ranked List")
             set(pl.col("Ranked List")).interesection(set((selected_classes[0])))
