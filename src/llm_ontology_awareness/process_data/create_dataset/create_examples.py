@@ -33,8 +33,13 @@ selected_classes = list(
 
 new_df = df.clear()
 for cls in selected_classes:
-    new_df.concat(
-        df.filter(df["Ranked List"].list.contains(cls)).sample(n=args.count, seed=47)
+    new_df = pl.concat(
+        [
+            new_df,
+            df.filter(df["Ranked List"].list.contains(cls)).sample(
+                n=args.count, seed=47
+            ),
+        ]
     )
 
 print(new_df)
