@@ -78,6 +78,7 @@ class TermTypingRankedRetrievalDataset(Dataset):
         self.examples = (
             pl.read_ndjson(examples_file) if examples_file is not None else None
         )
+        print(self.examples)
         self.system_message: str = system_message
         self.user_prompt_template: str = user_prompt_template
         self.extra_args = kwargs
