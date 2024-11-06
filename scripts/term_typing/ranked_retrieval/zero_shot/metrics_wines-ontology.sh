@@ -16,12 +16,17 @@ cd "$HOME"
 
 for model_dir in $RESULTS_DIR/*/
 do
+
+    model_dir=${model_dir%*/} 
     echo $model_dir
     for variant_dir in $model_dir/*/
     do
+        variant_dir=${variant_dir%*/} 
         echo $variant_dir
         for run_dir in $variant_dir/runs/*/
         do
+
+            run_dir=${run_dir%*/} 
             echo $run_dir
         done
 
