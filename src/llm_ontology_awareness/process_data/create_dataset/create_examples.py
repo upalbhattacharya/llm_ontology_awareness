@@ -31,13 +31,9 @@ selected_classes = list(
     k for k, v in sorted(metrics[key].items(), key=lambda x: x[1], reverse=True)
 )[: args.count]
 print(
-    df.select(
-        pl.when(
-            # selected_classes[0] in pl.col("Ranked List")
-            set(pl.col("Ranked List")).intersection(set((selected_classes[0])))
-            == set()
-        )
-    ).sample(n=1, seed=47)
+    df.select(pl.when(selected_classes[0] in pl.col("Ranked List"))).sample(
+        n=1, seed=47
+    )
 )
 
 # date_dir = datetime.now().strftime("%Y-%m-%d")
