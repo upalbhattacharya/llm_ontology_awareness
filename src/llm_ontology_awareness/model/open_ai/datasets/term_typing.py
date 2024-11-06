@@ -92,7 +92,7 @@ class TermTypingRankedRetrievalDataset(Dataset):
         return self.df.select(pl.len()).item()
 
     def generate_examples(self):
-        example_print = []
+        example_print = ["---"]
         for row in self.examples.rows():
             example_print.append(row[0])
             example_print.extend([f"{i+1}. {val}" for val in row[1]])
