@@ -17,6 +17,11 @@ cd "$HOME"
 for model_dir in $RESULTS_DIR/*/
 do
     echo $model_dir
+    for variant_dir in $model_dir/*/
+    do
+        echo $variant_dir
+    done
+    
 done
 # GPT-4o
 
