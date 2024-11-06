@@ -169,4 +169,5 @@ if __name__ == "__main__":
     for i in range(num_samples):
         print(i)
         inst, template, label = next(itcib)
-        print(template)
+        for r in template:
+            print(r["content"])
