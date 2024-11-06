@@ -9,7 +9,7 @@ import os
 import polars as pl
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-f", "-file", type=str, help="DataFrame Dataset to load")
+parser.add_argument("-f", "--file", type=str, help="DataFrame Dataset to load")
 parser.add_argument(
     "-o", "--output_dir", type=str, help="Path to store generated output"
 )
