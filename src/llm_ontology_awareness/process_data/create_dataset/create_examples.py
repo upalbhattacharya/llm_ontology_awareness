@@ -28,7 +28,7 @@ df = pl.read_ndjson(args.file)
 
 # Select top 'k' classes to select samples from
 selected_classes = list(
-    k for k, v in sorted(metrics[key].items(), lambda x: x[1], reverse=True)
+    k for k, v in sorted(metrics[key].items(), key=lambda x: x[1], reverse=True)
 )[: args.count]
 print(
     df.with_columns(
