@@ -31,27 +31,30 @@ selected_classes = list(
     k for k, v in sorted(metrics[key].items(), key=lambda x: x[1], reverse=True)
 )[: args.count]
 
-new_df = df.clear()
+example_df = df.clear()
 for cls in selected_classes:
-    new_df = pl.concat(
+    example_df = pl.concat(
         [
-            new_df,
+            example_df,
             df.filter(df["Ranked List"].list.contains(cls)).sample(n=1, seed=47),
         ]
     )
 
-print(new_df)
+print(example_df)
 
-# date_dir = datetime.now().strftime("%Y-%m-%d")
-# final_dir = args.output_dir
-# count = sum([x.startswith(date_dir) for x in os.listdir(args.output_dir)])
-# final_dir = (
-#     Path(final_dir) / f"{date_dir}.{count}"
-#     if count != 0
-#     else Path(final_dir) / date_dir
-# )
-# if not os.path.exists(final_dir):
-#     os.makedirs(final_dir)
+df = df.join(example_df, on=df.columns, how="anti")
+
+date_dir = datetime.now().strftime("%Y-%m-%d")
+final_dir = args.output_dir
+count = sum([x.startswith(date_dir) for x in os.listdir(args.output_dir)])
+final_dir = (
+    Path(final_dir) / f"{date_dir}.{count}"
+    if count != 0
+    else Path(final_dir) / date_dir
+)
+if not os.path.exists(final_dir):
+    os.makedirs(final_dir)
 
 
-# df.write_ndjson(Path(final_dir) / "term_typing_ranked_retrieval_dataset.json")
+df.write_ndjson(Path(final_dir) / "term_typing_ranked_retrieval_dataset.json")
+example_df.write_ndjson(Path(final_dir) / "term_typing_ranked_retrieval_examples.json")
