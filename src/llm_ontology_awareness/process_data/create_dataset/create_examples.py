@@ -30,8 +30,12 @@ df = pl.read_ndjson(args.file)
 selected_classes = list(
     k for k, v in sorted(metrics[key].items(), key=lambda x: x[1], reverse=True)
 )[: args.count]
+
+new_df = df.clear()
 for cls in selected_classes:
-    print(df.filter(df["Ranked List"].list.contains(cls)).sample(n=1, seed=47))
+    new_df.concat(df.filter(df["Ranked List"].list.contains(cls)).sample(n=1, seed=47))
+
+print(new_df)
 
 # date_dir = datetime.now().strftime("%Y-%m-%d")
 # final_dir = args.output_dir
