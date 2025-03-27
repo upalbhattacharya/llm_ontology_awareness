@@ -20,6 +20,6 @@
   "user_prompt_template": "{}",
   "description": "Zero-Shot, Generic Prompt, No pre-qualification Class Assertion Ranked Retrieval on CASE Ontology",
   "kwargs": {
-    "depth": 10
+    "depth": 8
   }
 }
