@@ -15,6 +15,9 @@ module load cuda/12.5
 # Define Visible GPUs
 CUDA_VISIBLE_DEVICES=0,1,2,3
 
+# Set HF_HOME directory
+HF_HOME=/scratch/bhatt006/.cache
+
 # Execution
 
 # Activate Virtual Environment
