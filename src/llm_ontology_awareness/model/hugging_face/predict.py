@@ -80,7 +80,15 @@ if __name__ == "__main__":
     # Get filename to name output directory
     dir_name = os.path.splitext(os.path.basename(args.args_file))[0]
     output_dir = os.path.join(run_args.output_dir, dir_name)
+    
 
+    # Add run information
+    if not os.path.exists(output_dir):
+        output_dir = os.path.join(output_dir, "run_1")
+    else:
+        run_num = len(os.listdir(output_dir)) + 1
+        output_dir = os.path.join(output_dir, f"run_{run_num}")
+    os.makedirs(output_dir)
     torch.set_default_device(f"cuda:{run_args.device}")
     get_device_info()
 
