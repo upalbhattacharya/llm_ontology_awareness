@@ -81,7 +81,6 @@ if __name__ == "__main__":
     dir_name = os.path.splitext(os.path.basename(args.args_file))[0]
     output_dir = os.path.join(run_args.output_dir, dir_name)
     
-
     # Add run information
     if not os.path.exists(output_dir):
         output_dir = os.path.join(output_dir, "run_1")
