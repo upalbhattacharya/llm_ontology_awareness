@@ -21,7 +21,7 @@ HF_HOME=/scratch/bhatt006/.cache
 # Execution
 
 # Activate Virtual Environment
-source /scratch/bhatt006/.venvs/llm_ontology_awareness/bin/activate
+source /scratch/bhatt006/miniconda3/bin/activate
 
 # Change directory
 cd /scratch/bhatt006/Repos/llm_ontology_awareness/src/llm_ontology_awareness/model/hugging_face || exit
