@@ -80,7 +80,7 @@ if __name__ == "__main__":
     # Get filename to name output directory
     dir_name = os.path.splitext(os.path.basename(args.args_file))[0]
     output_dir = os.path.join(run_args.output_dir, dir_name)
-    
+
     # Add run information
     if not os.path.exists(output_dir):
         output_dir = os.path.join(output_dir, "run_1")
@@ -106,6 +106,7 @@ if __name__ == "__main__":
         system_message=run_args.system_message,
         user_prompt_template=run_args.user_prompt_template,
         task_type=run_args.task_type,
+        examples_file=run_args.examples_file,
         **run_args.kwargs,
     )
     model = initialize_model(run_args)
