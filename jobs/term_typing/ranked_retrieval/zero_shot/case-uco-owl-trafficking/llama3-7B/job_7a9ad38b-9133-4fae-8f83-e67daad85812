@@ -29,4 +29,4 @@ cd /scratch/bhatt006/Repos/llm_ontology_awareness/src/llm_ontology_awareness/mod
 # Execute
 
 python3 predict.py \
-  -f /scratch/bhatt006/Repos/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/zero_shot/astronomy-ontology/llama3-7B/7a9ad38b-9133-4fae-8f83-e67daad85812.json
+  -f /scratch/bhatt006/Repos/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/zero_shot/case-uco-owl-trafficking/llama3-7B/7a9ad38b-9133-4fae-8f83-e67daad85812.json
