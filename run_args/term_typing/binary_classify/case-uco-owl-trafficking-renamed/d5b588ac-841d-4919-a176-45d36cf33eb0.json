@@ -4,7 +4,7 @@
   "input": "/home/upal/Data/ontologies/case-uco-owl-trafficking-renamed/data/individual_to_class/2024-09-02/data.json",
   "output_dir": "/home/upal/Results/llm_ontology_awareness/case-uco-owl-trafficking-renamed",
   "ontology_probe_type": "individual_to_class",
-  "prompt_strategy_type": "zero_shot",
+  "prompt_strategy_type": "0_shot",
   "task_type": "binary_classify",
   "system_message": "You are a cyber investigation and ontology expert that classifies statements as True or False only",
   "user_prompt_template": "{} is a {}",
