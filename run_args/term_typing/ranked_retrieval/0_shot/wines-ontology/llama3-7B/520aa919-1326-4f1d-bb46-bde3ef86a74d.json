@@ -11,7 +11,7 @@
   "load_in_4bit": true,
   "device": 3,
   "trust_remote_code": true,
-  "input": "/scratch/bhatt006/Data/wines-ontology/data/term_typing/ranked_retrieval/2024-09-05/term_typing_ranked_retrieval_dataset.json",
+  "input": "/scratch/bhatt006/Data/wines-ontology/data/term_typing/ranked_retrieval/0_shot/2024-09-05/term_typing_ranked_retrieval_dataset.json",
   "output_dir": "/scratch/bhatt006/Results/llm_ontology_awareness/term_typing/ranked_retrieval/wines-ontology",
   "ontology_probe_type": "term_typing",
   "prompt_strategy_type": "0_shot",
