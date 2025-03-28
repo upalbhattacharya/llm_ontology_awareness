@@ -87,6 +87,12 @@ class TermTypingRankedRetrievalDataset(Dataset):
 {self.system_message.format(**self.extra_args, classes=self.classes, examples=self.generate_examples())}<|eot_id|><|start_header_id|>user<|end_header_id|>
 
 {self.user_prompt_template.format(*ents)}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
+        else:
+            messages = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+{self.system_message.format(**self.extra_args, classes=self.classes)}<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+{self.user_prompt_template.format(*ents)}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
 
         return (
             *ents,
