@@ -7,6 +7,7 @@ for i in {1..10}; do
     for j in {astronomy-ontology,wines-ontology,case-uco-owl-trafficking}; do
         dest_path="${BASE_JOBS_PATH}/${i}_shot/${j}/llama3-7B"
         cd ${dest_path}
+        echo $(pwd)
         for run_args in "${BASE_RUN_ARGS_PATH}/${i}_shot/most_common/${j}/llama3-7B"/*; do
             uuid=$(basename ${run_args} .json)
             echo ${uuid}
