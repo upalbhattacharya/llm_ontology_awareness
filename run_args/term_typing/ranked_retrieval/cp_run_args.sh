@@ -8,8 +8,9 @@ for i in {2..10}; do
         echo "---"
         for x in "$SRC_DIR/$j/llama3-7B"/*; do
             echo ${x}
-
         done
         cd ../../../..
+        echo $(pwd)
+        echo "---"
     done
 done
