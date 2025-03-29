@@ -9,7 +9,6 @@ for i in {2..10}; do
             echo ${x}
         done
         cd ../../../..
-        echo $(pwd)
         echo "---"
     done
 done
