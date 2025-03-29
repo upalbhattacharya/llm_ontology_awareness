@@ -13,8 +13,8 @@ for i in {1..10}; do
             # cp ${REF_JOB} ${dest_path}/job_${uuid}
             echo $(pwd)
             echo $(ls ${dest_path})
+            sed -i -e 's///g' job_${uuid}
         done
-        sed -i -e 's///g' job_${uuid}
     done
 done
 
