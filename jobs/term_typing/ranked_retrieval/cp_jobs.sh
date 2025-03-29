@@ -9,6 +9,7 @@ for i in {1..10}; do
             uuid=$(basename ${run_args} .json)
             echo ${uuid}
             dest_path="${BASE_JOBS_PATH}/${i}_shot/${j}"
+            echo $(ls ${dest_path})
         done
     done
 done
