@@ -12,7 +12,7 @@ for i in {1..10}; do
             uuid=$(basename ${run_args} .json)
             echo ${uuid}
             cp ${REF_JOB} job_${uuid}
-            $(sed -i -e "s@job_path@${run_args}\/${uuid}.json@g" "job_${uuid}")
+            $(sed -i -e "s@job_path@${run_args}@g" "job_${uuid}")
         done
     done
 done
