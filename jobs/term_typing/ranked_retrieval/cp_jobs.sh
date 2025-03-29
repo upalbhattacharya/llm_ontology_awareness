@@ -10,7 +10,7 @@ for i in {1..10}; do
             echo ${uuid}
             dest_path="${BASE_JOBS_PATH}/${i}_shot/${j}/llama3-7B"
             cd ${dest_path}
-            cp ${REF_JOB} ${dest_path}/job_${uuid}
+            # cp ${REF_JOB} ${dest_path}/job_${uuid}
             echo $(ls ${dest_path})
         done
     done
