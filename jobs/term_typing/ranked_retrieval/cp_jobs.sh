@@ -5,7 +5,7 @@ BASE_RUN_ARGS_PATH=~/PhD/Experiments/llm_ontology_awareness/run_args/term_typing
 for i in {1..10}; do
     for j in {astronomy-ontology,wines-ontology,case-uco-owl-trafficking}; do
         for run_args in "${BASE_RUN_ARGS_PATH}/${i}_shot/most_common/${j}/llama3-7B"/*; do
-            echo ${run_args}
+            echo $(basename ${run_args} json)
         done
     done
 done
