@@ -8,7 +8,7 @@ for i in {1..10}; do
         for run_args in "${BASE_RUN_ARGS_PATH}/${i}_shot/most_common/${j}/llama3-7B"/*; do
             uuid=$(basename ${run_args} .json)
             echo ${uuid}
-            dest_path="${BASE_JOBS_PATH}/${i}_shot/${j}"
+            dest_path="${BASE_JOBS_PATH}/${i}_shot/${j}/llama3-7B"
             echo $(ls ${dest_path})
         done
     done
