@@ -12,7 +12,7 @@ for i in {1..10}; do
             echo ${uuid}
             cp ${REF_JOB} job_${uuid}
             echo $(ls ${dest_path})
-            sed -i -e 's/job_path/${dest_path}\/job_${uuid}/g' job_${uuid}
+            sed -i -e 's/job_path/${dest_path}\/${uuid}.json/g' job_${uuid}
         done
     done
 done
