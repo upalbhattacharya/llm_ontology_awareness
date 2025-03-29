@@ -9,7 +9,7 @@
     "max_tokens": 500,
   "load_in_8bit": false,
   "load_in_4bit": true,
-  "device": 3,
+  "device": 2,
   "trust_remote_code": true,
   "input": "/scratch/bhatt006/Data/case-uco-owl-trafficking/data/term_typing/ranked_retrieval/2_shot/2025-03-28/term_typing_ranked_retrieval_dataset.json",
   "examples_file": "/scratch/bhatt006/Data/case-uco-owl-trafficking/data/term_typing/ranked_retrieval/2_shot/2025-03-28/term_typing_ranked_retrieval_examples.json",
