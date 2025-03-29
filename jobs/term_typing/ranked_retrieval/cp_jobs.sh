@@ -10,7 +10,7 @@ for i in {1..10}; do
         for run_args in "${BASE_RUN_ARGS_PATH}/${i}_shot/most_common/${j}/llama3-7B"/*; do
             uuid=$(basename ${run_args} .json)
             echo ${uuid}
-            # cp ${REF_JOB} ${dest_path}/job_${uuid}
+            cp ${REF_JOB} job_${uuid}
             echo $(pwd)
             echo $(ls ${dest_path})
             sed -i -e 's///g' job_${uuid}
