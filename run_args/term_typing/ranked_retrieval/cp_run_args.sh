@@ -6,7 +6,7 @@ for i in {2..10}; do
         cd "${i}_shot/most_common/${j}/llama3-7B"
         echo $(pwd)
         for x in "${SRC_DIR}/${j}/llama3-7B"/*; do
-            echo ${x}
+            cp ${x} $(uuidgen).json
         done
         cd ../../../..
         echo "---"
