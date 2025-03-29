@@ -11,6 +11,7 @@ for i in {1..10}; do
             dest_path="${BASE_JOBS_PATH}/${i}_shot/${j}/llama3-7B"
             cd ${dest_path}
             # cp ${REF_JOB} ${dest_path}/job_${uuid}
+            echo $(pwd)
             echo $(ls ${dest_path})
         done
     done
