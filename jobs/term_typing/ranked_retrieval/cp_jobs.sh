@@ -4,7 +4,7 @@ REF_JOB=~/PhD/Experiments/llm_ontology_awareness/jobs/term_typing/ranked_retriev
 BASE_RUN_ARGS_PATH=~/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval
 for i in {1..10}; do
     for j in {astronomy-ontology,wines-ontology,case-uco-owl-trafficking}; do
-        for run_args in $BASE_RUN_ARGS_PATH/${i}_shot/$j/llama3-7B/*.json; do
+        for run_args in $BASE_RUN_ARGS_PATH/${i}_shot/$j/llama3-7B/*; do
             echo ${run_args}
         done
     done
