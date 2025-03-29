@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#SBATCH --job-name=ontollm_1
+#SBATCH --nodes=1
+#SBATCH --partition=gpua16
+#SBATCH --gres=gpu:1
+#SBATCH --time=05:00:00
+#SBATCH --output=/scratch/bhatt006/run_logs/%x_%j.out
+#SBATCH --error=/scratch/bhatt006/run_logs/%x_%j.err
+
+# Load Modules
+
+module load cuda/12.5
+
+# Define Visible GPUs
+CUDA_VISIBLE_DEVICES=0,1,2,3
+
+# Set HF_HOME directory
+HF_HOME=/scratch/bhatt006/.cache
+
+# Execution
+
+# Activate Virtual Environment
+source /scratch/bhatt006/miniconda3/bin/activate
+
+# Change directory
+cd /scratch/bhatt006/Repos/llm_ontology_awareness/src/llm_ontology_awareness/model/hugging_face || exit
+
+# Execute
+
+python3 predict.py \
+  -f /scratch/bhatt006/Repos/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/10_shot/most_common/wines-ontology/llama3-7B/03086e62-ad49-45bb-aa9d-1e3245e813de.json
