@@ -2,6 +2,7 @@
 
 SRC_DIR=~/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/1_shot/most_common
 PWD=$(pwd)
+echo $PWD
 for i in {2..10}; do
     for j in {astronomy-ontology,case-uco-owl-trafficking,wines-ontology}; do
         cd "$pwd/$i_shot/most_common/$j/llama3-7B"
