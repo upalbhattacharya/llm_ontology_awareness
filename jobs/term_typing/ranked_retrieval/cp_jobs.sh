@@ -12,7 +12,7 @@ for i in {1..10}; do
             echo ${uuid}
             cp ${REF_JOB} job_${uuid}
             echo $(ls ${dest_path})
-            sed -i -e 's/4c21158e-b2d3-4d74-b561-85befef94eab//g' job_${uuid}
+            sed -i -e 's/sample_job//g' job_${uuid}
         done
     done
 done
