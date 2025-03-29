@@ -9,6 +9,7 @@ for i in {1..10}; do
             uuid=$(basename ${run_args} .json)
             echo ${uuid}
             dest_path="${BASE_JOBS_PATH}/${i}_shot/${j}/llama3-7B"
+            cp ${REF_JOB} ${dest_path}/job_${uuid}
             echo $(ls ${dest_path})
         done
     done
