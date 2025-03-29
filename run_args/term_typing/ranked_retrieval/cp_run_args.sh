@@ -5,6 +5,7 @@ for i in {2..10}; do
         cd ${i}_shot/most_common/${j}/llama3-7B
         for x in 1_shot/most_common/${j}/llama3-7B/*.json; do
             # cp ${x} $(uuidgen).json
+            echo ${x}
             echo $(pwd)
             echo $(pwd)
         done
