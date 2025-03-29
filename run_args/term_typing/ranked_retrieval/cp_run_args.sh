@@ -8,6 +8,8 @@ for i in {2..10}; do
         for x in "${SRC_DIR}/${j}/llama3-7B"/*; do
             cp ${x} $(uuidgen).json
         done
+        find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i 's/1_shot/${i}_shot/g'
+        find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i 's/1-Shot/${i}-Shot/g'
         cd ../../../..
         echo "---"
     done
