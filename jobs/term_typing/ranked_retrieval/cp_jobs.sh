@@ -11,7 +11,6 @@ for i in {1..10}; do
             uuid=$(basename ${run_args} .json)
             echo ${uuid}
             cp ${REF_JOB} job_${uuid}
-            echo $(pwd)
             echo $(ls ${dest_path})
             sed -i -e 's///g' job_${uuid}
         done
