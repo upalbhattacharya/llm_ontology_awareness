@@ -14,6 +14,7 @@ for i in {1..10}; do
             echo $(pwd)
             echo $(ls ${dest_path})
         done
+        sed -i -e 's///g' job_${uuid}
     done
 done
 
