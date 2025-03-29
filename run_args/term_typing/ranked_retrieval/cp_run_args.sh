@@ -6,7 +6,6 @@ for i in {2..10}; do
         for x in 1_shot/most_common/${j}/llama3-7B/*.json; do
             # cp ${x} $(uuidgen).json
             echo ${x}
-            echo $(.)
         done
         cd ../../../..
     done
