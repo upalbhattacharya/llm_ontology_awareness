@@ -35,10 +35,11 @@ selected_classes = list(
 
 example_df = df.clear()
 for cls in selected_classes:
+    pool = df.join(example_df, on=df.columns, how="anti")
     example_df = pl.concat(
         [
             example_df,
-            df.filter(df["Ranked List"].list.contains(cls)).sample(n=1, seed=47),
+            pool.filter(pool["Ranked List"].list.contains(cls)).sample(n=1, seed=47),
         ]
     )
 
