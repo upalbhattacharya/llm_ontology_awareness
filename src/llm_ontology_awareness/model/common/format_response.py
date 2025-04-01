@@ -27,6 +27,7 @@ def binary_classify(response: str) -> bool:
 def ranked_retrieval(response: str, llm_name: str) -> list:
     # assistant_response = response.split(llm_split_string[llm_name])[-1]
     assistant_response = llm_split_string[llm_name].search(response).group(1)
+    assistant_response = re.sub(r"<|start_header_id|>assistant<|end_header_id|>(.*)<|eot_id|>", r"\1"
     print(assistant_response)
     print("=" * 40)
     ranks = list(filter(None, assistant_response.split("\n")))
