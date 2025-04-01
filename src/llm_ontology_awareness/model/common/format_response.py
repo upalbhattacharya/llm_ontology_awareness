@@ -4,13 +4,16 @@ import re
 
 import polars as pl
 
+llm_response_extract = {"meta-llama/Meta-Llama-3-8B-Instruct": llama3}
 
-
-llm_response_extract = {
-    "meta-llama/Meta-Llama-3-8B-Instruct": llama3
 
 def llama3(value: str):
-    return re.match(r"<\|start_header_id\|>assistant<\|end_header_id\|>(.*)<\|eot_id\|>", value, flags=re.DOTALL).group(2)
+    return re.match(
+        r"<\|start_header_id\|>assistant<\|end_header_id\|>(.*)<\|eot_id\|>",
+        value,
+        flags=re.DOTALL,
+    ).group(2)
+
 
 def binary_classify(response: str) -> bool:
     value_map = {
