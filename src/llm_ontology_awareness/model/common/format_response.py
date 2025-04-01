@@ -31,7 +31,7 @@ def ranked_retrieval(response: str, llm_name: str) -> list:
         r"<\|start_header_id\|>assistant<\|end_header_id\|>(.*)<\|eot_id\|>",
         response,
         flags=re.DOTALL,
-    )
+    ).group(1)
     print(assistant_response)
     print("=" * 40)
     ranks = list(filter(None, assistant_response.split("\n")))
