@@ -4,9 +4,15 @@ import re
 
 import polars as pl
 
+llm_response_extract = {}
+response_extract = lambda f: llm_response_extract.setdefault(f.__name__, f)
+
+
 llm_response_extract = {
     "meta-llama/Meta-Llama-3-8B-Instruct": re.compile(
         r"<\|start_header_id\|>assistant<\|end_header_id\|>(.*)<\|eot_id\|>", re.DOTALL
+        response, flags=re.DOTALL
+    ).group(1)
     )
 }
 
@@ -27,9 +33,7 @@ def binary_classify(response: str) -> bool:
 def ranked_retrieval(response: str, llm_name: str) -> list:
     # assistant_response = response.split(llm_split_string[llm_name])[-1]
     # assistant_response = llm_split_string[llm_name].search(response).group(1)
-    assistant_response = llm_response_extract[llm_name](
-        response, flags=re.DOTALL
-    ).group(1)
+    assistant_response = llm_response_extract[llm_name](response)
     print(assistant_response)
     print("=" * 40)
     ranks = list(filter(None, assistant_response.split("\n")))
