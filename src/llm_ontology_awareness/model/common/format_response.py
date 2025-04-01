@@ -6,7 +6,7 @@ import polars as pl
 
 llm_split_string = {
     "meta-llama/Meta-Llama-3-8B-Instruct": re.compile(
-        r"<|start_header_id|>assistant<|end_header_id|>(.*)<|eot_id|>", re.DOTALL
+        r"<\|start_header_id\|>assistant<\|end_header_id|>(.*)<\|eot_id\|>", re.DOTALL
     )
 }
 
