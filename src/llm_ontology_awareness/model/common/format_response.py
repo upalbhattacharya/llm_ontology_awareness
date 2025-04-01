@@ -4,6 +4,10 @@ import re
 
 import polars as pl
 
+llm_split_string = {
+    "meta-llama/Meta-Llama-3-8B-Instruct": "<|start_header_id|>assistant<|end_header_id|>"
+}
+
 
 def binary_classify(response: str) -> bool:
     value_map = {
@@ -18,7 +22,7 @@ def binary_classify(response: str) -> bool:
     )
 
 
-def ranked_retrieval(response: str) -> list:
+def ranked_retrieval(response: str, llm_name: str) -> list:
     ranks = list(filter(None, response.split("\n")))
     ranks = [re.sub(r"[[']]", "", item).strip() for item in ranks]
     print(ranks)
