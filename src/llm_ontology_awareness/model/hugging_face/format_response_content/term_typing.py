@@ -35,7 +35,7 @@ parser.add_argument(
 args = parser.parse_args()
 with open(args.run_args, "r") as f:
     args_raw = f.read()
-    run_args = RunArguments.parse_raw(args_raw)
+    run_args = RunArguments.model_validate(args_raw)
 
 response_file_dir = os.path.dirname(args.response_file)
 
