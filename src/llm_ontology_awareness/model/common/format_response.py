@@ -6,7 +6,7 @@ import polars as pl
 
 
 def llama3(value: str):
-    return re.match(
+    return re.search(
         r"<\|start_header_id\|>assistant<\|end_header_id\|>(.*)<\|eot_id\|>",
         value,
         flags=re.DOTALL,
