@@ -15,7 +15,7 @@ def llama3(value: str):
     ).group(1)
     if not response:
         response = re.search(
-            f"<\|begin_of_text\|>(.*)<\|eot_id\|>", value, flags=re.DOTALL
+            r"<\|begin_of_text\|>(.*)<\|eot_id\|>", value, flags=re.DOTALL
         ).group(1)
     return response
 
