@@ -33,6 +33,7 @@ def binary_classify(response: str) -> bool:
 
 def ranked_retrieval(response: str, llm_name: str) -> list:
     assistant_response = llm_response_extract[llm_name](response)
+    print(assistant_response)
     ranks = list(filter(None, assistant_response.split("\n")))
     ranks = [re.sub(r"[[']]", "", item).strip() for item in ranks]
     ranks = [item for item in ranks if re.match(r"^\d", item)]
