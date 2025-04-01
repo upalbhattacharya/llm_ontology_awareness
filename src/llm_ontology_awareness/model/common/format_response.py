@@ -12,7 +12,7 @@ def llama3(value: str):
         r"<\|start_header_id\|>assistant<\|end_header_id\|>(.*)<\|eot_id\|>",
         value,
         flags=re.DOTALL,
-    ).group(1)
+    )
     if not response:
         response = re.search(
             r"<\|begin_of_text\|>(.*)<\|eot_id\|>", value, flags=re.DOTALL
