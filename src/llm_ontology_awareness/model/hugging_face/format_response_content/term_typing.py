@@ -45,7 +45,6 @@ df = pl.read_ndjson(args.response_file)
 y_true_df = pl.read_ndjson(args.label_mapping)
 
 join_df = df.join(y_true_df, on="Custom ID")
-print(join_df)
 columns = task_types[run_args.task_type]["format_response"]["df_columns"]
 columns.append("Response")
 print(columns)
