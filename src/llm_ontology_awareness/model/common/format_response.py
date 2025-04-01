@@ -16,8 +16,8 @@ def llama3(value: str):
     if not response:
         response = re.search(
             r"<\|begin_of_text\|>(.*)<\|eot_id\|>", value, flags=re.DOTALL
-        ).group(1)
-    return response
+        )
+    return response.group(1)
 
 
 llm_response_extract = {"meta-llama/Meta-Llama-3-8B-Instruct": llama3}
