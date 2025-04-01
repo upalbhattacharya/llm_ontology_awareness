@@ -28,8 +28,7 @@ def ranked_retrieval(response: str, llm_name: str) -> list:
     # assistant_response = response.split(llm_split_string[llm_name])[-1]
     # assistant_response = llm_split_string[llm_name].search(response).group(1)
     assistant_response = llm_response_extract[llm_name](
-        response,
-        flags=re.DOTALL,
+        response, flags=re.DOTALL
     ).group(1)
     print(assistant_response)
     print("=" * 40)
