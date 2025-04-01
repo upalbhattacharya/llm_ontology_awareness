@@ -53,7 +53,9 @@ join_df = join_df.select(columns)
 join_df = join_df.with_columns(
     pl.col("Response")
     .map_elements(
-        function=task_types[run_args.task_type]["format_response"]["function"],
+        function=lambda x: task_types[run_args.task_type]["format_response"][
+            "function"
+        ](x, run_args.llm_name),
         return_dtype=task_types[run_args.task_type]["format_response"]["return_dtype"],
     )
     .alias("Prediction")
