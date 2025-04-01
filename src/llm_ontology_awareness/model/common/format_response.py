@@ -29,7 +29,7 @@ def ranked_retrieval(response: str, llm_name: str) -> list:
     # assistant_response = llm_split_string[llm_name].search(response).group(1)
     assistant_response = re.sub(
         r"<\|start_header_id\|>assistant<\|end_header_id\|>(.*)<\|eot_id\|>",
-        r"Blah\1Blah",
+        r"Blah\1 Blah",
         response,
         flags=re.DOTALL,
     )
