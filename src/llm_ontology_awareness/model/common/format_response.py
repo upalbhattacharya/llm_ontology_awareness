@@ -4,8 +4,6 @@ import re
 
 import polars as pl
 
-llm_response_extract = {}
-response_extract = lambda f: llm_response_extract.setdefault(f.__name__, f)
 
 
 llm_response_extract = {
@@ -15,6 +13,9 @@ llm_response_extract = {
     ).group(1)
     )
 }
+
+def llama3(value: str):
+    return re.match(r"<\|start_header_id\|>assistant<\|end_header_id\|>(.*)<\|eot_id\|>", value, flags=re.DOTALL).group(2)
 
 
 def binary_classify(response: str) -> bool:
