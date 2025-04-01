@@ -30,6 +30,7 @@ def ranked_retrieval(response: str, llm_name: str) -> list:
     assistant_response = re.sub(
         r"<|start_header_id|>assistant<|end_header_id|>(.*)<|eot_id|>",
         r"\1",
+        response,
         flags=re.DOTALL,
     )
     print(assistant_response)
