@@ -10,7 +10,7 @@ def llama3(value: str):
         r"<\|start_header_id\|>assistant<\|end_header_id\|>(.*)<\|eot_id\|>",
         value,
         flags=re.DOTALL,
-    ).group(2)
+    ).group(1)
 
 
 llm_response_extract = {"meta-llama/Meta-Llama-3-8B-Instruct": llama3}
