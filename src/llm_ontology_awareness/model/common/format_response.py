@@ -9,7 +9,7 @@ import polars as pl
 
 def llama3(value: str):
     return re.search(
-        r"\|>([^\|>].*)<\|eot_id\|>$",
+        r"\|>(.*)<\|eot_id\|>$",
         value,
         flags=re.DOTALL,
     ).group(1)
