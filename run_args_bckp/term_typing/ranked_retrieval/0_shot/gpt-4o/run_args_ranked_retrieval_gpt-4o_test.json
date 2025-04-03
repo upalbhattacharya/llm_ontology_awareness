@@ -1,0 +1,16 @@
+{
+  "llm_name": "gpt-4o",
+  "max_tokens": 1,
+  "input":
+  "/home/upal/Data/ontologies/wines-ontology/data/term_typing/ranked_retrieval/2024-09-05/term_typing_ranked_retrieval_dataset.json",
+  "output_dir": "/home/upal/Results/llm_ontology_awareness/term_typing/ranked_retrieval/wines-ontology",
+  "ontology_probe_type": "term_typing",
+  "prompt_strategy_type": "0_shot",
+  "task_type": "ranked_retrieval",
+  "system_message": "You are a helpful assistant that responds with a ranked list of classes that a user input belongs to. Generate a list of the top {depth} most likely classes. Do not generate a list of less than {depth} classes.\nCreate the ranked list considering only the provided classes\n---\nClasses: {classes}",
+  "user_prompt_template": "{}",
+  "description": "Zero-Shot, Generic Prompt, No pre-qualification Class Assertion Ranked Retrieval on Wines Ontology",
+  "kwargs": {
+    "depth": 8
+  }
+}
