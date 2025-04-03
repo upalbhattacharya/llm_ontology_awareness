@@ -39,6 +39,7 @@ def ranked_retrieval(
     datapoints = pl.Series(true_df.select(pl.first()))
     y_true = true_df["Ranked List"].to_list()
     y_pred = pred_df["Prediction"].to_list()
+    print(kwargs["k"])
 
     def r_prec_score(y_t, y_p):
         return 1.0 * (sum([pred in y_t for pred in y_p[: len(y_t)]])) / (len(y_t))
