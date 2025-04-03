@@ -10,7 +10,7 @@ for ont in "${ONTOLOGIES[@]}"; do
     for i in ${SHOTS}; do
         for j in ${RUN_ARGS_DIR}/${i}_shot/most_common/llama3-7B/${ont}/*; do
             echo ${j}
-            sed -i -e "s/${OUTPUT_PATH_PREFIX}\/${ont}/${OUTPUT_PATH_PREFIX}\/${i}_shot\/most_common\/llama3-7B\/${ont}" ${j}
+            sed -i -e "s@${OUTPUT_PATH_PREFIX}/${ont}@${OUTPUT_PATH_PREFIX}/${i}_shot/most_common/llama3-7B/${ont}" ${j}
         done
     done
 done
