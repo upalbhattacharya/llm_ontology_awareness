@@ -96,21 +96,29 @@ class TermTypingRankedRetrievalDataset(Dataset):
                 {"role": "user", "content": self.user_prompt_template.format(*ents)},
             ]
         else:
-           
-                
+            messages = [
+                {
+                    "role": "system",
+                    "content": self.system_message.format(
+                        **self.extra_args,
+                        classes=self.classes,
+                    ),
+                },
+                {"role": "user", "content": self.user_prompt_template.format(*ents)},
+            ]
 
-#         if self.examples is not None:
-#             messages = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+        #         if self.examples is not None:
+        #             messages = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
 
-# {self.system_message.format(**self.extra_args, classes=self.classes, examples=self.generate_examples())}<|eot_id|><|start_header_id|>user<|end_header_id|>
+        # {self.system_message.format(**self.extra_args, classes=self.classes, examples=self.generate_examples())}<|eot_id|><|start_header_id|>user<|end_header_id|>
 
-# {self.user_prompt_template.format(*ents)}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
-#         else:
-#             messages = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+        # {self.user_prompt_template.format(*ents)}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
+        #         else:
+        #             messages = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
 
-# {self.system_message.format(**self.extra_args, classes=self.classes)}<|eot_id|><|start_header_id|>user<|end_header_id|>
+        # {self.system_message.format(**self.extra_args, classes=self.classes)}<|eot_id|><|start_header_id|>user<|end_header_id|>
 
-# {self.user_prompt_template.format(*ents)}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
+        # {self.user_prompt_template.format(*ents)}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
 
         return (
             *ents,
