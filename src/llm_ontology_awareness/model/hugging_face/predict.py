@@ -21,10 +21,10 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
         tokenized = tokenizer.apply_chat_template(
             messages, tokenize=True, add_generation_prompt=True, return_tensors="pt"
         ).to(f"cuda:{run_args.device}")
-        print(tokenizer.decode(tokenized[0]))
+        prompt = tokenizer.decode(tokenized[0])
         response = model.generate(tokenized, max_new_tokens=run_args.max_tokens).cpu()
         response = tokenizer.batch_decode(response)[0]
-        responses.append((f"task-{i}", response.replace(messages, "")))
+        responses.append((f"task-{i}", response.replace(prompt, "")))
 
         if kwargs.get("stop", None) is not None and i == kwargs["stop"]:
             break
