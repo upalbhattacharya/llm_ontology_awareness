@@ -25,6 +25,7 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
         print(prompt)
         response = model.generate(tokenized, max_new_tokens=run_args.max_tokens).cpu()
         response = tokenizer.batch_decode(response)[0]
+        print(response)
         responses.append((f"task-{i}", response.replace(prompt, "")))
         print(responses[-1])
 
