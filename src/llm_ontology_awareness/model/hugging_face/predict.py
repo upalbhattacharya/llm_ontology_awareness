@@ -19,10 +19,13 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
         inst, messages, label = next(test_data)
         label_mapping.append((f"task-{i}", inst, label))
         input_ids = tokenizer.apply_chat_template(
-            messages, tokenize=True, add_generation_prompt=True, return_tensors="pt"
+            messages,
+            tokenize=True,
+            add_generation_prompt=True,
+            padding=True,
+            return_tensors="pt",
         ).to(f"cuda:{run_args.device}")
         prompt = tokenizer.decode(input_ids[0])
-        print(prompt)
         gen_tokens = model.generate(input_ids, max_new_tokens=run_args.max_tokens).cpu()
         # response = tokenizer.batch_decode(response)[0]
         response = tokenizer.batch_decode(gen_tokens[:, input_ids.shape[1] :])[0]
