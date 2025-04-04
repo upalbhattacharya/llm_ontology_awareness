@@ -28,7 +28,6 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
         ).to(f"cuda:{run_args.device}")
         prompt = tokenizer.decode(input_ids[0])
         gen_tokens = model.generate(input_ids, max_new_tokens=run_args.max_tokens).cpu()
-        # response = tokenizer.batch_decode(response)[0]
         response = tokenizer.batch_decode(
             gen_tokens[:, input_ids.shape[1] :], skip_special_tokens=True
         )[0]
