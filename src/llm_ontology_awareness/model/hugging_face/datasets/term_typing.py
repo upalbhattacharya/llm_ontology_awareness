@@ -83,16 +83,17 @@ class TermTypingRankedRetrievalDataset(Dataset):
     def __getitem__(self, idx):
         *ents, label = self.df.row(idx)
 
-        messages = [
-            {
-                "role": "system",
-                "content": self.system_message.format(
-                    **self.extra_args,
-                    classes=self.classes,
-                    examples=self.generate_examples(),
-                ),
-            },
-        ]
+        if self.examples is not None:
+            messages = [
+                {
+                    "role": "system",
+                    "content": self.system_message.format(
+                        **self.extra_args,
+                        classes=self.classes,
+                        examples=self.generate_examples(),
+                    ),
+                },
+            ]
 
         if self.examples is not None:
             messages = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
