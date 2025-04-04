@@ -15,7 +15,7 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
     label_mapping = []
     num_samples = len(test_data)
     test_data = iter(test_data)
-    tokenizer.pad_token = tokenize.eos_token
+    tokenizer.pad_token = tokenizer.eos_token
     for i in tqdm(range(num_samples)):
         inst, messages, label = next(test_data)
         label_mapping.append((f"task-{i}", inst, label))
