@@ -106,7 +106,6 @@ class TermTypingRankedRetrievalDataset(Dataset):
                 },
                 {"role": "user", "content": self.user_prompt_template.format(*ents)},
             ]
-
         #         if self.examples is not None:
         #             messages = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
 
