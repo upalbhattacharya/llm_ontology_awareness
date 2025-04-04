@@ -93,6 +93,7 @@ class TermTypingRankedRetrievalDataset(Dataset):
                         examples=self.generate_examples(),
                     ),
                 },
+                {"role": "user", "content": self.user_prompt_template.format(*ents)},
             ]
 
         if self.examples is not None:
