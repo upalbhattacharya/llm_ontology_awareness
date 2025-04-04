@@ -5,21 +5,21 @@
     "learning_rate": 1e-5,
     "num_train_epochs": 32
   },
-  "llm_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "llm_name": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
     "max_tokens": 500,
   "load_in_8bit": false,
   "load_in_4bit": true,
-  "device": 1,
+  "device": 2,
   "trust_remote_code": true,
-  "input": "/scratch/bhatt006/Data/case-uco-owl-trafficking/data/term_typing/ranked_retrieval/0_shot/2024-09-05/term_typing_ranked_retrieval_dataset.json",
-  "output_dir": "/scratch/bhatt006/Results/llm_ontology_awareness/term_typing/ranked_retrieval/0_shot/llama3-7B/case-uco-owl-trafficking",
+  "input": "/scratch/bhatt006/Data/astronomy-ontology/data/term_typing/ranked_retrieval/0_shot/2024-11-04/term_typing_ranked_retrieval_dataset.json",
+  "output_dir": "/scratch/bhatt006/Results/llm_ontology_awareness/term_typing/ranked_retrieval/0_shot/deepseekr1-distill-llama3-8B/astronomy-ontology",
   "ontology_probe_type": "term_typing",
   "prompt_strategy_type": "0_shot",
   "task_type": "ranked_retrieval",
   "system_message": "You are an ontology expert that responds with a ranked list of classes that a user input belongs to. Generate a list of the top {depth} most likely classes. Do not generate a list of less than {depth} classes. Do not provide any other information other than the list.\nCreate the ranked list considering only the provided classes\n---\nClasses: {classes}",
   "user_prompt_template": "{}",
-  "description": "Zero-Shot, Ontology Prompt, No pre-qualification Class Assertion Ranked Retrieval on CASE Ontology",
+  "description": "Zero-Shot, Ontology Prompt, No pre-qualification Class Assertion Ranked Retrieval on Astronomy Ontology",
   "kwargs": {
-    "depth": 8
+    "depth": 10
   }
 }
