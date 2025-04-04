@@ -33,7 +33,7 @@ def predict(model, tokenizer, test_data, run_args, **kwargs) -> pl.DataFrame:
             gen_tokens[:, input_ids.shape[1] :], skip_special_tokens=True
         )[0]
         print(response)
-        responses.append((f"task-{i}", response.replace(prompt, "")))
+        responses.append((f"task-{i}", response))
         print(responses[-1])
 
         if kwargs.get("stop", None) is not None and i == kwargs["stop"]:
