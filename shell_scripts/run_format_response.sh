@@ -11,7 +11,7 @@ for ont in "${ARR[@]}"; do
 			echo ${uid}
 			./term_typing.py -f ${j}/${RUN}/responses.json \
 				-l ${j}/${RUN}/label_mapping.json \
-				-r "${HOME}/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/${i}_shot/most_common/${ont}/llama3-7B/${uid}.json"
+				-r "${HOME}/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/${i}_shot/most_common/${ont}/${LLM}/${uid}.json"
 		done
 	done
 done
