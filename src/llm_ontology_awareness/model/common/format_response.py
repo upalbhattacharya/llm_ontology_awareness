@@ -12,7 +12,9 @@ def llama3(value: str):
     values = re.sub(
         r"(\<\|begin_of_text\|\>|\<\|eot_id\|\>)", "", value
     )  # For older response format
+    print(values)
     values = re.sub(r"^.+?:", "", values)  # Removes non-essential starting text
+    print(values)
     values = re.sub(r"\b\d+\b", "", values)  # Remove numbers
     values = re.sub(
         r"('|,|\[|\]|\.)", "", values
