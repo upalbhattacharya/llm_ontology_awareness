@@ -12,21 +12,23 @@ def llama3(value: str):
     values = re.sub(
         r"(\<\|begin_of_text\|\>\s*|\<\|eot_id\|\>)", "", value
     )  # For older response format
-    print(values)
     values = re.sub(
         r"^.+?:", "", values, re.DOTALL
     )  # Removes non-essential starting text
-    print(values)
     values = re.sub(r"\b\d+\b", "", values)  # Remove numbers
     values = re.sub(
-        r"('|,|\[|\]|\.)", "", values
+        r"('|,|\[|\]|\.|\*)", "", values
     )  # Remove other special demarcation characters
     values = re.sub(
         r"\s+", " ", values
     )  # Replace all extra blank spaces/newlines with single spaces
     values = list(filter(None, values.split()))
-    print(values)
     return values
+
+
+def deepseekr1(value: str):
+    values = re.sub(r".*</think>", "", value)
+    values = llama3(values)
 
 
 llm_response_extract = {"meta-llama/Meta-Llama-3-8B-Instruct": llama3}
