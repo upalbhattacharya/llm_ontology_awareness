@@ -11,7 +11,7 @@ def llama3(value: str):
     values = re.sub(r"^.+?:", "", value)  # Removes non-essential starting text
     values = re.sub(r"\b\d+\b", "", values)  # Remove numbers
     values = re.sub(
-        r"('|,|[|])", "", values
+        r"('|,|\[|\])", "", values
     )  # Remove other special demarcation characters
     values = re.sub(
         r"\s+", " ", values
