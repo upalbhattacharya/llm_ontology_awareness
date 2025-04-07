@@ -14,7 +14,7 @@ def llama3(value: str):
     )  # Replace all extra blank spaces/newlines with single spaces
     values = re.sub(r"\b\d+\b", "", values)  # Remove numbers
     values = re.sub(
-        r"[',\[\]]]", "", values
+        r"[',\[\].]]", "", values
     )  # Remove other special demarcation characters
     values = list(filter(None, values.split("\n")))
     return values
