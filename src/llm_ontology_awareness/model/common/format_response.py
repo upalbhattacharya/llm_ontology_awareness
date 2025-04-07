@@ -8,6 +8,10 @@ import polars as pl
 
 
 def llama3(value: str):
+
+    values = re.sub(
+        "(<\|begin_of_text\|>|<\|eot_id\|>)", "", value
+    )  # For older response format
     values = re.sub(r"^.+?:", "", value)  # Removes non-essential starting text
     values = re.sub(r"\b\d+\b", "", values)  # Remove numbers
     values = re.sub(
