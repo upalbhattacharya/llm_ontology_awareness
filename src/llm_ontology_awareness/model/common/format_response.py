@@ -28,6 +28,7 @@ def llama3(value: str):
 
 def deepseekr1(value: str):
     values = re.sub(r".*</think>", "", value)
+    print(values)
     values = llama3(values)
     return values
 
