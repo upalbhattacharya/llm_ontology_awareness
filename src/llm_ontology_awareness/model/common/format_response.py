@@ -16,6 +16,7 @@ def llama3(value: str):
     values = re.sub(
         "[',\[\]]]", "", values
     )  # Remove other special demarcation characters
+    values = values.split()
 
 
 llm_response_extract = {"meta-llama/Meta-Llama-3-8B-Instruct": llama3}
@@ -35,11 +36,12 @@ def binary_classify(response: str) -> bool:
 
 
 def ranked_retrieval(response: str, llm_name: str) -> list:
-    assistant_response = llm_response_extract[llm_name](response)
-    ranks = list(filter(None, assistant_response.split("\n")))
-    ranks = [re.sub(r"[[']]", "", item).strip() for item in ranks]
-    ranks = [item for item in ranks if re.match(r"^\d", item)]
+    # assistant_response = llm_response_extract[llm_name](response)
+    items = llm_response_extract[llm_name](response)
+    # ranks = list(filter(None, assistant_response.split("\n")))
+    # ranks = [re.sub(r"[[']]", "", item).strip() for item in ranks]
+    # ranks = [item for item in ranks if re.match(r"^\d", item)]
 
-    pattern = re.compile(r"(^\d+)?.*\s+(.*)", re.MULTILINE)
-    items = [re.search(pattern, r).group(2) for r in ranks]
+    # pattern = re.compile(r"(^\d+)?.*\s+(.*)", re.MULTILINE)
+    # items = [re.search(pattern, r).group(2) for r in ranks]
     return items
