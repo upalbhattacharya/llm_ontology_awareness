@@ -10,7 +10,7 @@ import polars as pl
 def llama3(value: str):
 
     values = re.sub(
-        r"(\<\|begin_of_text\|\>\s+|\<\|eot_id\|\>)", "", value
+        r"(\<\|begin_of_text\|\>\s*|\<\|eot_id\|\>)", "", value
     )  # For older response format
     print(values)
     values = re.sub(
