@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ARR=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
-LLM="deepseekr1-distill-llama3-8B"
+LLM="llama3-7B"
 shots=(0)
 RUN="run_1"
 for ont in "${ARR[@]}"; do
