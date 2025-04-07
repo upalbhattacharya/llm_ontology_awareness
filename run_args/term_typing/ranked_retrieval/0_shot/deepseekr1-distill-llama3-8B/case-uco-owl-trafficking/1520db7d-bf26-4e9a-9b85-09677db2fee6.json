@@ -6,7 +6,7 @@
     "num_train_epochs": 32
   },
   "llm_name": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
-    "max_tokens": 500,
+    "max_tokens": 1500,
   "load_in_8bit": false,
   "load_in_4bit": true,
   "device": 1,
