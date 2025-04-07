@@ -7,7 +7,7 @@ for ont in "${ARR[@]}"; do
 	echo $ont
 	for i in "${shots[@]}"; do
         echo ${i}
-		for j in "${HOME}/Results/llm_ontology_awareness/term_typing/ranked_retrieval/${i}_shot/most_common/${ont}/${LLM}"/*; do
+		for j in "${HOME}/Results/llm_ontology_awareness/term_typing/ranked_retrieval/${i}_shot/${ont}/${LLM}"/*; do
 			uid=$(basename "${j}")
 			echo ${uid}
 			python3 $HOME/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/hugging_face/format_response_content/term_typing.py -f ${j}/${RUN}/responses.json \
