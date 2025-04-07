@@ -5,7 +5,7 @@ shots=(0)
 for ont in "${ARR[@]}"; do
 	echo $ont
 	for i in "${shots[@]}"; do
-		for j in "${HOME}/Results/llm_ontology_awareness/term_typing/ranked_retrieval/${i}_shot/most_common/${ont}/llama3-7B"/*; do
+		for j in "${HOME}/Results/llm_ontology_awareness/term_typing/ranked_retrieval/${i}_shot/most_common/${ont}/${LLM}"/*; do
 			uid=$(basename "${j}")
 			echo ${uid}
 			./term_typing.py -f ${j}/run_2/responses.json \
