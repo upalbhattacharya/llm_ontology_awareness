@@ -8,16 +8,12 @@ import polars as pl
 
 
 def llama3(value: str):
-    response = re.search(
-        r"<\|start_header_id\|>assistant<\|end_header_id\|>(.*)<\|eot_id\|>",
-        value,
-        flags=re.DOTALL,
-    )
-    if not response:
-        response = re.search(
-            r"<\|begin_of_text\|>(.*)<\|eot_id\|>", value, flags=re.DOTALL
-        )
-    return response.group(1)
+    re.sub("^.+?:", "", value)  # Removes non-essential starting text
+    re.sub(
+        "\s+", " ", text
+    )  # Replace all extra blank spaces/newlines with single spaces
+    re.sub("\b\d+\b", "", value)  # Remove numbers
+    re.sub("[',\[\]]]", "", value)  # Remove other special demarcation characters
 
 
 llm_response_extract = {"meta-llama/Meta-Llama-3-8B-Instruct": llama3}
