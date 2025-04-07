@@ -15,7 +15,7 @@ for ont in "${ONTOLOGIES[@]}"; do
         for j in ${RUN_ARGS_DIR}/${i}_shot${STRAT_SUFFIX}/${LLM}/${ont}/*; do
             echo ${j}
             # sed -i -e "s@${OUTPUT_PATH_PREFIX}/${ont}@${OUTPUT_PATH_PREFIX}/${i}_shot/most_common/llama3-7B/${ont}@g" ${j}
-            sed -i - e "s@500@1500@g" ${j}
+            sed -i -e "s@500@1500@g" ${j}
         done
     done
 done
