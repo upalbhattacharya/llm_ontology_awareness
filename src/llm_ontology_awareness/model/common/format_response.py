@@ -17,6 +17,7 @@ def llama3(value: str):
         "[',\[\]]]", "", values
     )  # Remove other special demarcation characters
     values = list(filter(None, values.split("\n")))
+    return values
 
 
 llm_response_extract = {"meta-llama/Meta-Llama-3-8B-Instruct": llama3}
