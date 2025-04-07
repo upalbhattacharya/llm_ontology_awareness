@@ -16,7 +16,7 @@ def llama3(value: str):
     values = re.sub(
         r"\s+", " ", values
     )  # Replace all extra blank spaces/newlines with single spaces
-    values = list(filter(None, values.split("\n")))
+    values = list(filter(None, values.split()))
     print(values)
     return values
 
