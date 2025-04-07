@@ -29,9 +29,13 @@ def llama3(value: str):
 def deepseekr1(value: str):
     values = re.sub(r".*</think>", "", value)
     values = llama3(values)
+    return values
 
 
-llm_response_extract = {"meta-llama/Meta-Llama-3-8B-Instruct": llama3}
+llm_response_extract = {
+    "meta-llama/Meta-Llama-3-8B-Instruct": llama3,
+    "deepseek-ai/DeepSeek-R1-Distill-Llama-8B": deepseekr1,
+}
 
 
 def binary_classify(response: str) -> bool:
