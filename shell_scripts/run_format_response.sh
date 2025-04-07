@@ -6,6 +6,7 @@ RUN="run_1"
 for ont in "${ARR[@]}"; do
 	echo $ont
 	for i in "${shots[@]}"; do
+        echo ${i}
 		for j in "${HOME}/Results/llm_ontology_awareness/term_typing/ranked_retrieval/${i}_shot/most_common/${ont}/${LLM}"/*; do
 			uid=$(basename "${j}")
 			echo ${uid}
