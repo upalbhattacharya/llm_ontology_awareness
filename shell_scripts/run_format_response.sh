@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 ARR=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
+LLM="deepseekr1-distill-llama3-8B"
+shots=(0)
 for ont in "${ARR[@]}"; do
 	echo $ont
-	for i in $(seq 1 10); do
+	for i in "${shots[@]}"; do
 		for j in "${HOME}/Results/llm_ontology_awareness/term_typing/ranked_retrieval/${i}_shot/most_common/${ont}/llama3-7B"/*; do
 			uid=$(basename "${j}")
 			echo ${uid}
