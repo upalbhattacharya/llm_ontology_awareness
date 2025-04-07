@@ -10,7 +10,7 @@ import polars as pl
 def llama3(value: str):
     re.sub("^.+?:", "", value)  # Removes non-essential starting text
     re.sub(
-        "\s+", " ", text
+        "\s+", " ", value
     )  # Replace all extra blank spaces/newlines with single spaces
     re.sub("\b\d+\b", "", value)  # Remove numbers
     re.sub("[',\[\]]]", "", value)  # Remove other special demarcation characters
