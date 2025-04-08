@@ -17,7 +17,7 @@ for i in "${SHOTS[@]}"; do
             echo ${x}
             if [ "${DEST_DIR}" == "${SRC_RUN_ARGS_DIR}" ]; then
                 echo "Equal. Moving On"
-                break
+                continue
             fi
             echo ${x}
             # cp ${x} $(uuidgen).json
