@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SRC_DIR=~/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/2_shot/most_common/
+SRC_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/2_shot/most_common/
 RUN_ARGS_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/
 LLM="gpt-4o"
 SHOTS=(1 2 3 4 5 6 7 8 9 10)
