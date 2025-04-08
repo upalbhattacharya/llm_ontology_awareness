@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SRC_RUN_ARGS_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/most_common/2_shot/gpt-4o/wines-ontology
-RUN_ARGS_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/
+RUN_ARGS_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval
 
 LLM="gpt-4o"
 SHOTS=(1 2 3 4 5 6 7 8 9 10)
