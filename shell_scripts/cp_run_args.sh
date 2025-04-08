@@ -18,8 +18,8 @@ for i in "${SHOTS[@]}"; do
                 continue
             fi
             N_UUID=$(uuidgen)
-            # cp ${x} "${DEST_DIR}/$(uuidgen).json"
-            cp ${x} "${DEST_DIR}/${N_UUID}.json"
+            echo "${DEST_DIR}/${N_UUID}.json"
+            # cp ${x} "${DEST_DIR}/${N_UUID}.json"
         done
         # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1_shot/most_common/${i}_shot/g"
         # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1-Shot/${i}-Shot/g"
