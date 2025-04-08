@@ -2,7 +2,8 @@
 
 SRC_DIR=~/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/2_shot/most_common/
 LLM="gpt-4o"
-for i in {2..10}; do
+SHOTS=$(seq 1 10)
+for i in "${SHOTS}"; do
     for j in {astronomy-ontology,case-uco-owl-trafficking,wines-ontology}; do
         cd "${i}_shot/most_common/${LLM}/${j}"
         echo $(pwd)
