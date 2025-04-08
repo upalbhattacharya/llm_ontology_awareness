@@ -20,7 +20,7 @@ for i in "${SHOTS[@]}"; do
             echo "Source and Destination are the same. Moving On"
             continue
         fi
-        for x in "${SRC_RUN_ARGS_DIR}"/*; do
+        for x in "${SRC_DIR}"/*; do
             N_UUID=$(uuidgen)
             N_RUN_ARGS="${DEST_DIR}/${N_UUID}.json"
             # echo ${N_RUN_ARGS}
