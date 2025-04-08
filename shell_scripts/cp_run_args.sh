@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 SRC_DIR=~/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/2_shot/most_common/
+RUN_ARGS_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/
 LLM="gpt-4o"
 SHOTS=$(seq 1 10)
 for i in "${SHOTS}"; do
