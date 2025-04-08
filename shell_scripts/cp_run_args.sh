@@ -6,7 +6,7 @@ LLM="gpt-4o"
 SHOTS=$(seq 1 10)
 for i in "${SHOTS}"; do
     for j in {astronomy-ontology,case-uco-owl-trafficking,wines-ontology}; do
-        cd "${i}_shot/most_common/${LLM}/${j}"
+        cd "${RUN_ARGS_DIR}/${i}_shot/most_common/${LLM}/${j}"
         echo $(pwd)
         for x in "${SRC_DIR}/${LLM}/${j}"/*; do
             echo ${x}
