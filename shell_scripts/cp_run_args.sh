@@ -18,11 +18,12 @@ for i in "${SHOTS[@]}"; do
         fi
         for x in "${SRC_RUN_ARGS_DIR}"/*; do
             N_UUID=$(uuidgen)
-            # echo "${DEST_DIR}/${N_UUID}.json"
-            cp ${x} "${DEST_DIR}/${N_UUID}.json"
+            N_RUN_ARGS="${DEST_DIR}/${N_UUID}.json"
+            echo ${N_RUN_ARGS}
+            # cp ${x} ${N_RUN_ARGS}
+            # sed -i 's@${SRC_ONTOLOGY_NAME}@${j}@g' 
         done
         # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1_shot/most_common/${i}_shot/g"
         # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1-Shot/${i}-Shot/g"
-        # sed -i '
     done
 done
