@@ -15,7 +15,7 @@ for i in "${SHOTS[@]}"; do
         echo ${DEST_DIR}
         for x in "${SRC_RUN_ARGS_DIR}"/*; do
             echo ${x}
-            if ["${DEST_DIR}" = "${SRC_RUN_ARGS_DIR}"]; then
+            if [ "${DEST_DIR}" == "${SRC_RUN_ARGS_DIR}" ]; then
                 echo "Equal. Moving On"
                 break
             fi
