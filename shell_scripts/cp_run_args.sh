@@ -22,9 +22,9 @@ for i in "${SHOTS[@]}"; do
             N_RUN_ARGS="${DEST_DIR}/${N_UUID}.json"
             # echo ${N_RUN_ARGS}
             cp ${x} ${N_RUN_ARGS}
-            sed -i 's@${SRC_ONTOLOGY_NAME}@${j}@g' ${N_RUN_ARGS}
-            sed -i 's@${SRC_SHOT}_shot@${i}_shot@g' ${N_RUN_ARGS}
-            sed -i 's@${SRC_SHOT}-Shot@${i}-Shot@g' ${N_RUN_ARGS}
+            sed -i "s@${SRC_ONTOLOGY_NAME}@${j}@g" ${N_RUN_ARGS}
+            sed -i "s@${SRC_SHOT}_shot@${i}_shot@g" ${N_RUN_ARGS}
+            sed -i "s@${SRC_SHOT}-Shot@${i}-Shot@g" ${N_RUN_ARGS}
         done
     done
 done
