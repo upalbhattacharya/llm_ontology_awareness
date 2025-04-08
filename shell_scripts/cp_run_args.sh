@@ -5,10 +5,9 @@ RUN_ARGS_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/r
 LLM="gpt-4o"
 SHOTS=(1 2 3 4 5 6 7 8 9 10)
 ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
+
 for i in "${SHOTS[@]}"; do
-    echo ${i}
     for j in "${ONTOLOGIES[@]}"; do
-        echo ${j}
         # cd "${RUN_ARGS_DIR}/${i}_shot/most_common/${LLM}/${j}"
         # echo $(pwd)
         for x in "${SRC_DIR}/${LLM}/${j}"/*; do
