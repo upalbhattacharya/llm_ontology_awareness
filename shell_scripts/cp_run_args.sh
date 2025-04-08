@@ -7,6 +7,7 @@ for i in {2..10}; do
         cd "${i}_shot/most_common/${LLM}/${j}"
         echo $(pwd)
         for x in "${SRC_DIR}/${LLM}/${j}"/*; do
+            echo ${x}
             # cp ${x} $(uuidgen).json
         done
         # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1_shot/most_common/${i}_shot/g"
