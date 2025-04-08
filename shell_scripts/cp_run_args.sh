@@ -4,8 +4,9 @@ SRC_DIR=~/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_ret
 RUN_ARGS_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/
 LLM="gpt-4o"
 SHOTS=$(seq 1 10)
+ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
 for i in "${SHOTS}"; do
-    for j in {astronomy-ontology,case-uco-owl-trafficking,wines-ontology}; do
+    for j in "${ONTOLOGIES[@]}"; do
         cd "${RUN_ARGS_DIR}/${i}_shot/most_common/${LLM}/${j}"
         echo $(pwd)
         for x in "${SRC_DIR}/${LLM}/${j}"/*; do
