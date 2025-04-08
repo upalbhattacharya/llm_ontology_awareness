@@ -13,7 +13,7 @@
   "trust_remote_code": true,
   "input": "/scratch/bhatt006/Data/astronomy-ontology/data/term_typing/ranked_retrieval/5_shot/most_common/2025-03-30/term_typing_ranked_retrieval_dataset.json",
   "examples_file": "/scratch/bhatt006/Data/astronomy-ontology/data/term_typing/ranked_retrieval/5_shot/most_common/2025-03-30/term_typing_ranked_retrieval_examples.json",
-  "output_dir": "/scratch/bhatt006/Results/llm_ontology_awareness/term_typing/ranked_retrieval/5_shot/most_common/llama3-7B/astronomy-ontology",
+  "output_dir": "/scratch/bhatt006/Results/llm_ontology_awareness/term_typing/ranked_retrieval/astronomy-ontology",
   "ontology_probe_type": "term_typing",
   "prompt_strategy_type": "5_shot",
   "task_type": "ranked_retrieval",

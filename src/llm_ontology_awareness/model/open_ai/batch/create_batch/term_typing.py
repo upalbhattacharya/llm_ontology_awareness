@@ -67,7 +67,7 @@ def create_ranked_retrieval_batch(
             "body": {
                 "model": run_args.llm_name,
                 "messages": messages,
-                # "max_tokens": run_args.max_tokens,
+                "max_tokens": run_args.max_tokens,
             },
         }
         tasks.append(task)
