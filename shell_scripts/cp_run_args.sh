@@ -14,13 +14,12 @@ for i in "${SHOTS[@]}"; do
     for j in "${ONTOLOGIES[@]}"; do
         SRC_DIR="${RUN_ARGS_DIR}/${SRC_SHOT}_shot${STRAT_SUFFIX}/${LLM}/${j}"
         DEST_DIR="${RUN_ARGS_DIR}/${i}_shot${STRAT_SUFFIX}/${LLM}/${j}"
-        echo ${SRC_DIR}
-        echo ${DEST_DIR}
         if [ "${DEST_DIR}" == "${SRC_RUN_ARGS_DIR}" ]; then
             echo "Source and Destination are the same. Moving On"
             continue
         fi
         for x in "${SRC_DIR}"/*; do
+            echo ${x}
             N_UUID=$(uuidgen)
             N_RUN_ARGS="${DEST_DIR}/${N_UUID}.json"
             # echo ${N_RUN_ARGS}
