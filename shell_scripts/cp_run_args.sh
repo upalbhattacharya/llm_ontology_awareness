@@ -3,7 +3,7 @@
 SRC_DIR=~/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/2_shot/most_common/
 RUN_ARGS_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/
 LLM="gpt-4o"
-SHOTS=$(seq 1 10)
+SHOTS=(1 2 3 4 5 6 7 8 9 10)
 ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
 for i in "${SHOTS[@]}"; do
     echo ${i}
