@@ -13,7 +13,7 @@ for i in "${SHOTS[@]}"; do
     for j in "${ONTOLOGIES[@]}"; do
         DEST_DIR="${RUN_ARGS_DIR}/${i}_shot${STRAT_SUFFIX}/${LLM}/${j}"
         if [ "${DEST_DIR}" == "${SRC_RUN_ARGS_DIR}" ]; then
-            echo "Equal. Moving On"
+            echo "Source and Destination are the same. Moving On"
             continue
         fi
         for x in "${SRC_RUN_ARGS_DIR}"/*; do
