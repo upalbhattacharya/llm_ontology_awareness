@@ -2,6 +2,7 @@
 
 SRC_RUN_ARGS_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/2_shot/most_common/gpt-4o/wines-ontology
 SRC_ONTOLOGY_NAME="wines-ontology"
+SRC_SHOT=2
 RUN_ARGS_DIR=$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval
 
 LLM="gpt-4o"
@@ -19,9 +20,9 @@ for i in "${SHOTS[@]}"; do
         for x in "${SRC_RUN_ARGS_DIR}"/*; do
             N_UUID=$(uuidgen)
             N_RUN_ARGS="${DEST_DIR}/${N_UUID}.json"
-            echo ${N_RUN_ARGS}
-            # cp ${x} ${N_RUN_ARGS}
-            # sed -i 's@${SRC_ONTOLOGY_NAME}@${j}@g' 
+            # echo ${N_RUN_ARGS}
+            cp ${x} ${N_RUN_ARGS}
+            sed -i 's@${SRC_ONTOLOGY_NAME}@${j}@g' 
         done
         # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1_shot/most_common/${i}_shot/g"
         # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1-Shot/${i}-Shot/g"
