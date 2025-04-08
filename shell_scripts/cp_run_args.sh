@@ -14,6 +14,10 @@ for i in "${SHOTS[@]}"; do
         DEST_DIR="${RUN_ARGS_DIR}/${i}_shot${STRAT_SUFFIX}/${LLM}/${j}"
         echo ${DEST_DIR}
         for x in "${SRC_RUN_ARGS_DIR}"/*; do
+            if ["${DEST_DIR}" = "${SRC_RUN_ARGS_DIR}"]; then
+                echo "Equal. Moving On"
+                break
+            fi
             echo ${x}
             # cp ${x} $(uuidgen).json
         done
