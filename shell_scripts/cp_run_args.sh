@@ -9,8 +9,8 @@ for i in "${SHOTS[@]}"; do
     echo ${i}
     for j in "${ONTOLOGIES[@]}"; do
         echo ${j}
-        cd "${RUN_ARGS_DIR}/${i}_shot/most_common/${LLM}/${j}"
-        echo $(pwd)
+        # cd "${RUN_ARGS_DIR}/${i}_shot/most_common/${LLM}/${j}"
+        # echo $(pwd)
         for x in "${SRC_DIR}/${LLM}/${j}"/*; do
             echo ${x}
             # cp ${x} $(uuidgen).json
