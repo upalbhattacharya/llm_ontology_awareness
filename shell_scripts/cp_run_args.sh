@@ -12,9 +12,7 @@ STRAT_SUFFIX="/most_common"
 for i in "${SHOTS[@]}"; do
     for j in "${ONTOLOGIES[@]}"; do
         DEST_DIR="${RUN_ARGS_DIR}/${i}_shot${STRAT_SUFFIX}/${LLM}/${j}"
-        echo ${DEST_DIR}
         for x in "${SRC_RUN_ARGS_DIR}"/*; do
-            echo ${x}
             if [ "${DEST_DIR}" == "${SRC_RUN_ARGS_DIR}" ]; then
                 echo "Equal. Moving On"
                 continue
