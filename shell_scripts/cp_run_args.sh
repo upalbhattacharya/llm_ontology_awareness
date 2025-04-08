@@ -17,8 +17,8 @@ for i in "${SHOTS[@]}"; do
                 echo "Equal. Moving On"
                 continue
             fi
-            echo ${x}
-            cp ${x} "${DEST_DIR}/$(uuidgen).json"
+            # cp ${x} "${DEST_DIR}/$(uuidgen).json"
+            echo "${DEST_DIR}/$(uuidgen).json"
         done
         # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1_shot/most_common/${i}_shot/g"
         # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1-Shot/${i}-Shot/g"
