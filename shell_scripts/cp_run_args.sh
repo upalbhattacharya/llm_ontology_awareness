@@ -10,7 +10,7 @@ STRAT_SUFFIX="/most_common"
 
 for i in "${SHOTS[@]}"; do
     for j in "${ONTOLOGIES[@]}"; do
-        for x in "${RUN_ARGS_DIR}/${i}_shot${LLM}/${j}"/*; do
+        for x in "${RUN_ARGS_DIR}/${i}_shot${STRAT_SUFFIX}/${LLM}/${j}"/*; do
             echo ${x}
             # cp ${x} $(uuidgen).json
         done
