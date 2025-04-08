@@ -26,7 +26,5 @@ for i in "${SHOTS[@]}"; do
             sed -i 's@${SRC_SHOT}_shot@${i}_shot@g' ${N_RUN_ARGS}
             sed -i 's@${SRC_SHOT}-Shot@${i}-Shot@g' ${N_RUN_ARGS}
         done
-        # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1_shot/most_common/${i}_shot/g"
-        # find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i "s/1-Shot/${i}-Shot/g"
     done
 done
