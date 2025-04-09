@@ -140,7 +140,6 @@ class TermTypingRankedRetrievalDataset(Dataset):
                         "content": self.system_message.format(
                             **self.extra_args,
                             classes=self.classes,
-                            examples=self.generate_examples(),
                         )
                         + "\n"
                         + self.user_prompt_template.format(*ents),
