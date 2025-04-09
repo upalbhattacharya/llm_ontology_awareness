@@ -8,6 +8,11 @@ STRAT_SUFFIX="/most_common"
 
 for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do
+        if [ -eq ${shot} 2 ] && [ ${ont} == "wines-ontology" ]; then
+            echo "Skipping"
+            continue
+        fi
+        
         for r_args in "${RUN_ARGS_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}"/*; do
             echo ${r_args}
             python3 "${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/batch/create_batch/term_typing.py" -f "${r_args}"
