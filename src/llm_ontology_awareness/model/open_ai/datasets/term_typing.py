@@ -132,19 +132,33 @@ class TermTypingRankedRetrievalDataset(Dataset):
                     },
                 ]
         else:
-            messages = [
-                {
-                    "role": "system",
-                    "content": self.system_message.format(
-                        **self.extra_args,
-                        classes=self.classes,
-                    ),
-                },
-                {
-                    "role": "user",
-                    "content": self.user_prompt_template.format(*ents),
-                },
-            ]
+            if self.llm_name == "o1-preview":
+                messages = [
+                    {
+                        "role": "user",
+                        "content": self.system_message.format(
+                            **self.extra_args,
+                            classes=self.classes,
+                            examples=self.generate_examples(),
+                        )
+                        + "\n"
+                        + self.user_prompt_template.format(*ents),
+                    },
+                ]
+            else:
+                messages = [
+                    {
+                        "role": "system",
+                        "content": self.system_message.format(
+                            **self.extra_args,
+                            classes=self.classes,
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": self.user_prompt_template.format(*ents),
+                    },
+                ]
         return (
             *ents,
             messages,
