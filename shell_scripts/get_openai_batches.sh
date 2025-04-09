@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SHOTS=(2 4 6 7 8 9)
+SHOTS=(1 2 3 4 5 6 7 8 9 10)
 ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
 BASE_PATH="$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrieval"
 MODEL="gpt-4o"
