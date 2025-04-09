@@ -60,7 +60,19 @@ def create_ranked_retrieval_batch(
 
     for i in tqdm(range(num_samples)):
         inst, messages, label = next(test_data)
+        if run_args.llm_name == "o1-preview":
         task = {
+            "custom_id": f"task-{i}",
+            "method": "POST",
+            "url": "/v1/chat/completions",
+            "body": {
+                "model": run_args.llm_name,
+                "messages": messages,
+                "max_tokens": run_args.max_tokens,
+            },
+        }
+        else:
+            task = {
             "custom_id": f"task-{i}",
             "method": "POST",
             "url": "/v1/chat/completions",
@@ -145,6 +157,7 @@ if __name__ == "__main__":
             user_prompt_template=run_args.user_prompt_template,
             task_type=run_args.task_type,
             examples_file=run_args.examples_file,
+            llm_name=run_args.llm_name,
             **run_args.kwargs,
         )
         tasks, df = create_ranked_retrieval_batch(test_data, run_args)
