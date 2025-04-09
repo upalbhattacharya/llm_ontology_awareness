@@ -103,7 +103,6 @@ class TermTypingRankedRetrievalDataset(Dataset):
     def __getitem__(self, idx):
         *ents, label = self.df.row(idx)
         if self.examples is not None:
-            print("Found examples")
             if self.llm_name == "o1-preview":
                 messages = [
                     {
