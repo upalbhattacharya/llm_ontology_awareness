@@ -8,7 +8,7 @@ STRAT_SUFFIX="/most_common"
 
 for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do
-        echo $(tree "${BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}/")
+       python3 "${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/batch/retrieve_response.py" "${BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}/"
     done
 done
 
