@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SHOTS=(1)
+SHOTS=(0)
 ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking")
 BASE_PATH="$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrieval"
 MODEL="o1-preview"
