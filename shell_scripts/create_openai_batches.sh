@@ -2,7 +2,6 @@
 
 SHOTS=(2 4 6 7 8 9)
 ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
-BASE_PATH="$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrieval"
 RUN_ARGS_PATH="$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval"
 MODEL="gpt-4o"
 STRAT_SUFFIX="/most_common"
