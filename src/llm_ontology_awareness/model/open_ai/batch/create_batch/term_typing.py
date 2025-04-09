@@ -61,27 +61,27 @@ def create_ranked_retrieval_batch(
     for i in tqdm(range(num_samples)):
         inst, messages, label = next(test_data)
         if run_args.llm_name == "o1-preview":
-        task = {
-            "custom_id": f"task-{i}",
-            "method": "POST",
-            "url": "/v1/chat/completions",
-            "body": {
-                "model": run_args.llm_name,
-                "messages": messages,
-                "max_tokens": run_args.max_tokens,
-            },
-        }
+            task = {
+                "custom_id": f"task-{i}",
+                "method": "POST",
+                "url": "/v1/chat/completions",
+                "body": {
+                    "model": run_args.llm_name,
+                    "messages": messages,
+                    "max_tokens": run_args.max_tokens,
+                },
+            }
         else:
             task = {
-            "custom_id": f"task-{i}",
-            "method": "POST",
-            "url": "/v1/chat/completions",
-            "body": {
-                "model": run_args.llm_name,
-                "messages": messages,
-                "max_tokens": run_args.max_tokens,
-            },
-        }
+                "custom_id": f"task-{i}",
+                "method": "POST",
+                "url": "/v1/chat/completions",
+                "body": {
+                    "model": run_args.llm_name,
+                    "messages": messages,
+                    "max_tokens": run_args.max_tokens,
+                },
+            }
         tasks.append(task)
         label_mapping.append((f"task-{i}", inst, label))
 
