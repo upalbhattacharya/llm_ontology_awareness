@@ -87,6 +87,7 @@ class TermTypingRankedRetrievalDataset(Dataset):
         )
         if not self.extra_args:
             self.extra_args = {}
+        self.llm_name = llm_name
 
     def __len__(self):
         return self.df.select(pl.len()).item()
@@ -102,20 +103,21 @@ class TermTypingRankedRetrievalDataset(Dataset):
     def __getitem__(self, idx):
         *ents, label = self.df.row(idx)
         if self.examples is not None:
-            messages = [
-                {
-                    "role": "system",
-                    "content": self.system_message.format(
-                        **self.extra_args,
-                        classes=self.classes,
-                        examples=self.generate_examples(),
-                    ),
-                },
-                {
-                    "role": "user",
-                    "content": self.user_prompt_template.format(*ents),
-                },
-            ]
+            if self.llm_name == "o1-preview":
+                messages = [
+                    {
+                        "role": "system",
+                        "content": self.system_message.format(
+                            **self.extra_args,
+                            classes=self.classes,
+                            examples=self.generate_examples(),
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": self.user_prompt_template.format(*ents),
+                    },
+                ]
         else:
             messages = [
                 {
