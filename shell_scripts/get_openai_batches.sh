@@ -8,7 +8,8 @@ STRAT_SUFFIX="/most_common"
 
 for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do
-       python3 "${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/batch/retrieve_response.py" "${BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}/"
+        for r_args in "${BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}"/; do
+       python3 "${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/batch/retrieve_response.py" 
     done
 done
 
