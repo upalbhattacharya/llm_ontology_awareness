@@ -8,7 +8,7 @@ STRAT_SUFFIX="/most_common"
 
 for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do
-        if [ -eq ${shot} 2 ] && [ ${ont} == "wines-ontology" ]; then
+        if [ ${shot} -eq 2 ] && [ ${ont} == "wines-ontology" ]; then
             echo "Skipping"
             continue
         fi
