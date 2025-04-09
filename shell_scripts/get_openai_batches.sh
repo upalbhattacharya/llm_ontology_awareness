@@ -7,4 +7,8 @@ MODEL="gpt-4o"
 STRAT_SUFFIX="/most_common"
 
 for shot in "${SHOTS[@]}"; do
-    for ont in
+    for ont in "${ONTOLOGIES[@]}"; do
+        echo $(tree "${BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}/")
+    done
+done
+
