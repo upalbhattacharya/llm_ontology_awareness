@@ -67,6 +67,7 @@ class TermTypingRankedRetrievalDataset(Dataset):
         user_prompt_template: str,
         task_type: str,
         examples_file: Optional[str] = None,
+        llm_name: Optional[str] = "gpt-4o",
         **kwargs,
     ):
         self.task_type = task_type
@@ -158,6 +159,7 @@ if __name__ == "__main__":
         user_prompt_template=run_args.user_prompt_template,
         task_type=run_args.task_type,
         examples_file=run_args.examples_file,
+        llm_name=run_args.llm_name,
         **run_args.kwargs,
     )
     num_samples = len(itcib)
