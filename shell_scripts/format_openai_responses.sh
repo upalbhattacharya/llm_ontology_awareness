@@ -12,7 +12,7 @@ for shot in "${SHOTS[@]}"; do
         for r_args in "${BASE_RESULTS_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}"/*; do
             for run in "${r_args}/runs"/*; do
                 echo ${run}
-                python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/format_response_content/term_typing.py
+                # python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/format_response_content/term_typing.py
             done
         done
     done
