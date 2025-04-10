@@ -6,7 +6,7 @@ SHOTS=(3)
 # ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
 ONTOLOGIES=("case-uco-owl-trafficking" "wines-ontology")
 BASE_PATH="$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrieval"
-MODEL="gpt-4o-temp_high"
+MODEL="gpt-4o-temp_low"
 
 STRAT_SUFFIX="/most_common"
 # STRAT_SUFFIX=""
