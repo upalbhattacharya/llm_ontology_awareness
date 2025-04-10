@@ -1,9 +1,8 @@
 {
   "llm_name": "o1-preview",
   "max_tokens": 4000,
-  "input":
-  "/home/upal/Data/ontologies/wines-ontology/data/term_typing/ranked_retrieval/0_shot/2024-09-05/term_typing_ranked_retrieval_dataset.json",
-  "output_dir": "/home/upal/Results/llm_ontology_awareness/term_typing/ranked_retrieval/0_shot/wines-ontology/o1-preview",
+  "input": "/home/upal/Data/ontologies/wines-ontology/data/term_typing/ranked_retrieval/0_shot/2024-09-05/term_typing_ranked_retrieval_dataset.json",
+  "output_dir": "/home/upal/Results/llm_ontology_awareness/term_typing/ranked_retrieval/0_shot/o1-preview/wines-ontology",
   "ontology_probe_type": "term_typing",
   "prompt_strategy_type": "0_shot",
   "task_type": "ranked_retrieval",

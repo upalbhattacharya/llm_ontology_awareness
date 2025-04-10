@@ -1,0 +1,15 @@
+{
+  "llm_name": "o1-preview",
+  "max_tokens": 4000,
+  "input": "/home/upal/Data/ontologies/case-uco-owl-trafficking/data/term_typing/ranked_retrieval/0_shot/2024-09-05/term_typing_ranked_retrieval_dataset.json",
+  "output_dir": "/home/upal/Results/llm_ontology_awareness/term_typing/ranked_retrieval/0_shot/o1-preview/case-uco-owl-trafficking",
+  "ontology_probe_type": "term_typing",
+  "prompt_strategy_type": "0_shot",
+  "task_type": "ranked_retrieval",
+  "system_message": "Provide only a ranked list of the top {depth} most likely classes that the following item belongs to from the following ontology and cyber crime investigation-based classes: {classes}",
+  "user_prompt_template": "item: {}",
+  "description": "Zero-Shot, Domain and Ontology Prompt, No pre-qualification Class Assertion Ranked Retrieval on CASE Ontology",
+  "kwargs": {
+    "depth": 8
+  }
+}
