@@ -9,7 +9,7 @@ STRAT_SUFFIX="/most_common"
 /home/upal/Results/llm_ontology_awareness/term_typing/ranked_retrieval/1_shot/most_common/
 for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do
-        for r_args in "${BASE_RESULTS_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}"/*; do
+        for r_args in "${BASE_RESULTS_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}"/*; do
             echo ${r_args}
             for run in "${r_args}/runs"/*; do
                 echo ${run}
