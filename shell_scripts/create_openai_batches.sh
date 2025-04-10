@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SHOTS=(0)
+SHOTS=(3)
 ONTOLOGIES=("wines-ontology" "case-uco-owl-trafficking")
 RUN_ARGS_PATH="$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval"
 MODELS=("gpt-4o-temp_high" "gpt-4o-temp_low")
