@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-SHOTS=(1 2 3 4 5 6 7 8 9 10)
+# SHOTS=(1 2 3 4 5 6 7 8 9 10)
+# SHOTS=(3)
+SHOTS=(0)
 ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
 BASE_PATH="$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrieval"
-MODEL="gpt-4o"
-STRAT_SUFFIX="/most_common"
+MODEL="o1-preview"
+# STRAT_SUFFIX="/most_common"
+STRAT_SUFFIX=""
 
 for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do
