@@ -41,7 +41,8 @@ output_dir = os.path.dirname(args.response_file)
 
 df = pl.read_ndjson(args.response_file)
 y_true_df = pl.read_ndjson(args.label_mapping)
-
+print(y_true_df)
+print(df)
 join_df = df.join(y_true_df, on="Custom ID")
 print(join_df)
 columns = task_types[run_args.task_type]["format_response"]["df_columns"]
@@ -51,7 +52,11 @@ join_df = join_df.select(columns)
 join_df = join_df.with_columns(
     pl.col("Response")
     .map_elements(
-        function=task_types[run_args.task_type]["format_response"]["function"],
+        # function=task_types[run_args.task_type]["format_response"]["function"],
+        # return_dtype=task_types[run_args.task_type]["format_response"]["return_dtype"],
+        function=lambda x: task_types[run_args.task_type]["format_response"][
+            "function"
+        ](x, run_args.llm_name),
         return_dtype=task_types[run_args.task_type]["format_response"]["return_dtype"],
     )
     .alias("Prediction")
