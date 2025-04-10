@@ -14,7 +14,7 @@ for shot in "${SHOTS[@]}"; do
         # fi
         for r_args in "${BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}"/*; do
             for run in "${r_args}/runs"/*; do
-                # echo ${run}
+                echo ${run}
                 python3 "${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/batch/retrieve_response.py" -j "${run}/ids.json"
             done
         done 
