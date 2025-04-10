@@ -69,6 +69,7 @@ def create_ranked_retrieval_batch(
                     "model": run_args.llm_name,
                     "messages": messages,
                     "max_completion_tokens": run_args.max_tokens,
+                    "temperature": run_args.temperature,
                 },
             }
         else:
@@ -80,6 +81,7 @@ def create_ranked_retrieval_batch(
                     "model": run_args.llm_name,
                     "messages": messages,
                     "max_tokens": run_args.max_tokens,
+                    "temperature": run_args.temperature,
                 },
             }
         tasks.append(task)

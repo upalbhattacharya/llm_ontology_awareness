@@ -30,6 +30,9 @@ class RunArguments(BaseModel):
     max_tokens: Optional[int] = Field(
         default=1, metadata={"help": "Maximum number of tokens to generate"}
     )
+    temperature: Optional[float] = Field(
+        default=None, metadata={"help": "Temperature for generation"}
+    )
     system_message: Optional[str] = Field(
         default=None, metadata={"help": "System message to use for the model"}
     )
