@@ -17,8 +17,8 @@ for rep in "${REPETITIONS[@]}"; do
             # fi
             for MODEL in "${MODELS[@]}"; do
                 for r_args in "${BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}"/*; do
-                    echo ${rep}
-                    # python3 "${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/batch/submit_batch.py" -b "${r_args}"
+                    # echo ${rep}
+                    python3 "${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/batch/submit_batch.py" -b "${r_args}"
                 done
             done 
         done
