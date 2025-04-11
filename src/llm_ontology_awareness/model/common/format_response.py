@@ -19,6 +19,7 @@ def llama3(value: str):
         values,
         re.DOTALL,
     )  # For older response format
+    values = values[values.find("<|start_header_id|>assistant<|end_header_id|>") :]
     print(values)
     values = re.sub(
         r"^.+?:", "", values, re.DOTALL
