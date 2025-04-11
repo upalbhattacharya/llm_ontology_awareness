@@ -13,6 +13,12 @@ def llama3(value: str):
         r"(\<\|begin_of_text\|\>\s*|\<\|eot_id\|\>)", "", value
     )  # For older response format
     values = re.sub(
+        r"\<\|start_header_id\|\>assistant\<\|end_header_id\|\>(.*)\<\|eot_id\|\>",
+        r"\1",
+        values,
+    )  # For older response format
+    print(values)
+    values = re.sub(
         r"^.+?:", "", values, re.DOTALL
     )  # Removes non-essential starting text
     values = re.sub(r"\b\d+\b", "", values)  # Remove numbers
@@ -42,7 +48,7 @@ def gpt_4o(value: str):
 llm_response_extract = {
     "meta-llama/Meta-Llama-3-8B-Instruct": llama3,
     "deepseek-ai/DeepSeek-R1-Distill-Llama-8B": deepseekr1,
-    "gpt-4o": gpt_4o,
+    "gpt-4o": llama3,
 }
 
 
