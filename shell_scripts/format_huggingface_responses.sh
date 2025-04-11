@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ONTOLOGIES=("case-uco-owl-trafficking" "wines-ontology")
-LLM="llama3-7B-temp_low"
+LLM="llama3-7B-temp_high"
 SHOTS=(3)
 # RUN="run_2"
 STRAT_SUFFIX="/most_common"
