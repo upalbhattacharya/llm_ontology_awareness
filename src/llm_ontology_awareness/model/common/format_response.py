@@ -14,7 +14,7 @@ def llama3(value: str):
     )  # For older response format
     # print(values)
     values = re.sub(
-        r"^.*<\|start_header_id\|>assistant<\|end_header_id|\>",
+        r"^.*<\|start_header_id\|>assistant<\|end_header_id\|>",
         "",
         values,
         re.DOTALL,
