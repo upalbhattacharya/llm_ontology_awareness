@@ -5,7 +5,7 @@ ONTOLOGIES=("wines-ontology" "case-uco-owl-trafficking" "astronomy-ontology")
 DATES=("2025-03-30" "2025-03-30" "2025-03-30")
 DEPTHS=(4 8 10)
 
-LLM="llama3-7B-temp_high"
+LLM="llama3-7B-temp_low"
 # LLM_SUFFIX="/runs"
 LLM_SUFFIX=""
 
