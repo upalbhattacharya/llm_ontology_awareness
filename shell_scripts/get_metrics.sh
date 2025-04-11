@@ -12,10 +12,12 @@ STRAT_SUFFIX=""
 
 RUN="run_1"
 
-for i in "${SHOTS[@]}"; do
-	for j in "${HOME}/Results/llm_ontology_awareness/term_typing/ranked_retrieval/${i}_shot${STRAT_SUFFIX}/${LLM}/${ONT}"/*; do
-		python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/metrics/results/term_typing.py -yt ${HOME}/Data/ontologies/${ONT}/data/term_typing/ranked_retrieval/${i}_shot${STRAT_SUFFIX}/${DATE}/term_typing_ranked_retrieval_dataset.json \
-                -yp ${j}/${RUN}/predictions.json -n ranked_retrieval --kwargs k=${DEPTH}
+for shot in "${SHOTS[@]}"; do
+    for ont in "${ONTOLOGIES[@]}"; do 
+	    for r_args in "${HOME}/Results/llm_ontology_awareness/term_typing/ranked_retrieval/${shot}_shot${STRAT_SUFFIX}/${LLM}/${ONT}"/*; do
+		    python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/metrics/results/term_typing.py -yt ${HOME}/Data/ontologies/${ONT}/data/term_typing/ranked_retrieval/${i}_shot${STRAT_SUFFIX}/${DATE}/term_typing_ranked_retrieval_dataset.json \
+                    -yp ${j}/${RUN}/predictions.json -n ranked_retrieval --kwargs k=${DEPTH}
+        done
 	done
 done
 
