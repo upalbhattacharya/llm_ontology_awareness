@@ -10,6 +10,7 @@ STRAT_SUFFIX=""
 # STRAT_SUFFIX="/most_common"
 # SHOTS=$(seq 1 10)
 RESULTS_BASE_PATH=$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrieval
+DATA_BASE_PATH=$HOME/Data/ontologies
 
 for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do 
