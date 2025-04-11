@@ -20,7 +20,7 @@ for shot in "${SHOTS[@]}"; do
 	    for r_args in "${RESULTS_BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${LLM}/${ONTOLOGIES[ont_idx]}"/*; do
             for run_path in "${r_args}${LLM_SUFFIX}"/*; do
                 echo ${run_path}
-                echo $DATES[ont_idx]}
+                echo ${DATES[ont_idx]}
                 echo ${DEPTHS[ont_idx]}
 		        # python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/metrics/results/term_typing.py \
                 #         -yt "${DATA_BASE_PATH}/${ONTOLOGIES[ont_idx]}/data/term_typing/ranked_retrieval/${shot}_shot${STRAT_SUFFIX}/${DATES[ont_idx]}/term_typing_ranked_retrieval_dataset.json" \
