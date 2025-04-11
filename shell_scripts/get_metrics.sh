@@ -17,7 +17,7 @@ DATA_BASE_PATH=$HOME/Data/ontologies
 
 for shot in "${SHOTS[@]}"; do
     for ont_idx in "${!ONTOLOGIES[@]}"; do 
-	    for r_args in "${RESULTS_BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${LLM}/${ont[1]}"/*; do
+	    for r_args in "${RESULTS_BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${LLM}/${ONTOLOGIES[ont_idx]}"/*; do
             for run_path in "${r_args}${LLM_SUFFIX}"/*; do
                 echo ${run_path}
 		        # python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/metrics/results/term_typing.py \
