@@ -13,7 +13,7 @@ def llama3(value: str):
         r"(<\|begin_of_text\|>\s*|<\|eot_id\|>)", "", value
     )  # For older response format
     # print(values)
-    print(values.find("<|start_header_id|>assistant<|end_header_id|>"))
+    print(values[values.find("<|start_header_id|>assistant<|end_header_id|>") :])
     values = values[values.find("<|start_header_id|>assistant<|end_header_id|>") :]
     print(values)  # For errors
     values = re.sub(
