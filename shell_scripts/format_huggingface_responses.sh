@@ -12,7 +12,7 @@ for ont in "${ARR[@]}"; do
 			echo ${uid}
 			python3 $HOME/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/hugging_face/format_response_content/term_typing.py -f ${j}/${RUN}/responses.json \
 				-l ${j}/${RUN}/label_mapping.json \
-				-r ${j}/${RUN}/params.json
+				-r "${HOME}/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval/${i}_shot/${LLM}/${ont}/${uid}.json"
 		done
 	done
 done
