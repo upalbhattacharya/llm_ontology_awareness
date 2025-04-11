@@ -4,7 +4,6 @@ ONTOLOGIES=(("wines-ontology" 4 "2024-09-05") ("astronomy-ontology" 10 "2024-11-
 
 # ONTOLOGIES=(("wines-ontology" 4 "2025-03-30") ("astronomy-ontology" 10 "2025-03-30") ("case-uco-owl-trafficking" 8 "2025-03-30"))
 
-
 LLM="llama3-7B"
 SHOTS=(0)
 STRAT_SUFFIX=""
