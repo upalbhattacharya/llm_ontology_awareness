@@ -6,7 +6,8 @@ SHOTS=(0)
 BASE_RESULTS_PATH=$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrieval
 
 # ONTOLOGIES=("case-uco-owl-trafficking" "wines-ontology")
-ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
+# ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
+ONTOLOGIES=("wines-ontology")
 MODEL="o1-preview"
 # STRAT_SUFFIX="/most_common"
 STRAT_SUFFIX=""
