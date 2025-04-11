@@ -6,8 +6,9 @@ BASE_RESULTS_PATH=$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrie
 
 ONTOLOGIES=("case-uco-owl-trafficking" "wines-ontology")
 # ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
-MODEL="gpt-4o-temp_low"
-STRAT_SUFFIX="/most_common"
+MODEL="o1-preview"
+# STRAT_SUFFIX="/most_common"
+STRAT_SUFFIX=""
 for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do
         for r_args in "${BASE_RESULTS_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}"/*; do
