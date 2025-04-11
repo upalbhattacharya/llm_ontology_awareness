@@ -9,7 +9,8 @@ LLM="llama3-7B"
 # LLM_SUFFIX="/runs"
 LLM_SUFFIX=""
 
-SHOTS=(1 2 3 4 5 6 7 8 9 10)
+# SHOTS=(1 2 3 4 5 6 7 8 9 10)
+SHOTS=(3)
 # SHOTS=(0)
 # STRAT_SUFFIX=""
 STRAT_SUFFIX="/most_common"
