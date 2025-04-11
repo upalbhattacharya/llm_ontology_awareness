@@ -15,7 +15,7 @@ def llama3(value: str):
     # print(values)
     offset = values.find("<|start_header_id|>assistant<|end_header_id|>")
     if offset != -1:
-        values = values[offset + len("<|start_header_id|>assistant<|end_header_id|>")]
+        values = values[offset + len("<|start_header_id|>assistant<|end_header_id|>") :]
     print(values)
     values = re.sub(
         r"^.+?:", "", values, re.DOTALL
