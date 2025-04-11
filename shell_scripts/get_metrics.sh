@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-ONT="wines-ontology"
-DEPTH=4
-DATE="2024-09-05"
 ONTOLOGIES=(("wines-ontology" 4 "2024-09-05") ("astronomy-ontology" 10 "2024-11-04") ("case-uco-owl-trafficking" 8 "2024-09-05"))
 
 # ONTOLOGIES=(("wines-ontology" 4 "2025-03-30") ("astronomy-ontology" 10 "2025-03-30") ("case-uco-owl-trafficking" 8 "2025-03-30"))
