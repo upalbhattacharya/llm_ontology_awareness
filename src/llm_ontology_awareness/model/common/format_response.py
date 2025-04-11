@@ -12,12 +12,13 @@ def llama3(value: str):
     values = re.sub(
         r"(\<\|begin_of_text\|\>\s*|\<\|eot_id\|\>)", "", value
     )  # For older response format
+    print(values)
     values = re.sub(
         r"\<\|start_header_id\|\>assistant\<\|end_header_id\|\>(.*)\<\|eot_id\|\>",
         r"\1",
         values,
     )  # For older response format
-    print(values)
+    # print(values)
     values = re.sub(
         r"^.+?:", "", values, re.DOTALL
     )  # Removes non-essential starting text
