@@ -6,6 +6,7 @@ ONTOLOGIES=(("wines-ontology" 4 "2024-09-05") ("astronomy-ontology" 10 "2024-11-
 
 LLM="llama3-7B"
 # LLM_SUFFIX="/runs"
+LLM_SUFFIX=""
 SHOTS=(0)
 STRAT_SUFFIX=""
 # STRAT_SUFFIX="/most_common"
