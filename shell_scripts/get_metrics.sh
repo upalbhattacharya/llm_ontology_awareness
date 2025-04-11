@@ -16,7 +16,7 @@ for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do 
 	    for r_args in "${RESULTS_BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${LLM}/${ont[1]}"/*; do
 		    python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/metrics/results/term_typing.py \
-                    -yt "${RESULTS_BASE_PATH}/${i}_shot${STRAT_SUFFIX}/${DATE}/term_typing_ranked_retrieval_dataset.json \
+                    -yt "${DATA_BASE_PATH}/${ont[0]}/data/term_typing/ranked_retrieval/${shot}_shot${STRAT_SUFFIX}/${ont[2]}/term_typing_ranked_retrieval_dataset.json \
                     -yp ${j}/${RUN}/predictions.json \
                     -n ranked_retrieval \
                     --kwargs k=${DEPTH}
