@@ -10,6 +10,7 @@ ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
 MODEL="o1-preview"
 # STRAT_SUFFIX="/most_common"
 STRAT_SUFFIX=""
+
 for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do
         for r_args in "${BASE_RESULTS_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}"/*; do
