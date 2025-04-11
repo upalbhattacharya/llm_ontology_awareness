@@ -4,7 +4,6 @@ ONTOLOGIES=("wines-ontology" "case-uco-owl-trafficking" "astronomy-ontology")
 DATES=("2024-09-05" "2024-09-05" "2024-11-04")
 # DATES=("2025-03-30" "2025-03-30" "2025-03-30")
 DEPTHS=(4 8 10)
-# ONTOLOGIES=(("wines-ontology" 4 "2025-03-30") ("astronomy-ontology" 10 "2025-03-30") ("case-uco-owl-trafficking" 8 "2025-03-30"))
 
 LLM="llama3-7B"
 # LLM_SUFFIX="/runs"
@@ -17,7 +16,7 @@ RESULTS_BASE_PATH=$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrie
 DATA_BASE_PATH=$HOME/Data/ontologies
 
 for shot in "${SHOTS[@]}"; do
-    for ont in "${ONTOLOGIES[@]}"; do 
+    for ont_idx in "${!ONTOLOGIES[@]}"; do 
 	    for r_args in "${RESULTS_BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${LLM}/${ont[1]}"/*; do
             for run_path in "${r_args}${LLM_SUFFIX}"/*; do
                 echo ${run_path}
