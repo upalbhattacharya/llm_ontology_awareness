@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
 ONTOLOGIES=("wines-ontology" "case-uco-owl-trafficking" "astronomy-ontology")
-DATES=("2024-09-05" "2024-09-05" "2024-11-04")
-# DATES=("2025-03-30" "2025-03-30" "2025-03-30")
+# DATES=("2024-09-05" "2024-09-05" "2024-11-04")
+DATES=("2025-03-30" "2025-03-30" "2025-03-30")
 DEPTHS=(4 8 10)
 
 LLM="gpt-4o"
 LLM_SUFFIX="/runs"
 # LLM_SUFFIX=""
 
-# SHOTS=(1 2 3 4 5 6 7 8 9 10)
+SHOTS=(1 2 3 4 5 6 7 8 9 10)
 # SHOTS=(3)
-SHOTS=(0)
-STRAT_SUFFIX=""
-# STRAT_SUFFIX="/most_common"
+# SHOTS=(0)
+# STRAT_SUFFIX=""
+STRAT_SUFFIX="/most_common"
 
 RESULTS_BASE_PATH=$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrieval
 DATA_BASE_PATH=$HOME/Data/ontologies
