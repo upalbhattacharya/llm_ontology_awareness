@@ -14,7 +14,7 @@ def llama3(value: str):
     )  # For older response format
     # print(values)
     values = values[values.find("<|start_header_id|>assistant<|end_header_id|>") :]
-    print(values)
+    print(values)  # For errors
     values = re.sub(
         r"^.+?:", "", values, re.DOTALL
     )  # Removes non-essential starting text
