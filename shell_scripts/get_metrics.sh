@@ -24,7 +24,7 @@ for shot in "${SHOTS[@]}"; do
                         -yp ${j}/${RUN}/predictions.json \
                         -n ranked_retrieval \
                         --kwargs k=${DEPTH}
-done
+            done
         done
 	done
 done
