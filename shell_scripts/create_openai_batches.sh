@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-SHOTS=(3)
-ONTOLOGIES=("wines-ontology" "case-uco-owl-trafficking")
+# SHOTS=(3)
+SHOTS=0
+ONTOLOGIES=("wines-ontology")
 RUN_ARGS_PATH="$HOME/PhD/Experiments/llm_ontology_awareness/run_args/term_typing/ranked_retrieval"
-MODELS=("gpt-4o-temp_high" "gpt-4o-temp_low")
-STRAT_SUFFIX="/most_common"
-# STRAT_SUFFIX=""
+# MODELS=("gpt-4o-temp_high" "gpt-4o-temp_low")
+MODELS=("o1-preview")
+# STRAT_SUFFIX="/most_common"
+STRAT_SUFFIX=""
 
 for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do

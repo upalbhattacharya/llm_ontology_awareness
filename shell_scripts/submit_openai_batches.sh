@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-REPETITIONS=(1 2 3 4 5 6 7 8 9)
-SHOTS=(3)
-ONTOLOGIES=("wines-ontology" "case-uco-owl-trafficking")
+# REPETITIONS=(1 2 3 4 5 6 7 8 9)
+REPETITIONS=(1)
+# SHOTS=(3)
+SHOTS=(0)
+# ONTOLOGIES=("wines-ontology" "case-uco-owl-trafficking")
+ONTOLOGIES=("wines-ontology")
 BASE_PATH="$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrieval"
-MODELS=("gpt-4o-temp_high" "gpt-4o-temp_low")
-STRAT_SUFFIX="/most_common"
-# STRAT_SUFFIX=""
+# MODELS=("gpt-4o-temp_high" "gpt-4o-temp_low")
+MODELS=("o1-preview")
+# STRAT_SUFFIX="/most_common"
+STRAT_SUFFIX=""
 
 for rep in "${REPETITIONS[@]}"; do
     for shot in "${SHOTS[@]}"; do
