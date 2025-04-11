@@ -2,7 +2,7 @@
 ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
 LLM="llama3-7B"
 SHOTS=(3)
-RUN="run_2"
+# RUN="run_2"
 STRAT_SUFFIX="/most_common"
 
 for ont in "${ONTOLOGIES[@]}"; do
