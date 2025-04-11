@@ -23,7 +23,7 @@ for shot in "${SHOTS[@]}"; do
                         -yt "${DATA_BASE_PATH}/${ont[0]}/data/term_typing/ranked_retrieval/${shot}_shot${STRAT_SUFFIX}/${ont[2]}/term_typing_ranked_retrieval_dataset.json" \
                         -yp ${run_path}/predictions.json \
                         -n ranked_retrieval \
-                        --kwargs k=${DEPTH}
+                        --kwargs k=${ont[1]}
             done
         done
 	done
