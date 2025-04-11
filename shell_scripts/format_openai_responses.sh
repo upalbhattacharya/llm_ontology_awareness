@@ -5,9 +5,10 @@
 SHOTS=(0)
 BASE_RESULTS_PATH=$HOME/Results/llm_ontology_awareness/term_typing/ranked_retrieval
 
+ONTOLOGIES=("case-uco-owl-trafficking" "astronomy-ontology")
 # ONTOLOGIES=("case-uco-owl-trafficking" "wines-ontology")
 # ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
-ONTOLOGIES=("wines-ontology")
+# ONTOLOGIES=("wines-ontology")
 MODEL="o1-preview"
 # STRAT_SUFFIX="/most_common"
 STRAT_SUFFIX=""
@@ -17,8 +18,8 @@ for shot in "${SHOTS[@]}"; do
         for r_args in "${BASE_RESULTS_PATH}/${shot}_shot${STRAT_SUFFIX}/${MODEL}/${ont}"/*; do
             for run in "${r_args}/runs"/*; do
                 echo ${run}
-                # python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/batch/format_response_content/term_typing.py -f ${run} -r ${r_args}/params.json -l ${r_args}/label_mapping.json
-                python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/format_response_content/term_typing.py -f ${run}/responses.json -r ${r_args}/params.json -l ${r_args}/label_mapping.json
+                python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/batch/format_response_content/term_typing.py -f ${run} -r ${r_args}/params.json -l ${r_args}/label_mapping.json
+                # python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/model/open_ai/format_response_content/term_typing.py -f ${run}/responses.json -r ${r_args}/params.json -l ${r_args}/label_mapping.json
             done
         done
     done
