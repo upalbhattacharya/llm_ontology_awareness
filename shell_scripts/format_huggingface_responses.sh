@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
+ONTOLOGIES=("case-uco-owl-trafficking" "wines-ontology")
 LLM="llama3-7B-temp_low"
 SHOTS=(3)
 # RUN="run_2"
