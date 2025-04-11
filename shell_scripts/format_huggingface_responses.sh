@@ -3,9 +3,11 @@ ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
 LLM="llama3-7B"
 SHOTS=(3)
 RUN="run_2"
+STRAT_SUFFIX="/most_common"
+
 for ont in "${ONTOLOGIES[@]}"; do
 	for shot in "${SHOTS[@]}"; do
-		for r_args in "${HOME}/Results/llm_ontology_awareness/term_typing/ranked_retrieval/${shot}_shot/${LLM}/${ont}"/*; do
+		for r_args in "${HOME}/Results/llm_ontology_awareness/term_typing/ranked_retrieval/${shot}_shot${STRAT_SUFFIX}/${LLM}/${ont}"/*; do
 			uid=$(basename "${j}")
             for run_path in "${r_args}"/*; do
                 echo ${run_path}
