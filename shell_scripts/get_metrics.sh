@@ -18,12 +18,12 @@ for shot in "${SHOTS[@]}"; do
     for ont in "${ONTOLOGIES[@]}"; do 
 	    for r_args in "${RESULTS_BASE_PATH}/${shot}_shot${STRAT_SUFFIX}/${LLM}/${ont[1]}"/*; do
             for run_path in "${r_args}${LLM_SUFFIX}"/*; do
-                
-		        python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/metrics/results/term_typing.py \
-                        -yt "${DATA_BASE_PATH}/${ont[0]}/data/term_typing/ranked_retrieval/${shot}_shot${STRAT_SUFFIX}/${ont[2]}/term_typing_ranked_retrieval_dataset.json" \
-                        -yp ${run_path}/predictions.json \
-                        -n ranked_retrieval \
-                        --kwargs k=${ont[1]}
+                echo ${run_path}
+		        # python3 ${HOME}/PhD/Experiments/llm_ontology_awareness/src/llm_ontology_awareness/metrics/results/term_typing.py \
+                #         -yt "${DATA_BASE_PATH}/${ont[0]}/data/term_typing/ranked_retrieval/${shot}_shot${STRAT_SUFFIX}/${ont[2]}/term_typing_ranked_retrieval_dataset.json" \
+                #         -yp ${run_path}/predictions.json \
+                #         -n ranked_retrieval \
+                #         --kwargs k=${ont[1]}
             done
         done
 	done
