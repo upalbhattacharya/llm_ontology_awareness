@@ -3,7 +3,8 @@ ONTOLOGIES=("astronomy-ontology" "case-uco-owl-trafficking" "wines-ontology")
 LLM="deepseekr1-distill-llama3-8B"
 SHOTS=(0)
 # RUN="run_2"
-STRAT_SUFFIX="/most_common"
+# STRAT_SUFFIX="/most_common"
+STRAT_SUFFIX=""
 
 for ont in "${ONTOLOGIES[@]}"; do
 	for shot in "${SHOTS[@]}"; do
