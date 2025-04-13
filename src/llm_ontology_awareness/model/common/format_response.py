@@ -30,7 +30,9 @@ def llama3(value: str):
 
 
 def deepseekr1(value: str):
-    values = re.sub(r"^.*</think>", "", value, re.DOTALL)
+    # values = re.sub(r"^.*</think>", "", value, re.DOTALL)
+    offset = values.find("</think>")
+
     print(values)
     print("-" * 40)
     values = llama3(values)
