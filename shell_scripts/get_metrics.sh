@@ -5,9 +5,9 @@ DATES=("2024-09-05" "2024-09-05" "2024-11-04")
 # DATES=("2025-03-30" "2025-03-30" "2025-03-30")
 DEPTHS=(4 8 10)
 
-LLM="o1-preview"
-LLM_SUFFIX="/runs"
-# LLM_SUFFIX=""
+LLM="deepseekr1-distill-llama3-8B"
+# LLM_SUFFIX="/runs"
+LLM_SUFFIX=""
 
 # SHOTS=(1 2 3 4 5 6 7 8 9 10)
 # SHOTS=(3)
