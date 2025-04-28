@@ -18,3 +18,5 @@ class RunArguments(BaseModel):
     dimensions: Optional[int] = Field(
         default=1024, metadata={"help": "Embedding dimension"}
     )
+    encoding_format: Optional[str] = Field(
+        default="float", metadata={"help": "Format to return data"}
