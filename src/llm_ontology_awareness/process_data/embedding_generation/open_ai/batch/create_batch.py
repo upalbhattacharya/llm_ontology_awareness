@@ -27,7 +27,7 @@ def create_embedding_batch(
         raise Exception(f"Entity type {run_args.entity_type} not defined")
     print(entities)
 
-    for i, ent_name in tqdm(enumerate(entities))):
+    for i, ent_name in tqdm(enumerate(entities)):
         task = {
             "custom_id": f"embedding_task-{i}",
             "method": "POST",
