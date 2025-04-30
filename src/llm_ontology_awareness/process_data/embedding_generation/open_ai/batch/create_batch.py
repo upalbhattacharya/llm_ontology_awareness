@@ -25,3 +25,16 @@ def create_embedding_batch(
         entities = [ent.locale for ent in model.all_individuals]
     else:
         raise Exception(f"Entity type {run_args.entities} not defined")
+
+    for i, ent_name in tqdm(range(len(entities))):
+        task = {
+            "custom_id": f"task-{i}",
+            "method": "POST",
+            "url": "/v1/chat/completions",
+            "body": {
+                "model": run_args.llm_name,
+                "messages": messages,
+                "max_completion_tokens": run_args.max_tokens,
+                "temperature": run_args.temperature,
+            },
+        }
