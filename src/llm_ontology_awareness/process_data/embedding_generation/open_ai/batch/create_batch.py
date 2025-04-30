@@ -49,3 +49,13 @@ def create_embedding_batch(
     )
 
     return tasks, df
+
+
+if __name__ == "__main__":
+    import argparse
+    import json
+    import logging.config
+
+    from dotenv import load_dotenv
+
+    load_dotenv()
