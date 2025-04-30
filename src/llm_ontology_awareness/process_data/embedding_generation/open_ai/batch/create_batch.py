@@ -76,7 +76,11 @@ if __name__ == "__main__":
         run_args = RunArguments.parse_raw(args_raw)
 
     tasks, df = create_embedding_batch(run_args)
-    df.write_ndjson(os.path.join(run_args.output_dir, "embedding_mapping.json"))
+    df.write_ndjson(
+        os.path.join(
+            run_args.output_dir, f"{run_args.entity_type}_embedding_mapping.json"
+        )
+    )
     iterator = iter(tasks)
 
     for i in range(math.ceil(len(tasks) / 50000)):
