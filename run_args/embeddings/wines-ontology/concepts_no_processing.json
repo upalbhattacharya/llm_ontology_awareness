@@ -2,7 +2,7 @@
     "input": "/home/upal/Data/ontologies/wines-ontology/wine-clean.rdf",
     "output_dir": "/home/upal/Data/ontologies/wines-ontology/embeddings/no_processing/concepts/",
     "model": "text-embedding-3-large",
-    "dimensions": 1024,
+    "dimensions": 3072,
     "encoding_format": "float",
     "entity_type": "concepts"
 }
