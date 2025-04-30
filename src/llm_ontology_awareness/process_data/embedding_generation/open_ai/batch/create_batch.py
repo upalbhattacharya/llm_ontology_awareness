@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
     for i in range(math.ceil(len(tasks) / 50000)):
         with open(
-            os.path.join(run_args.output_dir, f"batch_tasks_{i + 1}.jsonl"),
+            os.path.join(run_args.output_dir, f"embedding_batch_tasks_{i + 1}.jsonl"),
             "w",
         ) as f:
             try:
