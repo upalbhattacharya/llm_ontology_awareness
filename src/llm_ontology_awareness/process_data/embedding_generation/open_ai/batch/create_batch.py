@@ -34,7 +34,7 @@ def create_embedding_batch(
             "body": {
                 "model": run_args.model,
                 "input": ent_name,
-                "max_completion_tokens": run_args.max_tokens,
-                "temperature": run_args.temperature,
+                "encoding_format": run_args.encoding_format,
+                "dimensions": run_args.dimensions,
             },
         }
