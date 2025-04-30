@@ -25,6 +25,7 @@ def create_embedding_batch(
         entities = [ent.locale for ent in model.all_individuals]
     else:
         raise Exception(f"Entity type {run_args.entity_type} not defined")
+    print(entities)
 
     for i, ent_name in tqdm(range(len(entities))):
         task = {
