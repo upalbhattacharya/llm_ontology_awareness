@@ -59,3 +59,16 @@ if __name__ == "__main__":
     from dotenv import load_dotenv
 
     load_dotenv()
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-f",
+        "--args_file",
+        help="Path to `RunArguments` file",
+        type=str,
+        required=True,
+    )
+    args = parser.parse_args()
+    with open(args.args_file, "r") as f:
+        args_raw = f.read()
+        run_args = RunArguments.parse_raw(args_raw)
