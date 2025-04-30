@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import os
+
 import ontospy
 import polars as pl
 from llm_ontology_awareness.model.open_ai.datasets.term_typing import (
