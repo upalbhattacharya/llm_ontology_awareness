@@ -11,7 +11,9 @@ from llm_ontology_awareness.process_data.embedding_generation.open_ai.run_args i
 from tqdm import tqdm
 
 
-def create_embedding_batch(run_args: RunArguments, **kwargs) -> (pl.DataFrame, dict):
+def create_embedding_batch(
+    run_args: RunArguments, **kwargs
+) -> (pl.DataFrame, list[dict]):
     model = ontospy.Ontospy(run_args.input, hide_individuals=False)
 
     tasks = []
