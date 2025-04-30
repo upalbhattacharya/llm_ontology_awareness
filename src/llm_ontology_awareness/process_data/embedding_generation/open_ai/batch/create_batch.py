@@ -75,3 +75,14 @@ if __name__ == "__main__":
     tasks, df = create_embedding_batch(run_args)
     df.write_ndjson(os.path.join(run_args.output_dir, "embedding_mapping.json"))
     iterator = iter(tasks)
+
+    for i in range(math.ceil(len(tasks) / 50000)):
+        with open(
+            os.path.join(run_args.output_dir, f"batch_tasks_{i + 1}.jsonl"),
+            "w",
+        ) as f:
+            try:
+                for j in range(50000):
+                    f.write(json.dumps(next(iterator)) + "\n")
+            except StopIteration:
+                exit(0)
