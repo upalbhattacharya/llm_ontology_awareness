@@ -28,9 +28,9 @@ def create_embedding_batch(
 
     for i, ent_name in tqdm(range(len(entities))):
         task = {
-            "custom_id": f"task-{i}",
+            "custom_id": f"embedding_task-{i}",
             "method": "POST",
-            "url": "/v1/chat/completions",
+            "url": "/v1/embeddings",
             "body": {
                 "model": run_args.llm_name,
                 "messages": messages,
