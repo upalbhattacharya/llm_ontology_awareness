@@ -33,7 +33,7 @@ def create_embedding_batch(
             "url": "/v1/embeddings",
             "body": {
                 "model": run_args.model,
-                "messages": messages,
+                "input": ent_name,
                 "max_completion_tokens": run_args.max_tokens,
                 "temperature": run_args.temperature,
             },
