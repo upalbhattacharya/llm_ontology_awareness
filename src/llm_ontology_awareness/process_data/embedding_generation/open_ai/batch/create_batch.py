@@ -19,12 +19,12 @@ def create_embedding_batch(
     tasks = []
     label_mapping = []
 
-    if run_args.entities == "concepts":
+    if run_args.entity_type == "concepts":
         entities = [ent.locale for ent in model.all_classes]
-    elif run_args.entities == "individuals":
+    elif run_args.entity_type == "individuals":
         entities = [ent.locale for ent in model.all_individuals]
     else:
-        raise Exception(f"Entity type {run_args.entities} not defined")
+        raise Exception(f"Entity type {run_args.entity_type} not defined")
 
     for i, ent_name in tqdm(range(len(entities))):
         task = {
