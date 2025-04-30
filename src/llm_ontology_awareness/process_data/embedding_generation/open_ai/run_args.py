@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 
 class RunArguments(BaseModel):
     input: Optional[str] = Field(
-        default=None, metadata={"help": "Dataset file to load"}
+        default=None, metadata={"help": "Ontology file to load"}
     )
     output_dir: Optional[str] = Field(
         default=None, metadata={"help": "Directory to save run data"}
@@ -20,6 +20,9 @@ class RunArguments(BaseModel):
     )
     encoding_format: Optional[str] = Field(
         default="float", metadata={"help": "Format to return data"}
+    )
+    entity_type: Optional[str] = Field(
+        default="concepts", metadata={"help": "Entities to create batch from"}
     )
 
     def model_post_init(self, __context):
