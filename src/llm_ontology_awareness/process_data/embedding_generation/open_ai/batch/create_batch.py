@@ -40,3 +40,12 @@ def create_embedding_batch(
         }
         tasks.append(task)
         label_mapping.append((f"embedding_task-{i}", ent_name))
+    df = pl.DataFrame(
+        label_mapping,
+        schema=[
+            ("Custom ID", str),
+            ("Entity Label", list[str]),
+        ],
+    )
+
+    return tasks, df
