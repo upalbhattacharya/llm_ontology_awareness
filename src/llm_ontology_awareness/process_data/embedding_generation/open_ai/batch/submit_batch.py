@@ -30,18 +30,19 @@ id_dict = defaultdict(list)
 for batch_file_path in batch_files:
     batch_file = client.files.create(file=open(batch_file_path, "rb"), purpose="batch")
     id_dict["batch_file_id"].append(batch_file.id)
+    print(batch_file_path)
 
     # Submit batch job
-    submit_batch = client.batches.create(
-        input_file_id=batch_file.id,
-        endpoint="/v1/embeddings",
-        completion_window="24h",
-        metadata={
-            "description": batch_file_path,
-        },
-    )
+#     submit_batch = client.batches.create(
+#         input_file_id=batch_file.id,
+#         endpoint="/v1/embeddings",
+#         completion_window="24h",
+#         metadata={
+#             "description": batch_file_path,
+#         },
+#     )
 
-    id_dict["batch_job_id"].append(submit_batch.id)
+#     id_dict["batch_job_id"].append(submit_batch.id)
 
-with open(os.path.join(args.batch_file_dir, "ids.json"), "w") as f:
-    json.dump(id_dict, f, indent=4)
+# with open(os.path.join(args.batch_file_dir, "ids.json"), "w") as f:
+#     json.dump(id_dict, f, indent=4)
