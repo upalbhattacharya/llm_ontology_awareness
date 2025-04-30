@@ -13,7 +13,7 @@ from tqdm import tqdm
 
 def create_embedding_batch(
     run_args: RunArguments, **kwargs
-) -> (pl.DataFrame, list[dict]):
+) -> (list[dict], pl.DataFrame):
     model = ontospy.Ontospy(run_args.input, hide_individuals=False)
 
     tasks = []
