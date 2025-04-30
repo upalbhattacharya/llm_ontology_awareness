@@ -42,3 +42,6 @@ for batch_file_path in batch_files:
     )
 
     id_dict["batch_job_id"].append(submit_batch.id)
+    
+with open(args.batch_file_dir, "ids.json"), "w") as f:
+    json.dump(id_dict, f, indent=4)
