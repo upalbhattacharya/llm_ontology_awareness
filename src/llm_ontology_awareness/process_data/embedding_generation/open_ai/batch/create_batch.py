@@ -20,8 +20,8 @@ def create_embedding_batch(
     label_mapping = []
 
     if run_args.entities == "concepts":
-        entities = model.all_classes
+        entities = [ent.locale for ent in model.all_classes]
     elif run_args.entities == "individuals":
-        entities = model.all_individuals
+        entities = [ent.locale for ent in model.all_individuals]
     else:
         raise Exception(f"Entity type {run_args.entities} not defined")
