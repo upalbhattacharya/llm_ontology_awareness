@@ -38,3 +38,5 @@ def create_embedding_batch(
                 "dimensions": run_args.dimensions,
             },
         }
+        tasks.append(task)
+        label_mapping.append((f"embedding_task-{i}", ent_name))
