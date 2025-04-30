@@ -32,7 +32,7 @@ def create_embedding_batch(
             "method": "POST",
             "url": "/v1/embeddings",
             "body": {
-                "model": run_args.llm_name,
+                "model": run_args.model,
                 "messages": messages,
                 "max_completion_tokens": run_args.max_tokens,
                 "temperature": run_args.temperature,
