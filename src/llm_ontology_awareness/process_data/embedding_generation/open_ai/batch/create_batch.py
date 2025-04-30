@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-import os
-
 import ontospy
 import polars as pl
 from llm_ontology_awareness.model.open_ai.datasets.term_typing import (
@@ -57,6 +55,7 @@ def create_embedding_batch(
 if __name__ == "__main__":
     import argparse
     import json
+    import os
 
     from dotenv import load_dotenv
 
