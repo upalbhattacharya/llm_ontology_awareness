@@ -71,3 +71,7 @@ if __name__ == "__main__":
     with open(args.args_file, "r") as f:
         args_raw = f.read()
         run_args = RunArguments.parse_raw(args_raw)
+
+    tasks, df = create_embedding_batch(run_args)
+    df.write_ndjson(os.path.join(run_args.output_dir, "label_mapping.json"))
+    iterator = iter(tasks)
