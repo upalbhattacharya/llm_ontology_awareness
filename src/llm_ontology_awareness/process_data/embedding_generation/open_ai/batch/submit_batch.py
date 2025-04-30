@@ -34,7 +34,7 @@ for batch_file_path in batch_files:
     # Submit batch job
     submit_batch = client.batches.create(
         input_file_id=batch_file.id,
-        endpoint="/v1/chat/completions",
+        endpoint="/v1/embeddings",
         completion_window="24h",
         metadata={
             "description": batch_file_path,
