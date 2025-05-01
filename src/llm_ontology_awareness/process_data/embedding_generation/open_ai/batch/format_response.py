@@ -46,7 +46,7 @@ df = pl.DataFrame(
 )
 y_true_df = pl.read_ndjson(args.label_mapping)
 join_df = df.join(y_true_df, on="Custom ID")
-columns = ["Label", "Embedding"]
+columns = ["Entity Label", "Embedding"]
 join_df = join_df.select(columns)
 
 print(join_df)
