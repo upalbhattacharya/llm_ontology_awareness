@@ -51,4 +51,4 @@ columns = ["Entity Label", "Embedding"]
 join_df = join_df.select(columns)
 
 print(join_df)
-# join_df.write_ndjson(os.path.join(output_dir, "embeddings.json"))
+join_df.write_ndjson(os.path.join(output_dir, "embeddings.json"))
