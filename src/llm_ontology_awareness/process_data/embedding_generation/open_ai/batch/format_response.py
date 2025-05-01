@@ -23,6 +23,7 @@ parser.add_argument(
     required=True,
 )
 
+output_dir = args.response_file_dir
 path_glob = f"{args.response_file_dir}/embedding_batch_output_*.jsonl"
 batch_output_files = glob.glob(path_glob)
 results = []
@@ -38,8 +39,7 @@ for batch_output_path in batch_output_files:
                 )
             )
 
-df = pl.DataFrame(results, schema=[("Custom ID", str), ("Response", str)])
-
+df = pl.DataFrame(results, schema=[("Custom ID", str), ("Embedding", str)])
 y_true_df = pl.read_ndjson(args.label_mapping)
-
 join_df = df.join(y_true_df, on="Custom ID")
+columns = ["Label", "Embedding"]
