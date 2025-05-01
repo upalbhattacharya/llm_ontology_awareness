@@ -45,7 +45,7 @@ def create_embedding_batch(
         label_mapping,
         schema=[
             ("Custom ID", str),
-            ("Entity Label", list[str]),
+            ("Entity Label", str),
         ],
     )
 
@@ -77,9 +77,7 @@ if __name__ == "__main__":
 
     tasks, df = create_embedding_batch(run_args)
     df.write_ndjson(
-        os.path.join(
-            run_args.output_dir, f"{run_args.entity_type}_embedding_mapping.json"
-        )
+        os.path.join(run_args.output_dir, f"{run_args.entity_type}_label_mapping.json")
     )
     iterator = iter(tasks)
 
