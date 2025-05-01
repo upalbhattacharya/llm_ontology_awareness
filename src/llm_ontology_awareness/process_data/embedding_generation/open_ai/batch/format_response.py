@@ -23,6 +23,8 @@ parser.add_argument(
     required=True,
 )
 
+args = parser.parse_args()
+
 output_dir = args.response_file_dir
 path_glob = f"{args.response_file_dir}/embedding_batch_output_*.jsonl"
 batch_output_files = glob.glob(path_glob)
