@@ -41,7 +41,9 @@ for batch_output_path in batch_output_files:
                 )
             )
 
-df = pl.DataFrame(results, schema=[("Custom ID", str), ("Embedding", str)])
+df = pl.DataFrame(
+    results, schema=[("Custom ID", str), ("Embedding", pl.Array(pl.Float64, 3072))]
+)
 y_true_df = pl.read_ndjson(args.label_mapping)
 join_df = df.join(y_true_df, on="Custom ID")
 columns = ["Label", "Embedding"]
