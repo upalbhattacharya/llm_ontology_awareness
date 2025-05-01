@@ -47,4 +47,5 @@ join_df = df.join(y_true_df, on="Custom ID")
 columns = ["Label", "Embedding"]
 join_df = join_df.select(columns)
 
-join_df.write_ndjson(os.path.join(output_dir, "embeddings.json"))
+print(join_df)
+# join_df.write_ndjson(os.path.join(output_dir, "embeddings.json"))
