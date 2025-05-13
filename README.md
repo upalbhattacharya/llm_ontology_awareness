@@ -4,4 +4,5 @@ Accompanying repository with source code, data and exhaustive list of results an
 
 - The data including the ontology files, the zero-shot and few-shot dataset variations and the embeddings for entities can be found in the `data` directory.
 - The relevant source code can be found under `src/llm_ontology_awareness`
+- An exhaustive list of all our results and figures can be found under `results`
 - 
