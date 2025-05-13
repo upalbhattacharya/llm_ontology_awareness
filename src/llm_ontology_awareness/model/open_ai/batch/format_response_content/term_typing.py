@@ -50,7 +50,7 @@ for batch_output_path in batch_output_files:
             results.append(
                 (
                     json_object["custom_id"],
-                    json_object["response"]["body"]["choices"][0]["message"]["content"],
+                    json_object["response"]["body"]["choices"][0]["embedding"],
                 )
             )
 

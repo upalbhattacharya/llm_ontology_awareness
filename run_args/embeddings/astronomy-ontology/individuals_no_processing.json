@@ -1,0 +1,8 @@
+{
+    "input": "/home/upal/Data/ontologies/astronomy-ontology/astronomy.owl",
+    "output_dir": "/home/upal/Data/ontologies/astronomy-ontology/embeddings/no_processing/individuals/",
+    "model": "text-embedding-3-large",
+    "dimensions": 3072,
+    "encoding_format": "float",
+    "entity_type": "individuals"
+}
