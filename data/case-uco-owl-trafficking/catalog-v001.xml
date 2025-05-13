@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1724920787465" name="http://www.semanticweb.org/upal/ontologies/2024/7/case-uco-owl-trafficking/" uri="case-uco-owl-trafficking.rdf"/>
+    </group>
+</catalog>

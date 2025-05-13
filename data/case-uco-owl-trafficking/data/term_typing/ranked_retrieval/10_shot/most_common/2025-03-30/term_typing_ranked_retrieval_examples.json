@@ -1,0 +1,10 @@
+{"Individual":"externalaccount-8976b508-80e5-4442-af1c-637d3b09240e","Ranked List":["DigitalAccount","Account","ObservableObject","Item","Observable","UcoObject","UcoThing"]}
+{"Individual":"digital-account-facet-1b9bbc72-e079-49bb-a0dd-eed722015d56","Ranked List":["DigitalAccountFacet","Facet","UcoInherentCharacterizationThing","UcoThing"]}
+{"Individual":"investigator-09fb01ce-999e-4521-bd3f-f7be69a63a43","Ranked List":["Person","Identity","IdentityAbstraction","UcoObject","UcoThing"]}
+{"Individual":"data-range-facet-f4a40b62-4904-4b09-aa14-9f132b4780bc","Ranked List":["DataRangeFacet","Facet","UcoInherentCharacterizationThing","UcoThing"]}
+{"Individual":"filesystem-relationship-f64f857e-6c87-417f-9166-5aaaed8a6fd2","Ranked List":["ObservableRelationship","Observable","Relationship","UcoObject","UcoThing"]}
+{"Individual":"forensic-computer-2132063b-7753-4b51-b146-827e9a1d5037","Ranked List":["Device","ObservableObject","Item","Observable","UcoObject","UcoThing"]}
+{"Individual":"software-cc22d2f4-636d-4cf2-bec4-0b91aa9926de","Ranked List":["Application","Software","ObservableObject","Item","Observable","UcoObject","UcoThing"]}
+{"Individual":"message-database-relationship-e83e0484-c8fb-4c66-8c7e-0b17052bb826","Ranked List":["ObservableRelationship","Observable","Relationship","UcoObject","UcoThing"]}
+{"Individual":"associated-account-phonenumber-0307a497-f1fb-4af4-9877-90c56ee76fba","Ranked List":["ObservableRelationship","Observable","Relationship","UcoObject","UcoThing"]}
+{"Individual":"facebook-4dd9cd88-0acd-475c-ba45-c5bc6ad7244d","Ranked List":["DigitalAccount","Account","ObservableObject","Item","Observable","UcoObject","UcoThing"]}

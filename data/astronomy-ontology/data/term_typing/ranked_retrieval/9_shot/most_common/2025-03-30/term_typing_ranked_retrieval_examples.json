@@ -1,0 +1,9 @@
+{"Individual":"Saturn","Ranked List":["solarSystemPlanet","planet","planetarySystemPart","rotatingBody","astroMatterObject","astroObject","matterObject","astronomyEntity","physicalObject"]}
+{"Individual":"Jupiter","Ranked List":["solarSystemPlanet","planet","planetarySystemPart","rotatingBody","astroMatterObject","astroObject","matterObject","astronomyEntity","physicalObject"]}
+{"Individual":"LocalGroup","Ranked List":["galaxyGroup","systemOfGalaxies","astroMatterObject","system","astroObject","matterObject","astronomyEntity","physicalObject"]}
+{"Individual":"Sun","Ranked List":["star","astroMatterObject","source","stellarObject","astroObject","matterObject","astronomyEntity","physicalObject"]}
+{"Individual":"GreatAttractor","Ranked List":["supercluster","systemOfGalaxies","astroMatterObject","system","astroObject","matterObject","astronomyEntity","physicalObject"]}
+{"Individual":"Venus","Ranked List":["solarSystemPlanet","planet","planetarySystemPart","rotatingBody","astroMatterObject","astroObject","matterObject","astronomyEntity","physicalObject"]}
+{"Individual":"SpaceScienceInstitution","Ranked List":["astronomicalInstitution","institution"]}
+{"Individual":"SETI","Ranked List":["astronomicalInstitution","institution"]}
+{"Individual":"ShapleyAmesCatalog","Ranked List":["galaxyCatalog","stellarSystemCatalog","astronomicalCatalog","dataCollection"]}
