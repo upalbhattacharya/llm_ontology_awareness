@@ -1,4 +1,3 @@
-# LLM Ontology Awareness
+# Ontology Population Using LLMs: Which Factors Matter?
 
-A tool for generating LLM prompts to evaluate LLM awareness of varying difficulties of ontology
-tasks.
+Accompanying repository with source code, data and exhaustive list of results and figures
