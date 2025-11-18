@@ -187,5 +187,7 @@ if __name__ == "__main__":
             f"Argument `task_type` must be one of {list(task_types.keys())}. Found {args.task_type}"
         )
 
-    itcd = task_types[args.task_type]["dataset"](ontologyPath=args.file, **args.kwargs)
+    itcd = task_types[args.task_type]["dataset_metrics"](
+        ontologyPath=args.file, **args.kwargs
+    )
     itcd(out_dir=args.output)
